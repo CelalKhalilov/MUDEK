@@ -1,0 +1,56 @@
+﻿@model List<AcademicUnit>
+@{
+    Layout = null;
+}
+@{
+    Layout = "_layoutHome";
+}
+<link rel="stylesheet" href="~/css/style.css">
+
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+        <header><img style="max-width: 200px;" src="~/jpg/samu.png" alt=""></header>
+        <!-- <header>MÜDEK Bilgi Sistemi</header> -->
+        <form action="#">
+            <button type="button" class="button" onclick="window.location.href='/Home/Ogretmen'">Öğretim Üyesi Girişi</button>
+            <button type="button" class="button" onclick="window.location.href='#'">Bölüm Başkanı Girişi</button>
+            <button type="button" class="button" onclick="window.location.href='#'">MÜDEK Denetçisi Girişi</button>
+        </form>
+    </div>
+</div>
+
+@* @foreach (var i in Model)
+{
+    <div>
+        <p>@i.AcademicUnitId</p>
+        <p>@i.UnitName</p>
+    </div>
+    
+}  *@
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @{
+ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+<h1 class="display-4">Welcome</h1>
+<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
