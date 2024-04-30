@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {}
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+        "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\90506\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\Repositories\\obj\\",
+        "outputPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\90506\\AppData\\Roaming\\NuGet\\NuGet.Config",

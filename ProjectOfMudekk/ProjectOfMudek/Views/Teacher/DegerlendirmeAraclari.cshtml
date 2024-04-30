@@ -1,0 +1,195 @@
+@{
+    Layout = "_LayoutTeacher";
+}
+
+<link rel="stylesheet" href="~/css/DegerlendirmeAraclariStyle.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
+
+        <!-- <form action="#">
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Dersin Öğrenim Çıktıları</span>
+
+                        <div class="fields">
+                            <form action="#">
+                                <div class="input-field">
+                                    <label>Başlık</label>
+                                    <select id="abc" required>
+                                        <option disabled selected>Başlık Seçiniz...</option>
+                                        <option>Ödev</option>
+                                        <option>Vize</option>
+                                        <option>Final</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label>%</label>
+                                    <input id="cba" type="number" max="100" min="1" placeholder="Yüzede Giriniz..."
+                                        required>
+                                </div>
+                                <div class="input-field">
+                                    <label>Ekle</label>
+                                    <button type="submit" class="btn btn-success">Ekle</button>
+                                </div>
+                                <div class="input-field">
+                                    <label>Sİl</label>
+                                    <button type="button" class="btn btn-danger">
+                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                            style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button>
+                                </div>
+                                <div class="input-field">
+                                    <label>Düzenle</label>
+                                    <button type="button" class="btn btn-info">
+                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                                            stroke="bold" style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form> -->
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Dersin Öğrenim Çıktıları</span>
+
+                    <div class="fields">
+                        <form action="#">
+                            <div class="input-field">
+                                <label>Başlık</label>
+                                <input id="cb" placeholder="Başlık Giriniz..." required>
+                            </div>
+                            <div class="input-field">
+                                <label>%</label>
+                                <input id="cba" type="number" max="100" min="1" placeholder="Yüzede Giriniz..."
+                                    required>
+                            </div>
+                            <div class="input-field">
+                                <label>Ekle</label>
+                                <button type="submit" class="btn btn-success">Ekle</button>
+                            </div>
+                            <div class="input-field">
+                                <label>Sİl</label>
+                                <button type="button" class="btn btn-danger">
+                                    <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                        stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                        style="width:20px;height:20px">
+                                    </lord-icon>
+                                </button>
+                            </div>
+                            <div class="input-field">
+                                <label>Düzenle</label>
+                                <button type="button" class="btn btn-info">
+                                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                                        stroke="bold" style="width:20px;height:20px">
+                                    </lord-icon>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <table class="table table-bordered border-primary table-hover">
+                        <!-- <tr>
+                                <th class="border-primary border-end-0">Değerlendirme Aracı Sayısı</th>
+                                <th class="border border-0"></th>
+                                <th class="border border-0"></th>
+                                <th class="border border-0"></th>
+                                <th class="border border-0"></th>
+                                <th class="border border-primary"></th>
+
+                            </tr> -->
+                        <tr class="satir-1">
+                            <th class="border-2 border-danger" id="th1" colspan="4">Değerlendirme Aracı Sayısı</th>
+                            <th class="border-2 border-danger" id="th2" style="min-width: 60px;"></th>
+
+                            <!-- <th colspan="2">Sil / Düzenle</th> -->
+                        </tr>
+                        <tr class="satir-2">
+                            <th class="border-2 border-danger" id="th1"></th>
+                            <th class="border-2 border-danger" id="th2">Başlık</th>
+                            <th class="border-2 border-danger" id="th3">%</th>
+                            <th class="border-2 border-danger" id="th4">Alt Değerlendirme Aracı Sayısı</th>
+                            <th class="border-2 border-danger" id="th5">Ekle</th>
+                            <!-- <th colspan="2" rowspan="1" class="th4"></th> -->
+                            <!-- <th class="th5"></th> -->
+                        </tr>
+                        <tr class="satir-3">
+                            <th class="border-2 border-info" id="th1">Değerlendirme Aracı
+                            </th>
+                            <th class="border-2 border-info" id="th2">Ödev</th>
+                            <th class="border-2 border-info" id="th3">10</th>
+                            <th class="border-2 border-info" id="th4">2</th>
+                            <th class="border-2 border-info" id="th4"><i style=" cursor: pointer;"
+                                    class="bi bi-plus-square"></i></th>
+                            <!-- <th colspan="2" class="th4"></th> -->
+                            <!-- <th class="th5"></th> -->
+                        </tr>
+                        <tr>
+                            <th class="alt-deg">Alt - D #1:</th>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"></td>
+                            <!-- <td>
+                                    <button type="button" class="btn btn-danger">
+                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                            style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button>
+                                </td>
+                                <td><button type="button" class="btn btn-info">
+                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                                            stroke="bold" style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button></td> -->
+                        </tr>
+                        <tr>
+                            <th>Ö - 2</th>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"></td>
+                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+                        </tr>
+                        <tr>
+                            <th>Ö - 3</th>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"></td>
+                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+                        </tr>
+                        <tr>
+                            <th>Ö - 4</th>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"></td>
+                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+                        </tr>
+                        <tr>
+                            <th>Ö - 5</th>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"></td>
+                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>

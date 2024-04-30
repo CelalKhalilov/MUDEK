@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jk9rwlg3a6PT0d2R9twM5Ak9+9YCbRdrlTx5N4FPQq9hJTF2UZw9rQZPUxxLdL4Fy0VbM87k4C6DXGY8XbCV7g==",
+  "dgSpecHash": "D5vg32evBzq5A5WaZBXL0MNthWXx/sptjUpTr29joDmmM9zLXLEZXOkvRtHcLaEPJW0wrdT6STKrn7/8nF9L0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\90506\\Downloads\\ProjectOfMudekk\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
+  "projectFilePath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\90506\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\90506\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -27,5 +27,21 @@ namespace ProjectOfMudek.Controllers
         {
             return View();
         }
+        public IActionResult Upload()
+        {
+            return View();
+        }
+        public IActionResult DegerlendirmeAraclari()
+        {
+            return View();
+        }
+        public IActionResult Hesaplamalar()
+        {
+            return View();
+        }
+        public IActionResult ProfilAyarlari()
+        {
+            return View();
+        }
     }
 }
