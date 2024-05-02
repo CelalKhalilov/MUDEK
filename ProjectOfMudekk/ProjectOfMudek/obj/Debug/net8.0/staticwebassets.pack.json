@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\css\\OgretmenStyle.css"
     },
     {
+      "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\ProfilAyarlariStyle.css",
+      "PackagePath": "staticwebassets\\css\\ProfilAyarlariStyle.css"
+    },
+    {
       "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\UploadStyle.css",
       "PackagePath": "staticwebassets\\css\\UploadStyle.css"
     },

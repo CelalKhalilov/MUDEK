@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nYZ0rLlWuE6ejozV5oO06fe8nGUunWJenBw42Vl5RJY=",
+  "Hash": "irQ2tAkZcTIML6HuqmYbhuAJ9r/2SqYBu+3txZ+GEco=",
   "Source": "ProjectOfMudek",
   "BasePath": "_content/ProjectOfMudek",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\OgretmenStyle.css"
+    },
+    {
+      "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\ProfilAyarlariStyle.css",
+      "SourceId": "ProjectOfMudek",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\",
+      "BasePath": "_content/ProjectOfMudek",
+      "RelativePath": "css/ProfilAyarlariStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\ProfilAyarlariStyle.css"
     },
     {
       "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\sayfa1.css",
