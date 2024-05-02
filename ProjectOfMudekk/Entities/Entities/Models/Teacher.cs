@@ -13,7 +13,7 @@ namespace Entities.Entities.Models
         public string LastName { get; set; }
         public string Gmail { get; set; }
         public string Password { get; set; }
-        public string ProfileImage { get; set; }
+        public string? ProfileImage { get; set; }
 
     }
 }

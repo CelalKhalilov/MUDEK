@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "irQ2tAkZcTIML6HuqmYbhuAJ9r/2SqYBu+3txZ+GEco=",
+  "Hash": "r2y7cjAQG08dcJFzxufj/RVZFNnsPOlrScfIqkgYL18=",
   "Source": "ProjectOfMudek",
   "BasePath": "_content/ProjectOfMudek",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\HesaplaStyle.css"
+    },
+    {
+      "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\HomeDogrulamaStyle.css",
+      "SourceId": "ProjectOfMudek",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\",
+      "BasePath": "_content/ProjectOfMudek",
+      "RelativePath": "css/HomeDogrulamaStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\HomeDogrulamaStyle.css"
     },
     {
       "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\OgretmenStyle.css",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\jpg\\samu.png"
+    },
+    {
+      "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\js\\HomeDogrulamaScript.js",
+      "SourceId": "ProjectOfMudek",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\",
+      "BasePath": "_content/ProjectOfMudek",
+      "RelativePath": "js/HomeDogrulamaScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\HomeDogrulamaScript.js"
     },
     {
       "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\js\\site.js",

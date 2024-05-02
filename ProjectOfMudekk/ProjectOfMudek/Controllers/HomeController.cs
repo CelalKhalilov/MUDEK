@@ -28,6 +28,21 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
+        public IActionResult Dogrulama()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Ogretmen(Teacher teacher)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Teachers.Add(teacher);
+                _context.SaveChanges();
+                return RedirectToAction("Dogrulama", "Home");
+            }
+            return View();
+        }
         
     }
 }

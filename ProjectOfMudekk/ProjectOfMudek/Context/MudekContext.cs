@@ -20,7 +20,7 @@ namespace ProjectOfMudek.Context
         public DbSet<Department> departments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb3;TrustServerCertificate=true;User Id=sa;Password=1;");
+            optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

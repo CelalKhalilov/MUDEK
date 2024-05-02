@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\HesaplaStyle.css"
     },
     {
+      "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\HomeDogrulamaStyle.css",
+      "PackagePath": "staticwebassets\\css\\HomeDogrulamaStyle.css"
+    },
+    {
       "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\css\\OgretmenStyle.css",
       "PackagePath": "staticwebassets\\css\\OgretmenStyle.css"
     },
@@ -55,6 +59,10 @@
     {
       "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\samu.png",
       "PackagePath": "staticwebassets\\jpg\\samu.png"
+    },
+    {
+      "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\js\\HomeDogrulamaScript.js",
+      "PackagePath": "staticwebassets\\js\\HomeDogrulamaScript.js"
     },
     {
       "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\js\\TeacherScript.js",

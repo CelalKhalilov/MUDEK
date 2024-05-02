@@ -1,4 +1,4 @@
-﻿
+﻿@model Teacher
 @{
     Layout = "_layoutHome";
 }
@@ -7,16 +7,18 @@
 <section class="wrapper">
       <div class="form signup">
         <header>Signup</header>
-        <form action="#">
-          <input type="text" placeholder="Name" required />
-          <input type="text" placeholder="Surname" required />
-          <input type="text" placeholder="Email address" required />
-          <input type="password" placeholder="Password" required />
+
+        <form method="POST">
+          <input asp-for="LastName" type="text" id="LastName"  placeholder="Name" required />
+          <input asp-for="FirstName" type="text" id="FirstName" placeholder="Surname" required />
+          <input asp-for="Gmail" type="text" id="Gmail"  placeholder="Email address" required />
+          <input asp-for="Password" type="password" id="Password"  placeholder="Password" required />
           <div class="checkbox">
             <input type="checkbox" id="signupCheck" />
             <label for="signupCheck">I accept all terms & conditions</label>
           </div>
-          <input type="submit" value="Signup" />
+          <input type="submit" value="Signup"  />
+          @* <button class="btn btn-primary" type="submit" value="Signup">Signup</button> *@
         </form>
       </div>
 
