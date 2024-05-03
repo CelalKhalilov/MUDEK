@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectOfMudek.Context;
 
@@ -25,6 +26,19 @@ namespace ProjectOfMudek.Controllers
         }
         public IActionResult Tablo()
         {
+            var a = _context.learningOutcomess.ToList();
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Tablo(LearningOutcomes learningOutcomes)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.learningOutcomess.Add(learningOutcomes);
+                _context.SaveChanges();
+                return RedirectToAction("Tablo", "Teacher");
+            }
             return View();
         }
         public IActionResult Upload()
@@ -41,7 +55,8 @@ namespace ProjectOfMudek.Controllers
         }
         public IActionResult ProfilAyarlari()
         {
-            return View();
+            var a = _context.Teachers.ToList();
+            return View(a);
         }
     }
 }

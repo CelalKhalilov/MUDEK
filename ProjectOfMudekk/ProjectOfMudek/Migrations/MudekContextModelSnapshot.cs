@@ -159,6 +159,27 @@ namespace ProjectOfMudek.Migrations
                     b.ToTable("faculties");
                 });
 
+            modelBuilder.Entity("Entities.Models.LearningOutcomes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Definition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("learningOutcomess");
+                });
+
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
                     b.HasOne("Entities.Models.Faculty", "Faculty")

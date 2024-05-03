@@ -33,6 +33,25 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult OgretmenLogin(Teacher teacher)
+        {
+            var user = _context.Teachers.FirstOrDefault(a => a.Gmail == teacher.Gmail && a.Password == teacher.Password);
+            if (user != null)
+            {
+                // Başarılı giriş, "/Admin/Index" sayfasına yönlendir
+                HttpContext.Session.SetString("IsLoggedIn", "true");
+                return RedirectToAction("Index", "Teacher");
+            }
+            else
+            {
+                // Hatalı giriş, sayfada bir hata mesajı gösterilebilir veya farklı bir işlem yapılabilir
+                ViewBag.Error = "Invalid username or password.";
+                return View();
+            }
+        }
+
+
+        [HttpPost]
         public IActionResult Ogretmen(Teacher teacher)
         {
             if (ModelState.IsValid)

@@ -1,0 +1,25 @@
+@model IEnumerable<LearningOutcomes>
+
+@foreach (var i in Model)
+{
+
+
+    <tr>
+        <th>Ö - 1</th>
+        <td>@i.Keywords</td>
+        <td>@i.Definition</td>
+        <td>
+            <button type="button" class="btn btn-danger">
+                <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover" stroke="bold"
+                    colors="primary:#121331,secondary:#ffffff" style="width:20px;height:20px">
+                </lord-icon>
+            </button>
+        </td>
+        <td><button type="button" class="btn btn-info">
+                <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
+                    style="width:20px;height:20px">
+                </lord-icon>
+            </button>
+        </td>
+    </tr>
+}

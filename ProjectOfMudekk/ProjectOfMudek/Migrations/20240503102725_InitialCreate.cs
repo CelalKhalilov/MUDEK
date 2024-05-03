@@ -53,6 +53,20 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "learningOutcomess",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Definition = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_learningOutcomess", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -131,6 +145,9 @@ namespace ProjectOfMudek.Migrations
 
             migrationBuilder.DropTable(
                 name: "headOfMudeks");
+
+            migrationBuilder.DropTable(
+                name: "learningOutcomess");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

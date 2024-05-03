@@ -1,7 +1,7 @@
 @{
     Layout = "_LayoutTeacher";
 }
-
+@model List<Teacher>
 <link rel="stylesheet" href="~/css/ProfilAyarlariStyle.css">
 
 <section class="home">
@@ -19,7 +19,8 @@
                         <div class="card mb-1" style="max-width: 880px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" class="img-thumbnail rounded-start" alt="...">
+                                    <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                        class="img-thumbnail rounded-start" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -44,12 +45,20 @@
                                         <!-- <div class="alert alert-light" role="alert"> -->
                                         <h5 class="card-title">Card title</h5>
                                         <br>
-                                        <h6>İsim:</h6>
-                                        <hr>
-                                        <h6>Soyisim:</h6>
-                                        <hr>
-                                        <h6>Gmail:</h6>
-                                        <hr>
+                                        @foreach (var i in Model)
+                                        {
+                                            if (@i.Id == 1)
+                                            {
+                                                <h6>İsim:&nbsp;&nbsp;@i.LastName</h6>
+                                                <hr>
+                                                <h6>Soyisim:&nbsp;&nbsp;@i.FirstName</h6>
+                                                <hr>
+                                                <h6>Gmail:&nbsp;&nbsp;@i.Gmail</h6>
+                                                <hr>
+                                            }
+
+
+                                        }
 
 
                                         <form class="form-profil" action="/upload" method="post"

@@ -11,7 +11,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240502173354_InitialCreate")]
+    [Migration("20240503102725_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -160,6 +160,27 @@ namespace ProjectOfMudek.Migrations
                     b.HasIndex("AcademicUnitId");
 
                     b.ToTable("faculties");
+                });
+
+            modelBuilder.Entity("Entities.Models.LearningOutcomes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Definition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("learningOutcomess");
                 });
 
             modelBuilder.Entity("Entities.Models.Department", b =>
