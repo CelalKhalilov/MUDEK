@@ -1,7 +1,14 @@
+@using ProjectOfMudek.Context
 @model LearningOutcomes
 
 @{
     Layout = "_LayoutTeacher";
+}
+
+@{
+    var outcomesList = ViewBag.OutcomesList as List<LearningOutcomes>;
+    var i = 1;
+    var c = 1;
 }
 
 <link rel="stylesheet" href="~/css/sayfa2.css">
@@ -29,7 +36,6 @@
                         <div class="input-field">
                             <input class="inp2" asp-for="Definition" id="Definition" type="text"
                                 placeholder="Tanım Giriniz..." required>
-    using ProjectOfMudek.Context;
                         </div>
                         <div class="input-field">
                             <button type="submit" class="btn btn-success">Ekle</button>
@@ -71,88 +77,54 @@
                             <th class="th5">Düzenle</th>
                         </tr>
 
-                        @* @await Html.PartialAsync("_LearningOutcomes") *@
-
-                        @* @for (var i=0; i<10; i++) *@
-
-
-
-                        @* @foreach (var item in Model)
-                        { *@
-                            <tr>
-                            <th>Ö - 1</th>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button type="button" class="btn btn-danger">
-                                    <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                        stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                        style="width:20px;height:20px">
-                                    </lord-icon>
-                                </button>
-                            </td>
-                            <td><button type="button" class="btn btn-info">
-                                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                                        stroke="bold" style="width:20px;height:20px">
-                                    </lord-icon>
-                                </button>
-                            </td>
-                        </tr>
-                        @* } *@
-
-
-                        @* @foreach (var i in Model)
+                        @foreach (var outcome in outcomesList)
                         {
-                        } *@
+                            <tr>
+                                <th>Ö - @i</th>
+                                <td>@outcome.Keywords</td>
+                                <td>@outcome.Definition</td>
+                                <td>
+                                    <form method="POST" action="/Teacher/TabloDelete">
+                                    <input type="hidden" name="Id" value="@outcome.Id">
+                                    <button type="submit" class="btn btn-danger">
+                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                            style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button>
+                                    </form>
+                                </td>
+                                <td><button type="button" class="btn btn-info">
+                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                                            stroke="bold" style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            i++;
+                        }
 
                         @* <tr>
-                            <th>Ö - 1</th>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button type="button" class="btn btn-danger">
-                                    <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                        stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                        style="width:20px;height:20px">
-                                    </lord-icon>
-                                </button>
-                            </td>
-                            <td><button type="button" class="btn btn-info">
-                                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                                        stroke="bold" style="width:20px;height:20px">
-                                    </lord-icon>
-                                </button>
-                            </td>
+                        <th>Ö - 1</th>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <button type="button" class="btn btn-danger">
+                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                        stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                        style="width:20px;height:20px">
+                        </lord-icon>
+                        </button>
+                        </td>
+                        <td><button type="button" class="btn btn-info">
+                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                        stroke="bold" style="width:20px;height:20px">
+                        </lord-icon>
+                        </button>
+                        </td>
                         </tr> *@
 
-                        @* <tr>
-                        <th>Ö - 2</th>
-                        <td></td>
-                        <td></td>
-                        <td><button type="button" class="btn btn-danger">Danger</button></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 3</th>
-                        <td></td>
-                        <td></td>
-                        <td><button type="button" class="btn btn-danger">Danger</button></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 4</th>
-                        <td></td>
-                        <td></td>
-                        <td><button type="button" class="btn btn-danger">Danger</button></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 5</th>
-                        <td></td>
-                        <td></td>
-                        <td><button type="button" class="btn btn-danger">Danger</button></td>
-                        <td></td>
-                        </tr> *@
+
                     </table>
                 </div>
             </div>
@@ -178,99 +150,104 @@
                     <span class="title">Program Çıktıları x Öğrenim Çıktıları</span>
 
 
+                        <table class="table table-bordered border-primary ">
+                            <tr class="p-tr">
+                                <th class=""></th>
+                                <th class="p-th2">P - 1</th>
+                                <th class="p-th3">P - 2</th>
+                                <th class="p-th4">P - 3</th>
+                                <th class="p-th5">P - 4</th>
+                                <th class="p-th6">P - 5</th>
+                                <th class="p-th7">P - 6</th>
+                                <th class="p-th8">P - 7</th>
+                                <th class="p-th9">P - 8</th>
+                                <th class="p-th10">P - 9</th>
+                                <th class="p-th11">P - 10</th>
+                                <th class="p-th12">P - 11</th>
+                                <th class="p-th13">P - 12</th>
+                            </tr>
+                    @foreach (var outcome in outcomesList)
+                    {
+                            <tr>
+                                <th>Ö - @c</th>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                            </tr>
+                                c++;
+                    }
 
-                    <table class="table table-bordered border-primary ">
-                        <tr class="p-tr">
-                            <th class=""></th>
-                            <th class="p-th2">P - 1</th>
-                            <th class="p-th3">P - 2</th>
-                            <th class="p-th4">P - 3</th>
-                            <th class="p-th5">P - 4</th>
-                            <th class="p-th6">P - 5</th>
-                            <th class="p-th7">P - 6</th>
-                            <th class="p-th8">P - 7</th>
-                            <th class="p-th9">P - 8</th>
-                            <th class="p-th10">P - 9</th>
-                            <th class="p-th11">P - 10</th>
-                            <th class="p-th12">P - 11</th>
-                            <th class="p-th13">P - 12</th>
+                            @* <tr>
+                        <th>Ö - 2</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         </tr>
                         <tr>
-                            <th>Ö - 1</th>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                            <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                        <th>Ö - 3</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         </tr>
                         <tr>
-                            <th>Ö - 2</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <th>Ö - 4</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         </tr>
                         <tr>
-                            <th>Ö - 3</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Ö - 4</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Ö - 5</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
+                        <th>Ö - 5</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr> *@
+                        </table>
+                    
                 </div>
             </div>
         </form>

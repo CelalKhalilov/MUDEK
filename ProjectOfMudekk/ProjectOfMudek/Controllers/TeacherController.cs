@@ -17,19 +17,39 @@ namespace ProjectOfMudek.Controllers
         public IActionResult Index()
         {
             var a = _context.academicUnits.ToList();
-            var b  = _context.faculties.ToList();
-            var c  = _context.departments.ToList();
-            ViewBag.AcademicUnit = new SelectList(a,"AcademicUnitId","UnitName" );
-            ViewBag.Faculties = new SelectList(b,"FacultyId", "FacultyName");
-            ViewBag.Department = new SelectList(c,"DepartmentId", "DepartmentName");
+            var b = _context.faculties.ToList();
+            var c = _context.departments.ToList();
+            ViewBag.AcademicUnit = new SelectList(a, "AcademicUnitId", "UnitName");
+            ViewBag.Faculties = new SelectList(b, "FacultyId", "FacultyName");
+            ViewBag.Department = new SelectList(c, "DepartmentId", "DepartmentName");
             return View();
         }
         public IActionResult Tablo()
         {
             var a = _context.learningOutcomess.ToList();
+            
+            ViewBag.OutcomesList = a;
+            
             return View();
         }
-        
+
+        [HttpPost]
+        public IActionResult TabloDelete(int Id)
+        {
+            var OgrenimCiktilari = _context.learningOutcomess.Find(Id);
+            if (OgrenimCiktilari == null)
+            {
+                return NotFound(); // veya uygun bir hata mesajı döndürün
+            }
+            else
+            {
+                _context.Remove(OgrenimCiktilari);
+                _context.SaveChanges();
+                return RedirectToAction("Tablo", "Teacher");
+            }
+
+        }
+
         [HttpPost]
         public IActionResult Tablo(LearningOutcomes learningOutcomes)
         {
