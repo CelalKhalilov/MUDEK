@@ -140,12 +140,16 @@ body.dark {
 }
 .navlink_icon {
   position: relative;
-  font-size: 22px;
-  min-width: 50px;
+  font-size: 18px;
+  min-width: -1px;
   line-height: 40px;
   display: inline-block;
   text-align: center;
   border-radius: 6px;
+}
+.navlink{
+  font-size:15px;
+  margin-left:10px;
 }
 .navlink_icon::before {
   content: "";

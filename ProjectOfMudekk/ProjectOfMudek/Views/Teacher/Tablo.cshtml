@@ -85,13 +85,13 @@
                                 <td>@outcome.Definition</td>
                                 <td>
                                     <form method="POST" action="/Teacher/TabloDelete">
-                                    <input type="hidden" name="Id" value="@outcome.Id">
-                                    <button type="submit" class="btn btn-danger">
-                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                            style="width:20px;height:20px">
-                                        </lord-icon>
-                                    </button>
+                                        <input type="hidden" name="TabloId" value="@outcome.Id">
+                                        <button type="submit" class="btn btn-danger">
+                                            <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                                stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                                style="width:20px;height:20px">
+                                            </lord-icon>
+                                        </button>
                                     </form>
                                 </td>
                                 <td><button type="button" class="btn btn-info">
@@ -149,105 +149,62 @@
                 <div class="details personal">
                     <span class="title">Program Çıktıları x Öğrenim Çıktıları</span>
 
+                    <script>
+                        // Tabloyu kaydetmek için JavaScript kodu
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const editableCells = document.querySelectorAll("[contenteditable='true']");
 
-                        <table class="table table-bordered border-primary ">
-                            <tr class="p-tr">
-                                <th class=""></th>
-                                <th class="p-th2">P - 1</th>
-                                <th class="p-th3">P - 2</th>
-                                <th class="p-th4">P - 3</th>
-                                <th class="p-th5">P - 4</th>
-                                <th class="p-th6">P - 5</th>
-                                <th class="p-th7">P - 6</th>
-                                <th class="p-th8">P - 7</th>
-                                <th class="p-th9">P - 8</th>
-                                <th class="p-th10">P - 9</th>
-                                <th class="p-th11">P - 10</th>
-                                <th class="p-th12">P - 11</th>
-                                <th class="p-th13">P - 12</th>
-                            </tr>
-                    @foreach (var outcome in outcomesList)
-                    {
+                            // Sayfa yüklendiğinde, kaydedilmiş veriyi yerel depolamadan al ve hücrelere yerleştir
+                            editableCells.forEach(function (cell, index) {
+                                const key = "cell_" + index;
+                                const savedData = localStorage.getItem(key);
+                                if (savedData) {
+                                    cell.innerText = savedData;
+                                }
+                                // Hücreye girilen her veriyi kaydet
+                                cell.addEventListener("input", function () {
+                                    localStorage.setItem(key, cell.innerText);
+                                });
+                            });
+                        });
+                    </script>
+
+                    <table class="table table-bordered border-primary ">
+                        <tr class="p-tr">
+                            <th class=""><span class="btn badge text-bg-success">Kaydet</span></th>
+                            <th class="p-th2">P - 1</th>
+                            <th class="p-th3">P - 2</th>
+                            <th class="p-th4">P - 3</th>
+                            <th class="p-th5">P - 4</th>
+                            <th class="p-th6">P - 5</th>
+                            <th class="p-th7">P - 6</th>
+                            <th class="p-th8">P - 7</th>
+                            <th class="p-th9">P - 8</th>
+                            <th class="p-th10">P - 9</th>
+                            <th class="p-th11">P - 10</th>
+                            <th class="p-th12">P - 11</th>
+                            <th class="p-th13">P - 12</th>
+                        </tr>
+                        @foreach (var outcome in outcomesList)
+                        {
                             <tr>
                                 <th>Ö - @c</th>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
-                                <td onkeypress="return isNumberKey(event)" contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
                             </tr>
-                                c++;
-                    }
-
-                            @* <tr>
-                        <th>Ö - 2</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 4</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th>Ö - 5</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr> *@
-                        </table>
-                    
+                            c++;
+                        }
+                    </table>
                 </div>
             </div>
         </form>

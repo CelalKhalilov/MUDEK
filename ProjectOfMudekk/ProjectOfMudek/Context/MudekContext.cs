@@ -19,6 +19,7 @@ namespace ProjectOfMudek.Context
         public DbSet<Faculty> faculties { get; set; }
         public DbSet<Department> departments { get; set; }
         public DbSet<LearningOutcomes> learningOutcomess { get; set; }
+        public DbSet<ProgramAndLearningOutcomes> programAndLearningOutcomess { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");

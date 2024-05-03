@@ -67,6 +67,30 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "programAndLearningOutcomess",
+                columns: table => new
+                {
+                    PId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    P1 = table.Column<int>(type: "int", nullable: true),
+                    P2 = table.Column<int>(type: "int", nullable: true),
+                    P3 = table.Column<int>(type: "int", nullable: true),
+                    P4 = table.Column<int>(type: "int", nullable: true),
+                    P5 = table.Column<int>(type: "int", nullable: true),
+                    P6 = table.Column<int>(type: "int", nullable: true),
+                    P7 = table.Column<int>(type: "int", nullable: true),
+                    P8 = table.Column<int>(type: "int", nullable: true),
+                    P9 = table.Column<int>(type: "int", nullable: true),
+                    P10 = table.Column<int>(type: "int", nullable: true),
+                    P11 = table.Column<int>(type: "int", nullable: true),
+                    P12 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_programAndLearningOutcomess", x => x.PId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -148,6 +172,9 @@ namespace ProjectOfMudek.Migrations
 
             migrationBuilder.DropTable(
                 name: "learningOutcomess");
+
+            migrationBuilder.DropTable(
+                name: "programAndLearningOutcomess");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

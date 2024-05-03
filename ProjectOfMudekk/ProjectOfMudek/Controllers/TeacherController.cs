@@ -27,16 +27,16 @@ namespace ProjectOfMudek.Controllers
         public IActionResult Tablo()
         {
             var a = _context.learningOutcomess.ToList();
-            
+
             ViewBag.OutcomesList = a;
-            
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult TabloDelete(int Id)
+        public IActionResult TabloDelete(int TabloId)
         {
-            var OgrenimCiktilari = _context.learningOutcomess.Find(Id);
+            var OgrenimCiktilari = _context.learningOutcomess.Find(TabloId);
             if (OgrenimCiktilari == null)
             {
                 return NotFound(); // veya uygun bir hata mesajı döndürün
@@ -61,6 +61,8 @@ namespace ProjectOfMudek.Controllers
             }
             return View();
         }
+
+        
         public IActionResult Upload()
         {
             return View();
