@@ -88,8 +88,8 @@
               "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
                 "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
-                "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj"
+              "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
+                "projectPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj"
               }
             }
           }
@@ -148,14 +148,14 @@
         }
       }
     },
-    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
+    "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+        "projectPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\90506\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\obj\\",
+        "outputPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\90506\\AppData\\Roaming\\NuGet\\NuGet.Config",

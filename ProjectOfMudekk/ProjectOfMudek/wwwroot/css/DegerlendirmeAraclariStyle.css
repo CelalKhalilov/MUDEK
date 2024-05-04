@@ -143,17 +143,17 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
+    /* height: 45px;
     max-width: 200px;
     width: 100%;
     border: none;
     outline: none;
     color: #fff;
     border-radius: 5px;
-    margin: 8px 0;
+    margin: 8px 0; */
     /* background-color: #4070f4; */
-    transition: all 0.3s linear;
-    cursor: pointer;
+    /* transition: all 0.3s linear;
+    cursor: pointer; */
 }
 
 .container form .btnText {
@@ -315,4 +315,15 @@ table .satir-3 .border-2{
 table .alt-deg{
     text-align:center;
     background-color:#21252973;
+}
+
+table .satir-3 form{
+    margin:0;
+    background-color:#ffffff00;
+}
+.btn-group .btn{
+    margin:0;
+    width:50px;
+    font-size:10px;
+    height:25px;
 }

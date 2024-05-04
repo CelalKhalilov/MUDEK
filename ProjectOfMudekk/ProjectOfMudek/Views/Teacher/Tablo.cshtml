@@ -24,10 +24,12 @@
             <p style="margin: 0;">Ders Kodu:</p>
         </div>
 
-        <form method="post">
-            <div class="form first">
-                <div class="details personal">
-                    <span class="title">Dersin Öğrenim Çıktıları</span>
+
+
+        <div class="form first">
+            <div class="details personal">
+                <span class="title">Dersin Öğrenim Çıktıları</span>
+                <form method="post">
                     <div class="fields">
                         <div class="input-field">
                             <input class="inp1" asp-for="Keywords" id="Keywords" type="text"
@@ -67,68 +69,115 @@
                             })
                         }
                     </script>
+                </form>
 
-                    <table class="table table-bordered border-primary ">
+                <script>
+                    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+                    function fillFormFields(id, title, percentage) {
+                        // Modal içindeki form alanlarını bul
+                        var IdInput = document.getElementById('deger-id');
+                        var titleInput = document.getElementById('recipient-name');
+                        var percentageInput = document.getElementById('percentage');
+
+                        // Form alanlarına ilgili değerleri yerleştir
+                        IdInput.value = id;
+                        titleInput.value = title;
+                        percentageInput.value = percentage;
+                    }
+                </script>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/Teacher/TabloGuncelle">
+                                    <input type="hidden" asp-for="Id" id="deger-id" />
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Anahtar Kelimeler:</label>
+                                        <input type="text" asp-for="Keywords" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Tanım:</label>
+                                        <textarea class="form-control" asp-for="Definition" id="percentage"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered border-primary ">
+                    <tr>
+                        <th class="th1">Öğrenim Çıktıları</th>
+                        <th class="th2">Anahtar Kelimeler</th>
+                        <th class="th3">Tanım</th>
+                        <th class="th4">Sil</th>
+                        <th class="th5">Düzenle</th>
+                    </tr>
+
+                    @foreach (var outcome in outcomesList)
+                    {
                         <tr>
-                            <th class="th1">Öğrenim Çıktıları</th>
-                            <th class="th2">Anahtar Kelimeler</th>
-                            <th class="th3">Tanım</th>
-                            <th class="th4">Sil</th>
-                            <th class="th5">Düzenle</th>
-                        </tr>
-
-                        @foreach (var outcome in outcomesList)
-                        {
-                            <tr>
-                                <th>Ö - @i</th>
-                                <td>@outcome.Keywords</td>
-                                <td>@outcome.Definition</td>
-                                <td>
-                                    <form method="POST" action="/Teacher/TabloDelete">
-                                        <input type="hidden" name="TabloId" value="@outcome.Id">
-                                        <button type="submit" class="btn btn-danger">
-                                            <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                                stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                                style="width:20px;height:20px">
-                                            </lord-icon>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td><button type="button" class="btn btn-info">
-                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                                            stroke="bold" style="width:20px;height:20px">
+                            <th>Ö - @i</th>
+                            <td>@outcome.Keywords</td>
+                            <td>@outcome.Definition</td>
+                            <td class="td-sil">
+                                <form method="POST" action="/Teacher/TabloDelete">
+                                    <input type="hidden" name="TabloId" value="@outcome.Id">
+                                    <button type="submit" class="btn btn-danger">
+                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                            style="width:20px;height:20px">
                                         </lord-icon>
                                     </button>
-                                </td>
-                            </tr>
-                            i++;
-                        }
+                                </form>
+                            </td>
+                            <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    onclick="fillFormFields('@outcome.Id', '@outcome.Keywords', '@outcome.Definition')">
+                                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
+                                        style="width:20px;height:20px">
+                                    </lord-icon>
+                                </button>
+                            </td>
+                        </tr>
+                        i++;
+                    }
 
-                        @* <tr>
-                        <th>Ö - 1</th>
-                        <td></td>
-                        <td></td>
-                        <td>
-                        <button type="button" class="btn btn-danger">
-                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                        stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                        style="width:20px;height:20px">
-                        </lord-icon>
-                        </button>
-                        </td>
-                        <td><button type="button" class="btn btn-info">
-                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                        stroke="bold" style="width:20px;height:20px">
-                        </lord-icon>
-                        </button>
-                        </td>
-                        </tr> *@
+                    @* <tr>
+                    <th>Ö - 1</th>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    <button type="button" class="btn btn-danger">
+                    <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                    stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                    style="width:20px;height:20px">
+                    </lord-icon>
+                    </button>
+                    </td>
+                    <td><button type="button" class="btn btn-info">
+                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
+                    stroke="bold" style="width:20px;height:20px">
+                    </lord-icon>
+                    </button>
+                    </td>
+                    </tr> *@
 
 
-                    </table>
-                </div>
+                </table>
             </div>
-        </form>
+        </div>
+        @* </form> *@
 
         <script>
             function isNumberKey(evt) {

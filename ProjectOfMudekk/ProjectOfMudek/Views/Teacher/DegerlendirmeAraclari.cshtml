@@ -1,6 +1,14 @@
+@model AssessmentTool
+
 @{
     Layout = "_LayoutTeacher";
 }
+
+@{
+    var List = ViewBag.assessmentTools as List<AssessmentTool>;
+    var sayi = 0;
+}
+
 
 <link rel="stylesheet" href="~/css/DegerlendirmeAraclariStyle.css">
 
@@ -10,64 +18,64 @@
                 src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
         </header>
 
-        <!-- <form action="#">
-                <div class="form first">
-                    <div class="details personal">
-                        <span class="title">Dersin Öğrenim Çıktıları</span>
 
-                        <div class="fields">
-                            <form action="#">
-                                <div class="input-field">
-                                    <label>Başlık</label>
-                                    <select id="abc" required>
-                                        <option disabled selected>Başlık Seçiniz...</option>
-                                        <option>Ödev</option>
-                                        <option>Vize</option>
-                                        <option>Final</option>
-                                    </select>
-                                </div>
-                                <div class="input-field">
-                                    <label>%</label>
-                                    <input id="cba" type="number" max="100" min="1" placeholder="Yüzede Giriniz..."
-                                        required>
-                                </div>
-                                <div class="input-field">
-                                    <label>Ekle</label>
-                                    <button type="submit" class="btn btn-success">Ekle</button>
-                                </div>
-                                <div class="input-field">
-                                    <label>Sİl</label>
-                                    <button type="button" class="btn btn-danger">
-                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                            style="width:20px;height:20px">
-                                        </lord-icon>
-                                    </button>
-                                </div>
-                                <div class="input-field">
-                                    <label>Düzenle</label>
-                                    <button type="button" class="btn btn-info">
-                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                                            stroke="bold" style="width:20px;height:20px">
-                                        </lord-icon>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </form> -->
 
-        <form action="#">
+        <form method="post">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Dersin Öğrenim Çıktıları</span>
 
                     <div class="fields">
+                        @* <form method="post"> *@
+                        <div class="input-field">
+                            <label>Başlık</label>
+                            <input id="Title" asp-for="Title" placeholder="Başlık Giriniz..." required>
+                        </div>
+                        <div class="input-field">
+                            <label>%</label>
+                            <input id="Percentage" asp-for="Percentage" type="number" max="100" min="1"
+                                placeholder="Yüzede Giriniz..." required>
+                        </div>
+                        <div class="input-field">
+                            <label>Ekle</label>
+                            <button type="submit" class="btn btn-success">Ekle</button>
+                        </div>
+                        @* <div class="input-field">
+                        <label>Sİl</label>
+                        <button type="button" class="btn btn-danger">
+                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover" stroke="bold"
+                        colors="primary:#121331,secondary:#ffffff" style="width:20px;height:20px">
+                        </lord-icon>
+                        </button>
+                        </div>
+                        <div class="input-field">
+                        <label>Düzenle</label>
+                        <button type="button" class="btn btn-info">
+                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
+                        style="width:20px;height:20px">
+                        </lord-icon>
+                        </button>
+                        </div> *@
+                        @* </form> *@
+                    </div>
+        </form>
+
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Alt Değerlendirme Aracı</span>
+
+                    <div class="fields">
                         <form action="#">
                             <div class="input-field">
                                 <label>Başlık</label>
-                                <input id="cb" placeholder="Başlık Giriniz..." required>
+                                <select id="abc" required>
+                                    <option disabled selected>Başlık Seçiniz...</option>
+                                    <option>Ödev</option>
+                                    <option>Vize</option>
+                                    <option>Final</option>
+                                </select>
                             </div>
                             <div class="input-field">
                                 <label>%</label>
@@ -97,99 +105,145 @@
                             </div>
                         </form>
                     </div>
-
-
-                    <table class="table table-bordered border-primary table-hover">
-                        <!-- <tr>
-                                <th class="border-primary border-end-0">Değerlendirme Aracı Sayısı</th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-primary"></th>
-
-                            </tr> -->
-                        <tr class="satir-1">
-                            <th class="border-2 border-danger" id="th1" colspan="4">Değerlendirme Aracı Sayısı</th>
-                            <th class="border-2 border-danger" id="th2" style="min-width: 60px;"></th>
-
-                            <!-- <th colspan="2">Sil / Düzenle</th> -->
-                        </tr>
-                        <tr class="satir-2">
-                            <th class="border-2 border-danger" id="th1"></th>
-                            <th class="border-2 border-danger" id="th2">Başlık</th>
-                            <th class="border-2 border-danger" id="th3">%</th>
-                            <th class="border-2 border-danger" id="th4">Alt Değerlendirme Aracı Sayısı</th>
-                            <th class="border-2 border-danger" id="th5">Ekle</th>
-                            <!-- <th colspan="2" rowspan="1" class="th4"></th> -->
-                            <!-- <th class="th5"></th> -->
-                        </tr>
-                        <tr class="satir-3">
-                            <th class="border-2 border-info" id="th1">Değerlendirme Aracı
-                            </th>
-                            <th class="border-2 border-info" id="th2">Ödev</th>
-                            <th class="border-2 border-info" id="th3">10</th>
-                            <th class="border-2 border-info" id="th4">2</th>
-                            <th class="border-2 border-info" id="th4"><i style=" cursor: pointer;"
-                                    class="bi bi-plus-square"></i></th>
-                            <!-- <th colspan="2" class="th4"></th> -->
-                            <!-- <th class="th5"></th> -->
-                        </tr>
-                        <tr>
-                            <th class="alt-deg">Alt - D #1:</th>
-                            <td></td>
-                            <td></td>
-                            <td colspan="2"></td>
-                            <!-- <td>
-                                    <button type="button" class="btn btn-danger">
-                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                                            style="width:20px;height:20px">
-                                        </lord-icon>
-                                    </button>
-                                </td>
-                                <td><button type="button" class="btn btn-info">
-                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                                            stroke="bold" style="width:20px;height:20px">
-                                        </lord-icon>
-                                    </button></td> -->
-                        </tr>
-                        <tr>
-                            <th>Ö - 2</th>
-                            <td></td>
-                            <td></td>
-                            <td colspan="2"></td>
-                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-                                <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>Ö - 3</th>
-                            <td></td>
-                            <td></td>
-                            <td colspan="2"></td>
-                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-                                <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>Ö - 4</th>
-                            <td></td>
-                            <td></td>
-                            <td colspan="2"></td>
-                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-                                <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>Ö - 5</th>
-                            <td></td>
-                            <td></td>
-                            <td colspan="2"></td>
-                            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-                                <td></td> -->
-                        </tr>
-                    </table>
                 </div>
             </div>
         </form>
+
+
+        <script>
+            // Güncelle butonuna tıklandığında çalışacak fonksiyon
+            function fillFormFields(id, title, percentage) {
+                // Modal içindeki form alanlarını bul
+                var IdInput = document.getElementById('deger-id');
+                var titleInput = document.getElementById('recipient-name');
+                var percentageInput = document.getElementById('percentage');
+
+                // Form alanlarına ilgili değerleri yerleştir
+                IdInput.value = id;
+                titleInput.value = title;
+                percentageInput.value = percentage;
+            }
+        </script>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/Teacher/DegerlendirmeAraclariGuncelle">
+                            <input type="hidden" asp-for="Id" id="deger-id" />
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Başlık:</label>
+                                <input type="text" asp-for="Title" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Yüzde(%):</label>
+                                <input type="number" asp-for="Percentage" class="form-control" id="percentage">
+                            </div>
+                            <div class="modal-footer">
+                                @* <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button> *@
+                                <button type="submit" class="btn btn-success">Kaydet</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered border-primary">
+            @foreach (var item in List)
+            {
+                sayi++;
+            }
+            <tr class="satir-1">
+                <th class="border-2 border-danger" id="th1" colspan="4">Değerlendirme Aracı Sayısı</th>
+                <th class="border-2 border-danger" id="th2" style="min-width: 60px;">@sayi</th>
+            </tr>
+
+            <tr class="satir-2">
+                <th class="border-2 border-danger" id="th1"></th>
+                <th class="border-2 border-danger" id="th2">Başlık</th>
+                <th class="border-2 border-danger" id="th3">%</th>
+                <th class="border-2 border-danger" id="th4">Alt Değerlendirme Aracı Sayısı</th>
+                <th class="border-2 border-danger" id="th5">Ekle</th>
+            </tr>
+            @foreach (var item in List)
+            {
+                <tr class="satir-3">
+                    <th class="border-2 border-info" id="th1">Değerlendirme Aracı</th>
+                    <th class="border-2 border-info" id="th2">@item.Title</th>
+                    <th class="border-2 border-info" id="th3">@item.Percentage %</th>
+                    <th class="border-2 border-info" id="th4">2</th>
+                    <th class="border-2 border-info" id="th4">
+                        <form method="post" action="/Teacher/DegerlendirmeAraclariDelete">
+                            <input type="hidden" name="DegerlendirmeAraclariId" value="@item.Id">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    onclick="fillFormFields('@item.Id', '@item.Title', '@item.Percentage')">Göncelle</button>
+                            </div>
+                        </form>
+                    </th>
+                </tr>
+
+                for (var i = 0; i < 0; i++)
+                {
+                    <tr>
+                        <th class="alt-deg">Alt - D #1:</th>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                    </tr>
+                }
+            }
+            <tr>
+                <th class="alt-deg">Alt - D #1:</th>
+                <td></td>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Ö - 2</th>
+                <td></td>
+                <td></td>
+                <td colspan="2"></td>
+                <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+            </tr>
+            <tr>
+                <th>Ö - 3</th>
+                <td></td>
+                <td></td>
+                <td colspan="2"></td>
+                <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+            </tr>
+            <tr>
+                <th>Ö - 4</th>
+                <td></td>
+                <td></td>
+                <td colspan="2"></td>
+                <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+            </tr>
+            <tr>
+                <th>Ö - 5</th>
+                <td></td>
+                <td></td>
+                <td colspan="2"></td>
+                <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
+                                <td></td> -->
+            </tr>
+        </table>
+    </div>
+    </div>
+    @* </form> *@
 
     </div>
 </section>

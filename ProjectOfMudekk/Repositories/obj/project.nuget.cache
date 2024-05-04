@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5rP3WjO6s1N/WYPaDI/b7uhyTbWVHE+scx1jh34HbtE3rF3Ihn5mN7qKdIJo9m7C3Cia+QtUUt+/e2FqSO7MoQ==",
+  "dgSpecHash": "cON+zynUhtQniFxE16h3ka1DNPa+ZFW9KvPViY2TksgTwhp0PVPZD20Rom4XsZgCCqhahPVz9nL+WsRMmhopTQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+  "projectFilePath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\90506\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
     "C:\\Users\\90506\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",

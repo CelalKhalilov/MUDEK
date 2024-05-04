@@ -25,6 +25,20 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "assessmentTools",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Percentage = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_assessmentTools", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "headOfDepartments",
                 columns: table => new
                 {
@@ -67,27 +81,17 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "programAndLearningOutcomess",
+                name: "subAssessmentTools",
                 columns: table => new
                 {
-                    PId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    P1 = table.Column<int>(type: "int", nullable: true),
-                    P2 = table.Column<int>(type: "int", nullable: true),
-                    P3 = table.Column<int>(type: "int", nullable: true),
-                    P4 = table.Column<int>(type: "int", nullable: true),
-                    P5 = table.Column<int>(type: "int", nullable: true),
-                    P6 = table.Column<int>(type: "int", nullable: true),
-                    P7 = table.Column<int>(type: "int", nullable: true),
-                    P8 = table.Column<int>(type: "int", nullable: true),
-                    P9 = table.Column<int>(type: "int", nullable: true),
-                    P10 = table.Column<int>(type: "int", nullable: true),
-                    P11 = table.Column<int>(type: "int", nullable: true),
-                    P12 = table.Column<int>(type: "int", nullable: true)
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Point = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_programAndLearningOutcomess", x => x.PId);
+                    table.PrimaryKey("PK_subAssessmentTools", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,6 +166,9 @@ namespace ProjectOfMudek.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "assessmentTools");
+
+            migrationBuilder.DropTable(
                 name: "departments");
 
             migrationBuilder.DropTable(
@@ -174,7 +181,7 @@ namespace ProjectOfMudek.Migrations
                 name: "learningOutcomess");
 
             migrationBuilder.DropTable(
-                name: "programAndLearningOutcomess");
+                name: "subAssessmentTools");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

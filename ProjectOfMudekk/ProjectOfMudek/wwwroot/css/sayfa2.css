@@ -265,7 +265,7 @@ table tr .th1 {
 }
 
 table tr .th2 {
-    width: 245px;
+    width: 200px;
     text-align: center;
     background-color:#b4e0558a;
 }
@@ -314,4 +314,8 @@ table tr .p-th{
     display: table-cell;
     vertical-align: middle;
     background-color:#b4e0558a;
+}
+
+.td-sil form{
+    margin:0;
 }
