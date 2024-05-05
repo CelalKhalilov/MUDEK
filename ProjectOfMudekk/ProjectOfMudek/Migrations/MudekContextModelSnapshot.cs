@@ -208,6 +208,10 @@ namespace ProjectOfMudek.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("LowerRating")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Point")
                         .HasColumnType("int");
 

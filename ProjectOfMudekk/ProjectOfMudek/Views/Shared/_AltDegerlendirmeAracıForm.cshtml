@@ -1,0 +1,90 @@
+@model SubAssessmentTool
+
+@{
+    var List = ViewBag.assessmentTools as List<AssessmentTool>;
+    var sayi = 0;
+}
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_2(id, title, lowerRating, point) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('alt-deger-id');
+        var titleInput = document.getElementById('recipient-name-2');
+        var lowerRatingInput = document.getElementById('alt-deger-lowerRating');
+        var percentageInput = document.getElementById('point');
+
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+        titleInput.value = title;
+        lowerRatingInput.value = lowerRating;
+        percentageInput.value = point;
+    }
+</script>
+
+<div class="modal fade" id="exampleModal_2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/Teacher/AltDegerlendirmeAraclariGuncelle">
+                    <input type="hidden" asp-for="Id" id="alt-deger-id" />
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Başlık:</label>
+                        <input type="text" asp-for="Title" class="form-control" id="recipient-name-2" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Alt Değerlendirme:</label>
+                        <input type="text" asp-for="LowerRating" class="form-control" id="alt-deger-lowerRating" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Yüzde(%):</label>
+                        <input type="number" asp-for="Point" class="form-control" id="point">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<form method="post" action="/Teacher/Islem2">
+    <div class="form first">
+        <div class="details personal">
+            <span class="title">Alt Değerlendirme Aracı</span>
+
+            <div class="fields">
+                @* <form action="#"> *@
+                <div class="input-field">
+                    <label>Başlık</label>
+                    <select id="abc" asp-for="Title" required>
+                        <option disabled selected>Başlık Seçiniz...</option>
+                        @foreach (var item in List)
+                        {
+                            <option>@item.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="input-field">
+                    <label>Alt Değerlendirme</label>
+                    <input id="Title" asp-for="LowerRating" placeholder="Tanım Giriniz..." required>
+                </div>
+                <div class="input-field">
+                    <label>Not</label>
+                    <input id="cba" asp-for="Point" type="number" max="100" min="1" placeholder="Notu Giriniz..."
+                        required>
+                </div>
+                <div class="input-field">
+                    <label>Ekle</label>
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+                @* </form> *@
+            </div>
+        </div>
+    </div>
+</form>

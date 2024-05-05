@@ -1,25 +1,14 @@
-@model IEnumerable<LearningOutcomes>
+@model SubAssessmentTool
 
-@foreach (var i in Model)
-{
-
-
-    <tr>
-        <th>Ö - 1</th>
-        <td>@i.Keywords</td>
-        <td>@i.Definition</td>
-        <td>
-            <button type="button" class="btn btn-danger">
-                <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover" stroke="bold"
-                    colors="primary:#121331,secondary:#ffffff" style="width:20px;height:20px">
-                </lord-icon>
-            </button>
-        </td>
-        <td><button type="button" class="btn btn-info">
-                <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
-                    style="width:20px;height:20px">
-                </lord-icon>
-            </button>
-        </td>
-    </tr>
-}
+<form method="post" action="/Teacher/Islem2">
+    <div class="form-group">
+        <label for="ad">Title:</label>
+        <input type="text" asp-for="Title" class="form-control" id="Title" name="Title" />
+    </div>
+    <div class="form-group">
+        <label for="soyad">Point:</label>
+        <input type="text" asp-for="Point" class="form-control" id="Point" name="Point" />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>

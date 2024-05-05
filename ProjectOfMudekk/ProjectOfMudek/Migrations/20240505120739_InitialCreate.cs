@@ -87,6 +87,7 @@ namespace ProjectOfMudek.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LowerRating = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Point = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

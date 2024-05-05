@@ -1,0 +1,25 @@
+@model TumClass // Her iki formu da içeren bir ViewModel
+
+@* @Html.Partial("_Form1", Model.AssessmentToolList) *@
+
+
+<h2>Form 1</h2>
+
+
+@Html.Partial("_LearningOutcomes")
+
+
+
+<h2>Form 2</h2>
+
+<form method="post" action="/Teacher/Islem1">
+    <div class="form-group">
+        <label for="konu">Konu:</label>
+        <input type="text" class="form-control" id="konu" name="Konu" />
+    </div>
+    <div class="form-group">
+        <label for="mesaj">Mesaj:</label>
+        <textarea class="form-control" id="mesaj" name="Mesaj"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>

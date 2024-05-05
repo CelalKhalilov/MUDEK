@@ -66,7 +66,7 @@ namespace ProjectOfMudek.Controllers
         [HttpPost]
         public IActionResult TabloGuncelle(LearningOutcomes learningOutcomes)
         {
-            
+
             var learningOutcome = _context.learningOutcomess.SingleOrDefault(g => g.Id == learningOutcomes.Id);
 
             if (learningOutcome != null)
@@ -87,19 +87,25 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Upload()
         {
-            return View();
-        }
-        public IActionResult DegerlendirmeAraclari()
-        {
-            var a = _context.assessmentTools.ToList();
-
-            ViewBag.assessmentTools = a;
-            var model = new AssessmentTool();
+            TumClass model = new TumClass();
+            model.AssessmentToolList = _context.assessmentTools.ToList();
+            model.SubAssessmentToolList = _context.subAssessmentTools.ToList();
             return View(model);
         }
 
+
+        public IActionResult DegerlendirmeAraclari()
+        {
+            var a = _context.assessmentTools.ToList();
+            var b = _context.subAssessmentTools.ToList();
+            ViewBag.assessmentTools = a;
+            ViewBag.subAssessmentTools = b;
+            
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult DegerlendirmeAraclari(AssessmentTool assessmentTool)
+        public IActionResult Iselm1(AssessmentTool assessmentTool)
         {
             if (ModelState.IsValid)
             {
@@ -126,6 +132,22 @@ namespace ProjectOfMudek.Controllers
             }
 
         }
+        [HttpPost]
+        public IActionResult AltDegerlendirmeAraclariDelete(int AltDegerlendirmeAraclariId)
+        {
+            var AltDegerlendirmeAraclari = _context.subAssessmentTools.Find(AltDegerlendirmeAraclariId);
+            if (AltDegerlendirmeAraclari == null)
+            {
+                return NotFound(); // veya uygun bir hata mesajı döndürün
+            }
+            else
+            {
+                _context.Remove(AltDegerlendirmeAraclari);
+                _context.SaveChanges();
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+            }
+
+        }
 
 
         // [HttpGet]
@@ -140,13 +162,33 @@ namespace ProjectOfMudek.Controllers
         [HttpPost]
         public IActionResult DegerlendirmeAraclariGuncelle(AssessmentTool assessmentTool)
         {
-            
+
             var existingGida = _context.assessmentTools.SingleOrDefault(g => g.Id == assessmentTool.Id);
 
             if (existingGida != null)
             {
                 existingGida.Title = assessmentTool.Title;
                 existingGida.Percentage = assessmentTool.Percentage;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher"); // veya başka bir yönlendirme
+            }
+            else
+            {
+                return NotFound(); // veya uygun bir hata işleme yöntemi
+            }
+        }
+        [HttpPost]
+        public IActionResult AltDegerlendirmeAraclariGuncelle(SubAssessmentTool subAssessmentTool)
+        {
+
+            var subAssessmentTools = _context.subAssessmentTools.SingleOrDefault(g => g.Id == subAssessmentTool.Id);
+
+            if (subAssessmentTools != null)
+            {
+                subAssessmentTools.LowerRating = subAssessmentTool.LowerRating;
+                subAssessmentTools.Point = subAssessmentTool.Point;
 
                 _context.SaveChanges();
 
@@ -169,5 +211,29 @@ namespace ProjectOfMudek.Controllers
             var a = _context.Teachers.ToList();
             return View(a);
         }
+
+
+
+        public IActionResult Deneme()
+        {
+
+            return View();
+        }
+
+        
+
+        [HttpPost]
+        public IActionResult Islem2(SubAssessmentTool learningOutcomes)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.subAssessmentTools.Add(learningOutcomes);
+                _context.SaveChanges();
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+            }
+            return View();
+        }
+
+
     }
 }

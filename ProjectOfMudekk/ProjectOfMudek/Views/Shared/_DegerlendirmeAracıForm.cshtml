@@ -1,0 +1,25 @@
+@model AssessmentTool
+
+<form method="post" action="/Teacher/Iselm1">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Değerlendirme Aracı</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Başlık</label>
+                            <input id="Title" asp-for="Title" placeholder="Başlık Giriniz..." required>
+                        </div>
+                        <div class="input-field">
+                            <label>%</label>
+                            <input id="Percentage" asp-for="Percentage" type="number" max="100" min="1"
+                                placeholder="Yüzede Giriniz..." required>
+                        </div>
+                        <div class="input-field">
+                            <label>Ekle</label>
+                            <button type="submit" class="btn btn-success">Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
