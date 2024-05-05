@@ -104,6 +104,9 @@ form .fields .input-field {
     flex-direction: column;
     margin: 4px 0;
 }
+#input-field-alt {
+    width: calc(100% / 4 - 15px);
+}
 
 .input-field label {
     font-size: 12px;

@@ -4147,11 +4147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
+      "projectUniqueName": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
       "projectName": "ProjectOfMudek",
-      "projectPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
+      "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\ProjectOfMudek.csproj",
       "packagesPath": "C:\\Users\\90506\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\obj\\",
+      "outputPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\90506\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4169,8 +4169,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
-              "projectPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj"
+            "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj"
             },
             "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj": {
               "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj"

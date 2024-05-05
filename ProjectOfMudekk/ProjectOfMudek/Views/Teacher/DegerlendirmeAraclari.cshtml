@@ -63,7 +63,7 @@
 
         <hr class="border border-black border-2 opacity-50">
 
-        
+
 
 
         @Html.Partial("_AltDegerlendirmeAracıForm")
@@ -118,7 +118,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Değerlendirme Aracı Güncelle</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -190,6 +190,13 @@
             @foreach (var item in List)
             {
                 i = 1;
+                @* var toplam =+ item.Percentage;
+                @if (toplam > 100)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        Bu bir hata mesajıdır!
+                    </div>
+                } *@
 
                 <tr class="satir-3">
                     <th class="border-2 border-info" id="th1">Değerlendirme Aracı</th>
@@ -278,6 +285,19 @@
             <td></td> -->
             </tr> *@
         </table>
+        @* <script>
+        function showWarning() {
+        alert("Bu bir uyarı mesajıdır!");
+        }
+        </script>
+
+        <button onclick="showWarning()">Uyarı Mesajını Göster</button> *@
+
+
+
+
+
+
 
 
     </div>

@@ -25,7 +25,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Alt Değerlendirme Aracı Güncelle</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -60,7 +60,7 @@
 
             <div class="fields">
                 @* <form action="#"> *@
-                <div class="input-field">
+                <div class="input-field" id="input-field-alt">
                     <label>Başlık</label>
                     <select id="abc" asp-for="Title" required>
                         <option disabled selected>Başlık Seçiniz...</option>
@@ -70,16 +70,16 @@
                         }
                     </select>
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="input-field-alt">
                     <label>Alt Değerlendirme</label>
                     <input id="Title" asp-for="LowerRating" placeholder="Tanım Giriniz..." required>
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="input-field-alt">
                     <label>Not</label>
                     <input id="cba" asp-for="Point" type="number" max="100" min="1" placeholder="Notu Giriniz..."
                         required>
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="input-field-alt">
                     <label>Ekle</label>
                     <button type="submit" class="btn btn-success">Ekle</button>
                 </div>

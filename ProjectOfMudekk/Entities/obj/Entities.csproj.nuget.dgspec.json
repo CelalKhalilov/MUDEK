@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {}
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\90506\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\90506\\AppData\\Roaming\\NuGet\\NuGet.Config",
