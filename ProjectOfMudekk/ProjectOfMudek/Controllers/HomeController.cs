@@ -50,6 +50,15 @@ namespace ProjectOfMudek.Controllers
             }
         }
 
+        public IActionResult Logout()
+        {
+            // Oturumu temizle
+            HttpContext.Session.Clear();
+
+            // Login sayfasına yönlendir
+            return RedirectToAction("Ogretmen", "Home");
+        }
+
 
         [HttpPost]
         public IActionResult Ogretmen(Teacher teacher)

@@ -1,7 +1,13 @@
+@model Teacher
 @{
     Layout = "_LayoutTeacher";
 }
-@model List<Teacher>
+
+@{
+    var List = ViewBag.teachers as List<Teacher>;
+}
+
+
 <link rel="stylesheet" href="~/css/ProfilAyarlariStyle.css">
 
 <section class="home">
@@ -14,81 +20,132 @@
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Profil Ayarları</span>
-
-                    <div class="alert alert-light" role="alert">
-                        <div class="card mb-1" style="max-width: 880px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
-                                        class="img-thumbnail rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-
-                                        <!-- <h6>İsim:</h6>
-                                            <h6>Soyisim:</h6>
-                                            <h6>Gmail:</h6> -->
-                                        <!-- <table class="table table-with table-sm">
-                                                <tr>
-                                                    <th>İsim</th>
-                                                    <th>Celal</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Soyisim</th>
-                                                    <th>Khalilov</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Gmail</th>
-                                                    <th>Khalilov@gmail.com</th>
-                                                </tr>
-                                            </table> -->
-                                        <!-- <div class="alert alert-light" role="alert"> -->
-                                        <h5 class="card-title">Card title</h5>
-                                        <br>
-                                        @foreach (var i in Model)
-                                        {
-                                            if (@i.Id == 1)
-                                            {
-                                                <h6>İsim:&nbsp;&nbsp;@i.LastName</h6>
-                                                <hr>
-                                                <h6>Soyisim:&nbsp;&nbsp;@i.FirstName</h6>
-                                                <hr>
-                                                <h6>Gmail:&nbsp;&nbsp;@i.Gmail</h6>
-                                                <hr>
-                                            }
+                </div>
+            </div>
+        </form>
+        @foreach (var i in List)
+        {
+            <div class="alert alert-light" role="alert">
+                <div class="card mb-1" style="max-width: 880px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="@i.ProfileImage" class="img-thumbnail rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
 
 
-                                        }
+                                <h5 class="card-title">Card title</h5>
+                                <br>
+
+                                @if (@i.Id == 1)
+                                {
+                                    <h6>İsim:&nbsp;&nbsp;@i.FirstName</h6>
+                                    <hr>
+                                    <h6>Soyisim:&nbsp;&nbsp;@i.LastName</h6>
+                                    <hr>
+                                    <h6>Gmail:&nbsp;&nbsp;@i.Gmail</h6>
+                                    <hr>
+                                }
+                                <input class="btn btn-success" type="submit" value="Düzenle" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    onclick="fillFormFields('@i.Id', '@i.FirstName', '@i.LastName', '@i.Gmail', '@i.ProfileImage')">
 
 
-                                        <form class="form-profil" action="/upload" method="post"
-                                            enctype="multipart/form-data">
-                                            <label for="file">Select a file:</label><br>
-                                            <input class="btn btn-primary" type="file" id="file" name="file"><br><br>
-                                            <hr>
-                                            <input class="btn btn-success" type="submit" value="Düzenle">
-                                        </form>
+                                <script>
+                                    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+                                    function fillFormFields(id, isim, soyisim, gmail, profil) {
+                                        // Modal içindeki form alanlarını bul
+                                        var IdInput = document.getElementById('profil-id');
+                                        var isimInput = document.getElementById('isim');
+                                        var soyisimInput = document.getElementById('soyisim');
+                                        var gmaiInput = document.getElementById('gmail');
+                                        var profilInput = document.getElementById('profil');
 
+                                        // Form alanlarına ilgili değerleri yerleştir
+                                        IdInput.value = id;
+                                        isimInput.value = isim;
+                                        soyisimInput.value = soyisim;
+                                        gmaiInput.value = gmail;
+                                        profilInput.value = profil;
+                                    }
+                                </script>
 
-                                        <!-- </div> -->
-                                        <!-- <div class="alert alert-light" role="alert">
-                                                <a href="#" id="profil-btn" class="btn btn-primary">Düzenle</a>
-                                            </div> -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="/Teacher/ProfilAyarlariGuncelle">
+                                                    <input type="hidden" asp-for="Id" id="profil-id" />
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">İsim:</label>
+                                                        <input type="text" asp-for="FirstName" class="form-control"
+                                                            id="isim" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">Soyisim:</label>
+                                                        <input type="text" asp-for="LastName" class="form-control"
+                                                            id="soyisim" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">Gmail:</label>
+                                                        <input type="text" asp-for="Gmail" class="form-control" id="gmail"
+                                                            required>
+                                                    </div>
+                                                    <div class="card mb-3" style="max-width: 540px;">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="https://www.temizmagazin.com/sites/default/files/sasdasd.jpg"
+                                                                    class="img-fluid rounded-start" alt="...">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">Card title</h5>
+                                                                    @* <p class="card-text">This is a wider card with</p> *@
+                                                                    @* <input type="text" asp-for="ProfileImage"
+                                                                        class="form-control" id="profil" disabled> *@
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient-name" class="col-form-label">Profil Resmi
+                                                            Seçin:</label><br>
+                                                        <input class="btn btn-primary" type="file" asp-for="ProfileImage"
+                                                            id="profil" name="file">
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="alert alert-light" role="alert">
+                </div>
+            </div>
+        }
+        <!-- <div class="alert alert-light" role="alert">
                             <img src="profile.jpg" style="max-width: 200px; max-height: 200px;" class="img-thumbnail" alt="...">
                             <div class="alert alert-dark" role="alert">
                                 A simple dark alert—check it out!
                               </div>
                         </div> -->
-
-                </div>
-            </div>
-        </form>
 
     </div>
 </section>

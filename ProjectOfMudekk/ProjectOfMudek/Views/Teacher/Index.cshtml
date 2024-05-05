@@ -1,4 +1,4 @@
-@model AcademicUnit
+@model List<AcademicUnit>
 
 @{
     Layout = "_LayoutTeacher";
@@ -20,31 +20,54 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Akademik Birimler</label>
-                            <select asp-for="AcademicUnitId" asp-items="@ViewBag.AcademicUnit" class="form-control">
+                            <select id="academicUnit" class="form-control">
                                 <option selected disabled>Seçiniz</option>
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.UnitName">@item.UnitName</option>
+                                }
                             </select>
                             @* <select required>
-                                <option disabled selected>Seçiniz...</option>
-                                <option>Ön Lisans</option>
-                                <option>Lisans</option>
-                                <option>Yüksek Lisans</option>
-                                <option>Doktora</option>
+                            <option disabled selected>Seçiniz...</option>
+                            <option>Ön Lisans</option>
+                            <option>Lisans</option>
+                            <option>Yüksek Lisans</option>
+                            <option>Doktora</option>
                             </select> *@
                         </div>
 
                         <div class="input-field">
                             <label>Fakülteler</label>
-                            <select asp-for="FacultyId" asp-items="@ViewBag.Faculties" class="form-control">
+                            <select id="faculties" class="form-control">
                                 <option selected disabled>Seçiniz</option>
                             </select>
                             @* <select required>
-                                <option disabled selected>Seçiniz...</option>
-                                <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
-                                <option>İnsan ve Toplum Bilimleri Fakültesi</option>
-                                <option>Mimarlık ve Tasarım Fakültesi</option>
-                                <option>Mühendislik Fakültesi</option>
+                            <option disabled selected>Seçiniz...</option>
+                            <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
+                            <option>İnsan ve Toplum Bilimleri Fakültesi</option>
+                            <option>Mimarlık ve Tasarım Fakültesi</option>
+                            <option>Mühendislik Fakültesi</option>
                             </select> *@
                         </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#academicUnit').change(function () {
+                                    var academicUnitId = $(this).val();
+                                    $('#faculties').empty();
+                                    $.ajax({
+                                        type: "GET",
+                                        url: '/Teacher/GetFacultiesByAcademicUnit',
+                                        data: { academicUnitId: academicUnitId },
+                                        success: function (data) {
+                                            $.each(data, function (i, item) {
+                                                $('#faculties').append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                                            });
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
 
                         <div class="input-field">
                             <label>Bölümler</label>
@@ -52,11 +75,11 @@
                                 <option selected disabled>Seçiniz</option>
                             </select>
                             @* <select required>
-                                <option disabled selected>Seçiniz...</option>
-                                <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
-                                <option>İnsan ve Toplum Bilimleri Fakültesi</option>
-                                <option>Mimarlık ve Tasarım Fakültesi</option>
-                                <option>Mühendislik Fakültesi</option>
+                            <option disabled selected>Seçiniz...</option>
+                            <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
+                            <option>İnsan ve Toplum Bilimleri Fakültesi</option>
+                            <option>Mimarlık ve Tasarım Fakültesi</option>
+                            <option>Mühendislik Fakültesi</option>
                             </select> *@
                         </div>
 

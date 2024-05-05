@@ -2,6 +2,14 @@
     Layout = "_LayoutTeacher";
 }
 
+@{
+    var List = ViewBag.assessmentTools as List<AssessmentTool>;
+    var List2 = ViewBag.subAssessmentTools as List<SubAssessmentTool>;
+    var sayi = 0;
+    var i = 1;
+    var c = 1;
+}
+
 <link rel="stylesheet" href="~/css/HesaplaStyle.css">
 
 <section class="home">
@@ -16,22 +24,17 @@
                     <span class="title">Dersin Öğrenim Çıktıları</span>
                     
 
-                    <table class="table table-bordered border-black table-hover">
-                        <!-- <tr>
-                                <th class="border-primary border-end-0">Değerlendirme Aracı Sayısı</th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-0"></th>
-                                <th class="border border-primary"></th>
-
-                            </tr> -->
-
+                    <table class="table table-bordered border-black table-hover"> 
                         <tr class="satir-1">
                             <th></th>
-                            <th colspan="2">Ödev</th>
+                            
+                            @foreach (var item1 in List)
+                            {
+                                <th>@item1.Title</th>
+                            }
+                            @* <th colspan="2">Ödev</th>
                             <th>Vize</th>
-                            <th>Final</th>
+                            <th>Final</th> *@
                         </tr>
                         <tr class="satir-2">
                             <th></th>

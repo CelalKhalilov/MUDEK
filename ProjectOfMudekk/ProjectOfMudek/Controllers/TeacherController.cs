@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Entities.Models;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectOfMudek.Context;
@@ -16,16 +17,26 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Index()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var a = _context.academicUnits.ToList();
             var b = _context.faculties.ToList();
             var c = _context.departments.ToList();
             ViewBag.AcademicUnit = new SelectList(a, "AcademicUnitId", "UnitName");
             ViewBag.Faculties = new SelectList(b, "FacultyId", "FacultyName");
             ViewBag.Department = new SelectList(c, "DepartmentId", "DepartmentName");
-            return View();
+            return View(a);
         }
         public IActionResult Tablo()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var a = _context.learningOutcomess.ToList();
 
             ViewBag.OutcomesList = a;
@@ -87,6 +98,11 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Upload()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             TumClass model = new TumClass();
             model.AssessmentToolList = _context.assessmentTools.ToList();
             model.SubAssessmentToolList = _context.subAssessmentTools.ToList();
@@ -96,6 +112,11 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult DegerlendirmeAraclari()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
             ViewBag.assessmentTools = a;
@@ -111,7 +132,7 @@ namespace ProjectOfMudek.Controllers
             {
                 _context.assessmentTools.Add(assessmentTool);
                 _context.SaveChanges();
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher",new { id = assessmentTool.Id});
             }
             return View();
         }
@@ -204,12 +225,46 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Hesaplamalar()
         {
+            
+            var a = _context.assessmentTools.ToList();
+            var b = _context.subAssessmentTools.ToList();
+            ViewBag.assessmentTools = a;
+            ViewBag.subAssessmentTools = b;
             return View();
         }
         public IActionResult ProfilAyarlari()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var a = _context.Teachers.ToList();
-            return View(a);
+            ViewBag.teachers = a;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ProfilAyarlariGuncelle(Teacher teacher)
+        {
+
+            var teachers = _context.Teachers.SingleOrDefault(g => g.Id == teacher.Id);
+
+            if (teachers != null)
+            {
+                teachers.FirstName = teacher.FirstName;
+                teachers.LastName = teacher.LastName;
+                teachers.Gmail = teacher.Gmail;
+                teachers.ProfileImage = teacher.ProfileImage;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("ProfilAyarlari", "Teacher",new { id = teacher.Id }); // veya başka bir yönlendirme
+            }
+            else
+            {
+                return NotFound(); // veya uygun bir hata işleme yöntemi
+            }
         }
 
 

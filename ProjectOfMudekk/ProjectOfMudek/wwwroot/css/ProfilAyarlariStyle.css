@@ -156,17 +156,17 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 45px;
+    /* height: 45px;
     max-width: 200px;
     width: 100%;
     border: none;
     outline: none;
     color: #fff;
     border-radius: 5px;
-    margin: 8px 0;
+    margin: 8px 0; */
     /* background-color: #4070f4; */
-    transition: all 0.3s linear;
-    cursor: pointer;
+    /* transition: all 0.3s linear;
+    cursor: pointer; */
 }
 
 .container form .btnText {

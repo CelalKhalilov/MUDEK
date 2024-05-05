@@ -118,13 +118,13 @@ body.dark {
   white-space: nowrap;
 }
 .menu_dahsboard::before {
-  content: "Dashboard";
+  content: "Gösterge Paneli";
 }
 .menu_editor::before {
-  content: "Editor";
+  content: "Sayfalar";
 }
 .menu_setting::before {
-  content: "Setting";
+  content: "Ayarlar";
 }
 .sidebar.close .menu_title::before {
   content: "";
