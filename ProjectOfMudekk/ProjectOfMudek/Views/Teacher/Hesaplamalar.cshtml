@@ -220,19 +220,19 @@
                         <th></th>
                     }
                 }
-
-            </tr>
-            @* <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            </tr> *@
-
         </table>
-
-        <form method="post">
+        <form method="post" action="#">
             <div class="fields">
                 @Html.Partial("_HesaplamalarStudentForm")
+                <div class="input-field">
+                    <label>Ekle</label>
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </div>
+        </form>
+        <hr class="border border-black border-2 opacity-50">
+        <form method="post" action="#">
+            <div class="fields">
                 @Html.Partial("_HesaplamalarQuestionForm")
                 <div class="input-field">
                     <label>Ekle</label>
