@@ -8,6 +8,22 @@
     var sayi = 0;
     var i = 1;
     var c = 1;
+    var a = 0;
+    var b = 0;
+
+    if (List != null && List2 != null)
+    {
+        // List ve List2 null değilse devam edin
+        // ...
+        <h1>devammmmmm</h1>
+    }
+    else
+    {
+        // Bir veya her ikisi null ise uyarı veya alternatif işlemleri gerçekleştirin
+        // ...
+        <h1>hataaaaa</h1>
+    }
+
 }
 
 <link rel="stylesheet" href="~/css/HesaplaStyle.css">
@@ -22,99 +38,261 @@
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Dersin Öğrenim Çıktıları</span>
-                    
-
-                    <table class="table table-bordered border-black table-hover"> 
-                        <tr class="satir-1">
-                            <th></th>
-                            
-                            @foreach (var item1 in List)
-                            {
-                                <th>@item1.Title</th>
-                            }
-                            @* <th colspan="2">Ödev</th>
-                            <th>Vize</th>
-                            <th>Final</th> *@
-                        </tr>
-                        <tr class="satir-2">
-                            <th></th>
-                            <th colspan="2">20</th>
-                            <th>30</th>
-                            <th>50</th>
-                        </tr>
-                        <tr class="satir-3">
-                            <th></th>
-                            <th>Ödev 1</th>
-                            <th>Ödev 2</th>
-                            <th>S1</th>
-                            <th>Q1</th>
-                        </tr>
-                        <tr class="satir-4">
-                            <th></th>
-                            <th>50</th>
-                            <th>50</th>
-                            <th>100</th>
-                            <th>100</th>
-                        </tr>
-                        <tr class="satir-5">
-                            <th>Ö - 1</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="satir-5">
-                            <th>Ö - 2</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="satir-5">
-                            <th>Ö - 3</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="satir-6">
-                            <th>Ağırlık</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-
-                    </table>
-                    <table class="table table-bordered border-danger table-hover">
-                        <tr class="tab-satir-1">
-                            <th>Öğrenci No</th>
-                            <th>Ödev 1</th>
-                            <th>Ödev 2</th>
-                            <th>S1</th>
-                            <th>Q1</th>
-                            <th>Harf Notu</th>
-                        </tr>
-                        <tr class="tab-satir-2">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="tab-satir-3">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
                 </div>
             </div>
         </form>
+
+
+        <table class="table table-bordered border-black table-hover">
+            <tr class="satir-1">
+                <th>Başlık</th>
+
+                @foreach (var item1 in List)
+                {
+                    b = 0;
+
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            b++;
+                        }
+                    }
+
+                    <th colspan="@b">@item1.Title</th>
+
+                    a = 0;
+
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            a++;
+                        }
+                    }
+
+                }
+
+                @* <th colspan="2">Ödev</th>
+                <th>Vize</th>
+                <th>Final</th> *@
+            </tr>
+            <tr class="satir-2">
+                <th>Etki Eden Yüzde(%)</th>
+
+                @foreach (var item1 in List)
+                {
+                    b = 0;
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            b++;
+                        }
+                    }
+
+                    <th colspan="@b">@item1.Percentage %</th>
+
+                    a = 0;
+
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            a++;
+                        }
+                    }
+
+                }
+
+                @* <th colspan="2">20</th>
+                <th>30</th>
+                <th>50</th> *@
+            </tr>
+            <tr class="satir-3">
+                <th>Sorular</th>
+
+                @foreach (var item1 in List)
+                {
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            <th>@item2.LowerRating</th>
+                        }
+                    }
+                }
+                @foreach (var item1 in List)
+                {
+                    int count = 0;
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        <th></th>
+                    }
+                }
+
+            </tr>
+            <tr class="satir-4">
+                <th>Soruların Puanı</th>
+
+                @foreach (var item1 in List)
+                {
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            <th>@item2.Point</th>
+                        }
+                    }
+                }
+                @foreach (var item1 in List)
+                {
+                    int count = 0;
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        <th></th>
+                    }
+                }
+
+            </tr>
+            <tr class="satir-5">
+                <th>Ö - 1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="satir-5">
+                <th>Ö - 2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="satir-5">
+                <th>Ö - 3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="satir-6">
+                <th>Ağırlık</th>
+
+                @foreach (var item1 in List)
+                {
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            double calcPoint = (double)item2.Point * (double)item1.Percentage / 100;
+
+                            <th>@calcPoint</th>
+                        }
+                    }
+                }
+                @foreach (var item1 in List)
+                {
+                    int count = 0;
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        <th></th>
+                    }
+                }
+
+            </tr>
+            @* <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr> *@
+
+        </table>
+
+        <form method="post">
+            <div class="fields">
+                @Html.Partial("_HesaplamalarStudentForm")
+                @Html.Partial("_HesaplamalarQuestionForm")
+                <div class="input-field">
+                    <label>Ekle</label>
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </div>
+        </form>
+
+
+        <table class="table table-bordered border-danger table-hover">
+            <tr class="tab-satir-1">
+                <th>İsim Soyisim</th>
+                <th>Öğrenci No</th>
+                @if (List != null)
+                {
+                    @foreach (var item1 in List)
+                    {
+                        @foreach (var item2 in List2)
+                        {
+                            if (item1.Title == item2.Title)
+                            {
+                                <th>@item2.LowerRating</th>
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    <p>List koleksiyonu null olduğu için işlem yapılamıyor.</p>
+                }
+
+                @* <th>Ödev 1</th>
+                <th>Ödev 2</th>
+                <th>S1</th>
+                <th>Q1</th> *@
+                <th>Harf Notu</th>
+            </tr>
+            <tr class="tab-satir-2">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tab-satir-3">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
 
     </div>
 </section>

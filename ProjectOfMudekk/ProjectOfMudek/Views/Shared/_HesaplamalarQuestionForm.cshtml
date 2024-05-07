@@ -1,0 +1,19 @@
+@model Question
+
+@{
+    var List2 = ViewBag.SubassessmentTools as List<SubAssessmentTool>;
+}
+<div class="input-field" id="input-field-alt">
+    <label>Sorular:</label>
+    <select id="LowerRating" asp-for="LowerRating" required>
+        <option disabled selected>Başlık Seçiniz...</option>
+        @foreach (var item2 in List2)
+        {
+        <option>@item2.LowerRating</option>
+        }
+    </select>
+</div>
+<div class="input-field" id="input-field-alt">
+    <label>Not:</label>
+    <input id="Note" asp-for="Note" placeholder="Tanım Giriniz..." required>
+</div>

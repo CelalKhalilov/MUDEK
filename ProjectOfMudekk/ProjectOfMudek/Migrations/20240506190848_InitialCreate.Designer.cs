@@ -11,7 +11,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240505120739_InitialCreate")]
+    [Migration("20240506190848_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -203,6 +203,51 @@ namespace ProjectOfMudek.Migrations
                     b.ToTable("learningOutcomess");
                 });
 
+            modelBuilder.Entity("Entities.Models.Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
+
+                    b.Property<string>("LowerRating")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Note")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestionId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("questions");
+                });
+
+            modelBuilder.Entity("Entities.Models.Student", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentId"));
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId");
+
+                    b.ToTable("students");
+                });
+
             modelBuilder.Entity("Entities.Models.SubAssessmentTool", b =>
                 {
                     b.Property<int>("Id")
@@ -249,6 +294,17 @@ namespace ProjectOfMudek.Migrations
                     b.Navigation("AcademicUnit");
                 });
 
+            modelBuilder.Entity("Entities.Models.Question", b =>
+                {
+                    b.HasOne("Entities.Models.Student", "Student")
+                        .WithMany("Questions")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Entities.Models.AcademicUnit", b =>
                 {
                     b.Navigation("FacultyList");
@@ -257,6 +313,11 @@ namespace ProjectOfMudek.Migrations
             modelBuilder.Entity("Entities.Models.Faculty", b =>
                 {
                     b.Navigation("DepartmentList");
+                });
+
+            modelBuilder.Entity("Entities.Models.Student", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

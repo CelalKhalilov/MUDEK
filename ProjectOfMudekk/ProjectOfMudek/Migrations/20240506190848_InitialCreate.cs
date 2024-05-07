@@ -81,6 +81,20 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "students",
+                columns: table => new
+                {
+                    StudentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_students", x => x.StudentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "subAssessmentTools",
                 columns: table => new
                 {
@@ -133,6 +147,27 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "questions",
+                columns: table => new
+                {
+                    QuestionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    LowerRating = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Note = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_questions", x => x.QuestionId);
+                    table.ForeignKey(
+                        name: "FK_questions_students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "students",
+                        principalColumn: "StudentId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "departments",
                 columns: table => new
                 {
@@ -161,6 +196,11 @@ namespace ProjectOfMudek.Migrations
                 name: "IX_faculties_AcademicUnitId",
                 table: "faculties",
                 column: "AcademicUnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_questions_StudentId",
+                table: "questions",
+                column: "StudentId");
         }
 
         /// <inheritdoc />
@@ -182,6 +222,9 @@ namespace ProjectOfMudek.Migrations
                 name: "learningOutcomess");
 
             migrationBuilder.DropTable(
+                name: "questions");
+
+            migrationBuilder.DropTable(
                 name: "subAssessmentTools");
 
             migrationBuilder.DropTable(
@@ -189,6 +232,9 @@ namespace ProjectOfMudek.Migrations
 
             migrationBuilder.DropTable(
                 name: "faculties");
+
+            migrationBuilder.DropTable(
+                name: "students");
 
             migrationBuilder.DropTable(
                 name: "academicUnits");

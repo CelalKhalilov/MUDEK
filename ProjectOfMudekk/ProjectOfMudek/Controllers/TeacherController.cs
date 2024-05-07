@@ -232,6 +232,25 @@ namespace ProjectOfMudek.Controllers
             ViewBag.subAssessmentTools = b;
             return View();
         }
+
+
+        // [HttpPost]
+        // public IActionResult Hesaplamalar(Student student, Question question)
+        // {
+        //     // if (ModelState.IsValid)
+        //     // {
+        //         _context.students.Add(student);
+                
+        //         _context.questions.Add(question);
+
+        //         _context.SaveChanges();
+
+        //         return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+        //     // }
+        //     return View();
+        // }
+
+
         public IActionResult ProfilAyarlari()
         {
             var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
@@ -288,6 +307,9 @@ namespace ProjectOfMudek.Controllers
             }
             return View();
         }
+
+
+        
 
 
     }

@@ -21,6 +21,8 @@ namespace ProjectOfMudek.Context
         public DbSet<LearningOutcomes> learningOutcomess { get; set; }
         public DbSet<AssessmentTool> assessmentTools { get; set; }
         public DbSet<SubAssessmentTool> subAssessmentTools { get; set; }
+        public DbSet<Student> students { get; set; }
+        public DbSet<Question> questions { get; set; }
 
 
 
@@ -28,6 +30,7 @@ namespace ProjectOfMudek.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");
+            // optionsBuilder.UseSqlServer("Server=MAYBEONEDAY\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=HarunGcl2312.");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +45,12 @@ namespace ProjectOfMudek.Context
                 .HasOne(ba => ba.Faculty)
                 .WithMany(a => a.DepartmentList)
                 .HasForeignKey(a => a.FacultyId);
+
+            modelBuilder.Entity<Question>()
+                .HasOne(q => q.Student)
+                .WithMany(s => s.Questions)
+                .HasForeignKey(q => q.StudentId);
+
         }
     }
 
