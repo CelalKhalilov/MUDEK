@@ -234,21 +234,30 @@ namespace ProjectOfMudek.Controllers
         }
 
 
-        // [HttpPost]
-        // public IActionResult Hesaplamalar(Student student, Question question)
-        // {
-        //     // if (ModelState.IsValid)
-        //     // {
-        //         _context.students.Add(student);
-                
-        //         _context.questions.Add(question);
+        [HttpPost]
+        public IActionResult DenemeEkle(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.students.Add(student);
+                _context.SaveChanges();
 
-        //         _context.SaveChanges();
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult HesaplamalarQuestionAdd(Question question)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.questions.Add(question);
+                _context.SaveChanges();
 
-        //         return RedirectToAction("DegerlendirmeAraclari", "Teacher");
-        //     // }
-        //     return View();
-        // }
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+            }
+            return View();
+        }
 
 
         public IActionResult ProfilAyarlari()
@@ -290,6 +299,10 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Deneme()
         {
+            var a = _context.assessmentTools.ToList();
+            var b = _context.subAssessmentTools.ToList();
+            ViewBag.assessmentTools = a;
+            ViewBag.subAssessmentTools = b;
 
             return View();
         }

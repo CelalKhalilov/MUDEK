@@ -1,3 +1,4 @@
+
 @{
     Layout = "_LayoutTeacher";
 }
@@ -221,17 +222,11 @@
                     }
                 }
         </table>
-        <form method="post" action="#">
-            <div class="fields">
-                @Html.Partial("_HesaplamalarStudentForm")
-                <div class="input-field">
-                    <label>Ekle</label>
-                    <button type="submit" class="btn btn-success">Ekle</button>
-                </div>
-            </div>
-        </form>
+
+        @* @Html.Partial("_StudentForm") *@
+
         <hr class="border border-black border-2 opacity-50">
-        <form method="post" action="#">
+        @* <form method="post" action="#">
             <div class="fields">
                 @Html.Partial("_HesaplamalarQuestionForm")
                 <div class="input-field">
@@ -239,7 +234,7 @@
                     <button type="submit" class="btn btn-success">Ekle</button>
                 </div>
             </div>
-        </form>
+        </form> *@
 
 
         <table class="table table-bordered border-danger table-hover">

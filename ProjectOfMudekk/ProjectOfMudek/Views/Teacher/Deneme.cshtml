@@ -1,34 +1,156 @@
-@model TumClass // Her iki formu da içeren bir ViewModel
+@{
+    Layout = "_LayoutTeacher";
+}
 
-@* @Html.Partial("_Form1", Model.AssessmentToolList) *@
+@{
+    var List = ViewBag.assessmentTools as List<AssessmentTool>;
+    var List2 = ViewBag.subAssessmentTools as List<SubAssessmentTool>;
+    var sayi = 0;
+    var i = 1;
+    var c = 1;
+    var a = 0;
+    var b = 0;
 
 
-<h2>Form 1</h2>
+
+}
+
+<link rel="stylesheet" href="~/css/HesaplaStyle.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Dersin Öğrenim Çıktıları</span>
+                </div>
+            </div>
+        </form>
 
 
-@Html.Partial("_LearningOutcomes")
 
 
+        @model Student
 
-<h2>Form 2</h2>
+        <form method="post" action="/Teacher/DenemeEkle">
+            <div class="fields">
+                <div class="input-field">
+                    <label>İsim ve Soyisim:</label>
+                    <input id="FullName" asp-for="FullName" type="text" placeholder="Anahtar Kelimeleri Giriniz... "
+                        required>
+                </div>
+                <div class="input-field">
+                    <label>Öğrenci No:</label>
+                    <input id="StudentNumber" asp-for="StudentNumber" type="number" placeholder="Tanım Giriniz..."
+                        required>
+                </div>
+                <div class="input-field">
+                    <label>Ekle</label>
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </div>
+        </form>
 
-<form method="post" action="/Teacher/Islem1">
-    <div class="form-group">
-        <label for="konu">Konu:</label>
-        <input type="text" class="form-control" id="konu" name="Konu" />
+        <hr class="border border-black border-2 opacity-50">
+        @* <form method="post" action="#">
+        <div class="fields">
+        @Html.Partial("_HesaplamalarQuestionForm")
+        <div class="input-field">
+        <label>Ekle</label>
+        <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+        </div>
+        </form> *@
+
+
+        <table class="table table-bordered border-danger table-hover">
+            <tr class="tab-satir-1">
+                <th>İsim Soyisim</th>
+                <th>Öğrenci No</th>
+
+                @* @foreach (var item1 in List)
+                {
+                @foreach (var item2 in List2)
+                {
+                if (item1.Title == item2.Title)
+                {
+                <th>@item2.LowerRating</th>
+                }
+                }
+                } *@
+
+
+                @* <th>Ödev 1</th>
+                <th>Ödev 2</th>
+                <th>S1</th>
+                <th>Q1</th> *@
+                <th>Harf Notu</th>
+            </tr>
+            <tr class="tab-satir-2">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tab-satir-3">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
     </div>
-    <div class="form-group">
-        <label for="mesaj">Mesaj:</label>
-        <textarea class="form-control" id="mesaj" name="Mesaj"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Gönder</button>
-</form>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <!-- Button trigger modal -->
 @* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Uyarı Mesajını Göster
+Uyarı Mesajını Göster
 </button> *@
 
 <!-- Modal -->
@@ -49,9 +171,7 @@
     </div>
 </div>
 
-@if(1==1)
+@if (1 == 1)
 {
-    <script src="~/js/site.js"></script>
+
 }
-    
- 
