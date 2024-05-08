@@ -1,0 +1,18 @@
+@model Student
+
+<form method="post" >
+    <div class="fields">
+        <div class="input-field">
+            <label>İsim ve Soyisim:</label>
+            <input id="FullName" asp-for="FullName" type="text" placeholder="Anahtar Kelimeleri Giriniz... " required>
+        </div>
+        <div class="input-field">
+            <label>Öğrenci No:</label>
+            <input id="StudentNumber" asp-for="StudentNumber" type="number" placeholder="Tanım Giriniz..." required>
+        </div>
+        <div class="input-field">
+            <label>Ekle</label>
+            <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+    </div>
+</form>
