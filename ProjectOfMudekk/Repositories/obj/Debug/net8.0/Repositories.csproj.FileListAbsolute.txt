@@ -34,3 +34,16 @@ C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repos
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\refint\Repositories.dll
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.pdb
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\ref\Repositories.dll
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\bin\Debug\net8.0\Repositories.deps.json
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\bin\Debug\net8.0\Repositories.dll
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\bin\Debug\net8.0\Repositories.pdb
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfo.cs
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.csproj.CoreCompileInputs.cache
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.sourcelink.json
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.dll
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\refint\Repositories.dll
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\Repositories.pdb
+C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\Repositories\obj\Debug\net8.0\ref\Repositories.dll

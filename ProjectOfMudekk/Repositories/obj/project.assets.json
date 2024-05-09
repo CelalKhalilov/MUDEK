@@ -561,19 +561,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pc\\.nuget\\packages\\": {}
+    "C:\\Users\\guclh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Desktop\\MÜDEK\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+      "projectUniqueName": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
       "projectName": "Repositories",
-      "projectPath": "C:\\Users\\pc\\Desktop\\MÜDEK\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
-      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\Desktop\\MÜDEK\\MUDEK\\ProjectOfMudekk\\Repositories\\obj\\",
+      "projectPath": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\Repositories.csproj",
+      "packagesPath": "C:\\Users\\guclh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Repositories\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\guclh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -625,7 +625,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
