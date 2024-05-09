@@ -228,21 +228,27 @@ namespace ProjectOfMudek.Controllers
             
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
+            var c = _context.learningOutcomess.ToList();
+            var d = _context.students.ToList();
+            var e = _context.questions.ToList();
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
+            ViewBag.learningOutcomess = c;
+            ViewBag.students = d;
+            ViewBag.questions = e;
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult DenemeEkle(Student student)
+        public IActionResult HesaplamalarStudentAdd(Student student)
         {
             if (ModelState.IsValid)
             {
                 _context.students.Add(student);
                 _context.SaveChanges();
 
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+                return RedirectToAction("Hesaplamalar", "Teacher");
             }
             return View();
         }
@@ -254,7 +260,7 @@ namespace ProjectOfMudek.Controllers
                 _context.questions.Add(question);
                 _context.SaveChanges();
 
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+                return RedirectToAction("Hesaplamalar", "Teacher");
             }
             return View();
         }

@@ -44,10 +44,10 @@ namespace ProjectOfMudek.Context
                 .WithMany(a => a.DepartmentList)
                 .HasForeignKey(a => a.FacultyId);
 
-            modelBuilder.Entity<Question>()
-                .HasOne(q => q.Student)
-                .WithMany(s => s.Questions)
-                .HasForeignKey(q => q.StudentId);
+            // modelBuilder.Entity<Question>()
+            //     .HasOne(q => q.Student)
+            //     .WithMany(s => s.Questions)
+            //     .HasForeignKey(q => q.StudentId);
 
         }
     }

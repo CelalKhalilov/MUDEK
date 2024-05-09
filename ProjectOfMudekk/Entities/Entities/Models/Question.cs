@@ -6,11 +6,11 @@ namespace Entities.Models
     {
         public int QuestionId { get; set; }
         //[ForeignKey("StudentId")]
-        public int StudentId { get; set; }
+        //public int StudentId { get; set; }
         public string LowerRating { get; set; }
         public int Note { get; set; }
         //[InverseProperty("Questions")]
-        public Student Student { get; set; }
+        //public Student Student { get; set; }
 
     }
 }

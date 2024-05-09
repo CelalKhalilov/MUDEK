@@ -215,12 +215,7 @@ namespace ProjectOfMudek.Migrations
                     b.Property<int>("Note")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
                     b.HasKey("QuestionId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("questions");
                 });
@@ -291,17 +286,6 @@ namespace ProjectOfMudek.Migrations
                     b.Navigation("AcademicUnit");
                 });
 
-            modelBuilder.Entity("Entities.Models.Question", b =>
-                {
-                    b.HasOne("Entities.Models.Student", "Student")
-                        .WithMany("Questions")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Entities.Models.AcademicUnit", b =>
                 {
                     b.Navigation("FacultyList");
@@ -310,11 +294,6 @@ namespace ProjectOfMudek.Migrations
             modelBuilder.Entity("Entities.Models.Faculty", b =>
                 {
                     b.Navigation("DepartmentList");
-                });
-
-            modelBuilder.Entity("Entities.Models.Student", b =>
-                {
-                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }
