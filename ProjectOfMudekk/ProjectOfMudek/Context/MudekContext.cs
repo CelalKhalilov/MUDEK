@@ -25,8 +25,6 @@ namespace ProjectOfMudek.Context
         public DbSet<Question> questions { get; set; }
 
 
-
-        //harun to get information about students
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");
