@@ -23,6 +23,9 @@ namespace ProjectOfMudek.Context
         public DbSet<SubAssessmentTool> subAssessmentTools { get; set; }
         public DbSet<Student> students { get; set; }
         public DbSet<Question> questions { get; set; }
+        public DbSet<UploadedFile> uploadedFiles { get; set; }
+        
+        
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

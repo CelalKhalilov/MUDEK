@@ -141,6 +141,21 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "uploadedFiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_uploadedFiles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "faculties",
                 columns: table => new
                 {
@@ -220,6 +235,9 @@ namespace ProjectOfMudek.Migrations
 
             migrationBuilder.DropTable(
                 name: "Teachers");
+
+            migrationBuilder.DropTable(
+                name: "uploadedFiles");
 
             migrationBuilder.DropTable(
                 name: "faculties");

@@ -11,7 +11,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240509100314_InitialCreate")]
+    [Migration("20240512130229_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -265,6 +265,31 @@ namespace ProjectOfMudek.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("subAssessmentTools");
+                });
+
+            modelBuilder.Entity("UploadedFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("uploadedFiles");
                 });
 
             modelBuilder.Entity("Entities.Models.Department", b =>

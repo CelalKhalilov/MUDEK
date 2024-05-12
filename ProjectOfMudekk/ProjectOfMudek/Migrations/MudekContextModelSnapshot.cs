@@ -264,6 +264,31 @@ namespace ProjectOfMudek.Migrations
                     b.ToTable("subAssessmentTools");
                 });
 
+            modelBuilder.Entity("UploadedFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("uploadedFiles");
+                });
+
             modelBuilder.Entity("Entities.Models.Department", b =>
                 {
                     b.HasOne("Entities.Models.Faculty", "Faculty")

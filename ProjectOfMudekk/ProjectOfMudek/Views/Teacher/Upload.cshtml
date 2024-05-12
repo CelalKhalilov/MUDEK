@@ -1,4 +1,4 @@
-
+@* 
 
 @{
     Layout = "_LayoutTeacher";
@@ -58,5 +58,94 @@
 
        
 
+    </div>
+</section> *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model List<UploadedFile>
+
+@{
+    Layout = "_LayoutTeacher";
+}
+
+<link rel="stylesheet" href="~/css/UploadStyle.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;" src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt=""></header>
+
+        <form method="post" action="/Teacher/Upload" enctype="multipart/form-data">
+            <h2>Dosyaları yükleyin ve ekleyin</h2>
+            <p>Yüklemek için tıklayın veya sürükleyip bırakın</p>
+            <div class="dropzone-area">
+                <div class="file-upload-icon"><!-- svg --></div>
+                <input type="file" required id="upload-file" name="file">
+                <p class="file-info">Hiçbir Dosya Seçilmedi</p>
+            </div>
+            <div class="dropzone-actions">
+                <button type="reset">İptal Etmek</button>
+                <button id="submit-button" type="submit">Kaydetmek</button>
+            </div>
+        </form>
+        <script src="~/js/TeacherUploadScriptc.js"></script>
+
+        <h2 style="color: brown;">Yüklenen Dosyalar</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Dosya Adı</th>
+                    <th scope="col">İndir</th>
+                    <th scope="col">Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in ViewBag.UploadedFiles)
+                {
+                    <tr>
+                        <td>@file.Id</td>
+                        <td>@file.FileName</td>
+                        <td>
+                            <form method="get" action="/Teacher/Download" style="width: 50px;">
+                                <input type="hidden" name="fileId" value="@file.Id" />
+                                <button type="submit" class="btn btn-primary">İndir</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="/Teacher/Delete" style="width: 50px;">
+                                <input type="hidden" name="fileId" value="@file.Id" />
+                                <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </section>

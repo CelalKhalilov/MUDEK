@@ -91,22 +91,67 @@ namespace ProjectOfMudek.Controllers
             }
             else
             {
-                return NotFound(); // veya uygun bir hata işleme yöntemi
+                return NotFound(); 
             }
         }
 
 
         public IActionResult Upload()
         {
-            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
-            if (isLoggedIn != "true")
+            var uploadedFiles = _context.uploadedFiles.ToList();
+            ViewBag.UploadedFiles = uploadedFiles;
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
             {
-                return RedirectToAction("Ogretmen", "Home");
+                ModelState.AddModelError("file", "Please select a file to upload.");
+                return View();
             }
-            TumClass model = new TumClass();
-            model.AssessmentToolList = _context.assessmentTools.ToList();
-            model.SubAssessmentToolList = _context.subAssessmentTools.ToList();
-            return View(model);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+                var uploadedFile = new UploadedFile
+                {
+                    FileName = file.FileName,
+                    ContentType = file.ContentType,
+                    Data = memoryStream.ToArray()
+                };
+
+                _context.uploadedFiles.Add(uploadedFile);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Upload", "Teacher");
+            }
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Download(int fileId)
+        {
+            var file = await _context.uploadedFiles.FindAsync(fileId);
+            if (file == null)
+            {
+                return NotFound();
+            }
+
+            return File(file.Data, file.ContentType, file.FileName);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int fileId)
+        {
+            var file = await _context.uploadedFiles.FindAsync(fileId);
+            if (file != null)
+            {
+                _context.uploadedFiles.Remove(file);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Upload");
         }
 
 
@@ -121,7 +166,7 @@ namespace ProjectOfMudek.Controllers
             var b = _context.subAssessmentTools.ToList();
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
-            
+
             return View();
         }
 
@@ -132,7 +177,7 @@ namespace ProjectOfMudek.Controllers
             {
                 _context.assessmentTools.Add(assessmentTool);
                 _context.SaveChanges();
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher",new { id = assessmentTool.Id});
+                return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
             }
             return View();
         }
@@ -225,7 +270,7 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Hesaplamalar()
         {
-            
+
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
             var c = _context.learningOutcomess.ToList();
@@ -293,7 +338,7 @@ namespace ProjectOfMudek.Controllers
 
                 _context.SaveChanges();
 
-                return RedirectToAction("ProfilAyarlari", "Teacher",new { id = teacher.Id }); // veya başka bir yönlendirme
+                return RedirectToAction("ProfilAyarlari", "Teacher", new { id = teacher.Id }); // veya başka bir yönlendirme
             }
             else
             {
@@ -313,7 +358,7 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         public IActionResult Islem2(SubAssessmentTool learningOutcomes)
@@ -327,9 +372,11 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
-
-        
-
-
     }
 }
+
+
+
+
+
+
