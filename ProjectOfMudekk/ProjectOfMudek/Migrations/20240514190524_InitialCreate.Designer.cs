@@ -12,7 +12,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240514094659_InitialCreate")]
+    [Migration("20240514190524_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -82,6 +82,9 @@ namespace ProjectOfMudek.Migrations
                     b.Property<string>("Gmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()

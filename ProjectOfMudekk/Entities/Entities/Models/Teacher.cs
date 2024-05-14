@@ -20,5 +20,7 @@ namespace Entities.Entities.Models
         public List<AssessmentTool>? AssessmentTools { get; set; }
         public List<SubAssessmentTool>? SubAssessmentTools { get; set; }
 
+        public byte[]? Image { get; set; }
+        public string? ProfileImageBase64 => Image != null ? Convert.ToBase64String(Image) : null;
     }
 }

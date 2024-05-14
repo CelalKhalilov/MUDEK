@@ -89,7 +89,7 @@ namespace ProjectOfMudek.Controllers
         //     return Json(districts);
         // }
 
-        
+
 
         public IActionResult Tablo()
         {
@@ -229,7 +229,7 @@ namespace ProjectOfMudek.Controllers
             return RedirectToAction("Upload");
         }
 
-        
+
 
 
         public IActionResult DegerlendirmeAraclari()
@@ -416,33 +416,38 @@ namespace ProjectOfMudek.Controllers
             {
                 return RedirectToAction("Ogretmen", "Home");
             }
-            var userId = HttpContext.Session.GetInt32("Id");
-            ViewBag.UserId = userId;
-            var a = _context.Teachers.ToList();
-            ViewBag.teachers = a;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             return View();
         }
 
         [HttpPost]
-        public IActionResult ProfilAyarlariGuncelle(Teacher teacher)
+        public async Task<IActionResult> ProfilAyarlariGuncelle(Teacher teach, IFormFile file)
         {
+            var existingTeach = _context.Teachers.SingleOrDefault(g => g.Id == teach.Id);
 
-            var teachers = _context.Teachers.SingleOrDefault(g => g.Id == teacher.Id);
-
-            if (teachers != null)
+            if (existingTeach != null)
             {
-                teachers.FirstName = teacher.FirstName;
-                teachers.LastName = teacher.LastName;
-                teachers.Gmail = teacher.Gmail;
-                teachers.ProfileImage = teacher.ProfileImage;
+                existingTeach.FirstName = teach.FirstName;
+                existingTeach.LastName = teach.LastName;
+                existingTeach.Gmail = teach.Gmail;
+
+                if (file != null && file.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(memoryStream);
+                        existingTeach.Image = memoryStream.ToArray();
+                    }
+                }
 
                 _context.SaveChanges();
 
-                return RedirectToAction("ProfilAyarlari", "Teacher", new { id = teacher.Id }); // veya başka bir yönlendirme
+                return RedirectToAction("ProfilAyarlari", "Teacher");
             }
             else
             {
-                return NotFound(); // veya uygun bir hata işleme yöntemi
+                return NotFound();
             }
         }
 
@@ -458,7 +463,7 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         public IActionResult Islem2(SubAssessmentTool learningOutcomes)

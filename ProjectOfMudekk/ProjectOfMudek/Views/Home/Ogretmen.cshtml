@@ -1,52 +1,54 @@
 ﻿@model Teacher
 @{
-  Layout = "_layoutHome";
+    Layout = "_layoutHome";
 }
-
 
 <link rel="stylesheet" href="~/css/OgretmenStyle.css">
 <section class="wrapper">
-  <div class="form signup">
-    <header>Signup</header>
-    @* @using (Html.BeginForm("Ogretmen", "Home", FormMethod.Post))
-    { *@
-    <form method="POST">
-      <input asp-for="FirstName" type="text" id="FirstName" placeholder="Name" required />
-      <input asp-for="LastName" type="text" id="LastName" placeholder="Surname" required />
-      <input asp-for="Gmail" type="text" id="Gmail" placeholder="Email address" required />
-      <input asp-for="Password" type="password" id="Password" placeholder="Password" required />
-      <div class="checkbox">
-        <input type="checkbox" id="signupCheck" />
-        <label for="signupCheck">I accept all terms & conditions</label>
-      </div>
-      <input type="submit" value="Signup" />
-      @* <button class="btn btn-primary" type="submit" value="Signup">Signup</button> *@
-    </form>
-    @* } *@
-  </div>
+    <div class="form signup">
+        <header>Signup</header>
+        <form method="POST">
+            <input asp-for="FirstName" type="text" id="FirstName" placeholder="Name" required />
+            <input asp-for="LastName" type="text" id="LastName" placeholder="Surname" required />
+            <input asp-for="Gmail" type="text" id="Gmail" placeholder="Email address" required />
+            <input asp-for="Password" type="password" id="Password" placeholder="Password" required />
+            <div class="checkbox">
+                <input type="checkbox" id="signupCheck" />
+                <label for="signupCheck">I accept all terms & conditions</label>
+            </div>
+            <input type="submit" value="Signup" />
+        </form>
+    </div>
 
+    <div class="form login">
+        <header>Login</header>
 
-  <div class="form login">
-    <header>Login</header>
-    <form method="post" action="/Home/OgretmenLogin">
-      <input type="text" name="Gmail" placeholder="Email address" required />
-      <input type="password" name="Password" placeholder="Password" required />
-      <a href="#">Forgot password?</a>
-      <input type="submit" value="Login" />
-    </form>
-  </div>
+        @* Hata mesajı varsa göster *@
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+              @ViewBag.Error
+            </div>
+        }
 
-  <script>
-    const wrapper = document.querySelector(".wrapper"),
-      signupHeader = document.querySelector(".signup header"),
-      loginHeader = document.querySelector(".login header");
+        <form method="post" action="/Home/OgretmenLogin">
+            <input type="text" name="Gmail" placeholder="Email address" required />
+            <input type="password" name="Password" placeholder="Password" required />
+            <a href="#">Forgot password?</a>
+            <input type="submit" value="Login" />
+        </form>
+    </div>
 
-    loginHeader.addEventListener("click", () => {
-      wrapper.classList.add("active");
-    });
-    signupHeader.addEventListener("click", () => {
-      wrapper.classList.remove("active");
-    });
-  </script>
+    <script>
+        const wrapper = document.querySelector(".wrapper"),
+              signupHeader = document.querySelector(".signup header"),
+              loginHeader = document.querySelector(".login header");
 
+        loginHeader.addEventListener("click", () => {
+            wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+            wrapper.classList.remove("active");
+        });
+    </script>
 </section>

@@ -1,12 +1,6 @@
 using Entities.Entities.Models;
-using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectOfMudek.Context;
-using ProjectOfMudek.Models;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Mail;
 
 namespace ProjectOfMudek.Controllers
 {
@@ -34,6 +28,7 @@ namespace ProjectOfMudek.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult OgretmenLogin(Teacher teacher)
         {
@@ -42,19 +37,16 @@ namespace ProjectOfMudek.Controllers
             {
                 int userId = user.Id;
                 HttpContext.Session.SetInt32("Id", userId);
-                // Başarılı giriş, "/Admin/Index" sayfasına yönlendir
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 return RedirectToAction("Index", "Teacher");
-
-                
             }
             else
             {
-                // Hatalı giriş, sayfada bir hata mesajı gösterilebilir veya farklı bir işlem yapılabilir
-                ViewBag.Error = "Invalid username or password.";
-                return View();
+                ViewBag.Error = "Geçersiz Email veya Şifre.";
+                return View("Ogretmen");  // Giriş sayfasına geri dön ve hata mesajını göster
             }
         }
+
 
         public IActionResult Logout()
         {
@@ -164,6 +156,6 @@ namespace ProjectOfMudek.Controllers
         //         return false;
         //     }
         // }
-        
+
     }
 }
