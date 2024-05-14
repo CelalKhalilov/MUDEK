@@ -5,6 +5,7 @@ namespace Entities.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public int Percentage { get; set; }
+        public int TeacherId { get; set; }
 
     }
 }

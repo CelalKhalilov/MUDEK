@@ -5,8 +5,14 @@
     Layout = "_LayoutTeacher";
 }
 
+
+
+
 @{
     var outcomesList = ViewBag.OutcomesList as List<LearningOutcomes>;
+    var LessonList = ViewBag.lessons as List<Lesson>;
+    var FormList = ViewBag.forms as List<Form>;
+    var TeacherList = ViewBag.teachers as List<Teacher>;
     var i = 1;
     var c = 1;
 }
@@ -19,9 +25,34 @@
         </header>
 
         <div class="alert alert-light" role="alert">
-            <p>Öğretim Elemanı:</p>
-            <p>Ders Adı:</p>
-            <p style="margin: 0;">Ders Kodu:</p>
+            @foreach (var isim in TeacherList)
+            {
+                if (isim.Id == ViewBag.UserId)
+                {
+                    <p>Öğretim Elemanı: <strong>@isim.FirstName @isim.LastName</strong></p>
+                }
+            }
+            @foreach (var item1 in FormList)
+            {
+                if (item1.TeacherId == ViewBag.UserId)
+                {
+                    foreach (var item2 in LessonList)
+                    {
+                        if(item1.Id == item2.Id)
+                        {
+                            <p>Ders Adı: <strong>@item2.LessonName</strong></p>
+                        }
+                    }
+                }
+            }
+            
+            @foreach (var item in FormList)
+            {
+                if (item.TeacherId == ViewBag.UserId)
+                {
+                    <p style="margin: 0;">Ders Kodu: <strong>@item.LessonCode</strong></p>
+                }
+            }
         </div>
 
 
@@ -31,6 +62,7 @@
                 <span class="title">Dersin Öğrenim Çıktıları</span>
                 <form method="post">
                     <div class="fields">
+                        <input  asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
                         <div class="input-field">
                             <input class="inp1" asp-for="Keywords" id="Keywords" type="text"
                                 placeholder="Anahtar Kelimeleri Giriniz... " required>
@@ -126,31 +158,34 @@
 
                     @foreach (var outcome in outcomesList)
                     {
-                        <tr>
-                            <th>Ö - @i</th>
-                            <td>@outcome.Keywords</td>
-                            <td>@outcome.Definition</td>
-                            <td class="td-sil">
-                                <form method="POST" action="/Teacher/TabloDelete">
-                                    <input type="hidden" name="TabloId" value="@outcome.Id">
-                                    <button type="submit" class="btn btn-danger">
-                                        <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                                            stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                        if (outcome.TeacherId == ViewBag.UserId)
+                        {
+                            <tr>
+                                <th>Ö - @i</th>
+                                <td>@outcome.Keywords</td>
+                                <td>@outcome.Definition</td>
+                                <td class="td-sil">
+                                    <form method="POST" action="/Teacher/TabloDelete">
+                                        <input type="hidden" name="TabloId" value="@outcome.Id">
+                                        <button type="submit" class="btn btn-danger">
+                                            <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
+                                                stroke="bold" colors="primary:#121331,secondary:#ffffff"
+                                                style="width:20px;height:20px">
+                                            </lord-icon>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                        onclick="fillFormFields('@outcome.Id', '@outcome.Keywords', '@outcome.Definition')">
+                                        <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
                                             style="width:20px;height:20px">
                                         </lord-icon>
                                     </button>
-                                </form>
-                            </td>
-                            <td><button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    onclick="fillFormFields('@outcome.Id', '@outcome.Keywords', '@outcome.Definition')">
-                                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover" stroke="bold"
-                                        style="width:20px;height:20px">
-                                    </lord-icon>
-                                </button>
-                            </td>
-                        </tr>
-                        i++;
+                                </td>
+                            </tr>
+                            i++;
+                        }
                     }
 
                     @* <tr>
@@ -236,22 +271,25 @@
                         </tr>
                         @foreach (var outcome in outcomesList)
                         {
-                            <tr>
-                                <th>Ö - @c</th>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                            </tr>
+                            if (outcome.TeacherId == ViewBag.UserId)
+                            {
+                                <tr>
+                                    <th>Ö - @c</th>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true"></td>
+                                </tr>
                             c++;
+                            }
                         }
                     </table>
                 </div>

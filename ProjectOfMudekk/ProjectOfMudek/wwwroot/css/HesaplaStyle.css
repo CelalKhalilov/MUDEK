@@ -100,7 +100,7 @@ form.secActive .form.first {
 
 form .fields .input-field {
     display: flex;
-    width: calc(100% / 5 - 15px);
+    width: calc(100% / 2 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
@@ -317,4 +317,8 @@ table .satir-6 th{
 
 .tab-satir-1 th{
     background-color:#ff000082;
+}
+
+#ekle2{
+    display: none;
 }

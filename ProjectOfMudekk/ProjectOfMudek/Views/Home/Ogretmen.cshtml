@@ -8,10 +8,11 @@
 <section class="wrapper">
   <div class="form signup">
     <header>Signup</header>
-
+    @* @using (Html.BeginForm("Ogretmen", "Home", FormMethod.Post))
+    { *@
     <form method="POST">
-      <input asp-for="LastName" type="text" id="LastName" placeholder="Name" required />
-      <input asp-for="FirstName" type="text" id="FirstName" placeholder="Surname" required />
+      <input asp-for="FirstName" type="text" id="FirstName" placeholder="Name" required />
+      <input asp-for="LastName" type="text" id="LastName" placeholder="Surname" required />
       <input asp-for="Gmail" type="text" id="Gmail" placeholder="Email address" required />
       <input asp-for="Password" type="password" id="Password" placeholder="Password" required />
       <div class="checkbox">
@@ -21,7 +22,9 @@
       <input type="submit" value="Signup" />
       @* <button class="btn btn-primary" type="submit" value="Signup">Signup</button> *@
     </form>
+    @* } *@
   </div>
+
 
   <div class="form login">
     <header>Login</header>
@@ -45,4 +48,5 @@
       wrapper.classList.remove("active");
     });
   </script>
+
 </section>

@@ -1,0 +1,204 @@
+@model AcademicUnit
+@{
+    var List1 = ViewBag.academicUnits as List<AcademicUnit>;
+    var List2 = ViewBag.faculties as List<Faculty>;
+    var List3 = ViewBag.departments as List<Department>;
+    var List4 = ViewBag.periods as List<Period>;
+    var List5 = ViewBag.lessons as List<Lesson>;
+}
+
+
+<div class="container-xl" style="max-width: 800px; margin-bottom: 100px; margin-top: 40px;">
+    <h1>Merhaba Admin</h1>
+
+    <script>
+        // Güncelle butonuna tıklandığında çalışacak fonksiyon
+        function fillFormFields_gun(id, UnitName) {
+            // Modal içindeki form alanlarını bul
+            var IdInput = document.getElementById('deger-id');
+            var NameInput = document.getElementById('UnitName');
+
+            // Form alanlarına ilgili değerleri yerleştir
+            IdInput.value = id;
+            NameInput.value = UnitName;
+
+        }
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop_gun_0" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/Admin/AcademicUnitUpdate">
+                        <input type="hidden" asp-for="Id" id="deger-id" />
+                        <div class="mb-3">
+                            <label for="UnitName" class="form-label">Bölüm</label>
+                            <input type="text" asp-for="UnitName" class="form-control" id="UnitName" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                            <button type="submit" class="btn btn-success">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_AcademicUnitAdd")
+
+    <table style="text-align: center; margin-top: 20px;" class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Akademik Birimler</th>
+            <th>Butonlar</th>
+        </tr>
+        @foreach (var item1 in List1)
+        {
+            <tr>
+                <td>@item1.Id</td>
+                <td>@item1.UnitName</td>
+                <td>
+                    <form method="post" action="/Admin/AcademicUnitDelete">
+                        <input type="hidden" name="academicUnitId" value="@item1.Id">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop" onclick="fillFormFields_0('@item1.Id')">Fakülte
+                                Ekle</button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_gun_0" onclick="fillFormFields_gun('@item1.Id', '@item1.UnitName')">Güncelle</button>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("_FacultyAdd")
+    <table style="text-align: center; margin-top: 20px;" class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Akademik Birim ID</th>
+            <th>Fakulteler</th>
+            <th>Butonlar</th>
+        </tr>
+        @foreach (var item2 in List2)
+        {
+            <tr>
+                <td>@item2.Id</td>
+                <td>@item2.AcademicUnitId</td>
+                <td>@item2.FacultyName</td>
+                <td>
+                    <form method="post" action="/Admin/FacultyDelete">
+                        <input type="hidden" name="facultyId" value="@item2.Id">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_1" onclick="fillFormFields_1('@item2.Id')">Bölüm
+                                Ekle</button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_gun_1" onclick="fillFormFields_gun_1('@item2.Id', '@item2.AcademicUnitId', '@item2.FacultyName')">Güncelle</button>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+    @Html.Partial("_DepartmentAdd")
+    <table style="text-align: center; margin-top: 20px;" class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Fakülte ID</th>
+            <th>Bölümler</th>
+            <th>Butonlar</th>
+        </tr>
+        @foreach (var item3 in List3)
+        {
+            <tr>
+                <td>@item3.Id</td>
+                <td>@item3.FacultyId</td>
+                <td>@item3.DepartmentName</td>
+                <td>
+                    <form method="post" action="/Admin/DepartmentDelete">
+                        <input type="hidden" name="departmentId" value="@item3.Id">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_2" onclick="fillFormFields_2('@item3.Id')">Dönem
+                                Ekle</button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_gun_2" onclick="fillFormFields_gun_2('@item3.Id','@item3.FacultyId','@item3.DepartmentName')">Güncelle</button>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("_PeriodAdd")
+    <table style="text-align: center; margin-top: 20px;" class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Bölüm ID</th>
+            <th>Dönem</th>
+            <th>Butonlar</th>
+        </tr>
+        @foreach (var item4 in List4)
+        {
+            <tr>
+                <td>@item4.Id</td>
+                <td>@item4.DepartmentId</td>
+                <td>@item4.PeriodName</td>
+                <td>
+                    <form method="post" action="/Admin/PeriodDelete">
+                        <input type="hidden" name="periodId" value="@item4.Id">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_3" onclick="fillFormFields('@item4.Id')">Ders Ekle</button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_gun_3" onclick="fillFormFields_gun_3('@item4.Id','@item4.DepartmentId','@item4.PeriodName')">Güncelle</button>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("_LessonAdd")
+    <table style="text-align: center; margin-top: 20px;" class="table table-success table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Dönem ID</th>
+            <th>Ders</th>
+            <th>Butonlar</th>
+        </tr>
+        @foreach (var item5 in List5)
+        {
+            <tr>
+                <td>@item5.Id</td>
+                <td>@item5.PeriodId</td>
+                <td>@item5.LessonName</td>
+                <td>
+                    <form method="post" action="/Admin/LessonDelete">
+                        <input type="hidden" name="lessonId" value="@item5.Id">
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop_gun_4" onclick="fillFormFields_gun_4('@item5.Id','@item5.PeriodId','@item5.LessonName')">Güncelle</button>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

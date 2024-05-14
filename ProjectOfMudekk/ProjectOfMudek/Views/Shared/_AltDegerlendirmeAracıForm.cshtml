@@ -60,13 +60,17 @@
 
             <div class="fields">
                 @* <form action="#"> *@
+                <input asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
                 <div class="input-field" id="input-field-alt">
                     <label>Başlık</label>
                     <select id="abc" asp-for="Title" required>
                         <option disabled selected>Başlık Seçiniz...</option>
                         @foreach (var item in List)
                         {
-                            <option>@item.Title</option>
+                            if (item.TeacherId == ViewBag.UserId)
+                            {
+                                <option>@item.Title</option>
+                            }
                         }
                     </select>
                 </div>

@@ -1,0 +1,130 @@
+@model Lesson
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields(id) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('PeriodId');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/LessonAdd">
+                    <div class="mb-3">
+                        <label for="PeriodId" class="form-label">Dönem ID</label>
+                        <input type="text" asp-for="PeriodId" class="form-control" id="PeriodId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="LessonName" class="form-label">Bölüm</label>
+                        <input type="text" asp-for="LessonName" class="form-control" id="LessonName" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_gun_4(id, periodId, lessonName) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('Lessonid_gun');
+        var PeriodIdInput = document.getElementById('PeriodIdd_gun');
+        var LessonNameInput = document.getElementById('LessonName_gun');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+        PeriodIdInput.value = periodId;
+        LessonNameInput.value = lessonName;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_gun_4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/LessonUpdate">
+                    <input type="hidden" asp-for="Id" id="Lessonid_gun" />
+                    <div class="mb-3">
+                        <label for="PeriodId" class="form-label">Dönem ID</label>
+                        <input type="text" asp-for="PeriodId" class="form-control" id="PeriodIdd_gun" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="LessonName" class="form-label">Ders</label>
+                        <input type="text" asp-for="LessonName" class="form-control" id="LessonName_gun" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields(id) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('PeriodId');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/LessonAdd">
+                    <div class="mb-3">
+                        <label for="PeriodId" class="form-label">Dönem ID</label>
+                        <input type="text" asp-for="PeriodId" class="form-control" id="PeriodId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="LessonName" class="form-label">Bölüm</label>
+                        <input type="text" asp-for="LessonName" class="form-control" id="LessonName" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

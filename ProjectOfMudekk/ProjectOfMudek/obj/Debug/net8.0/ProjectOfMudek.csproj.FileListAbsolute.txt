@@ -402,7 +402,6 @@ C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\Pro
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.RazorAssemblyInfo.cache
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.RazorAssemblyInfo.cs
-C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.sourcelink.json
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\staticwebassets\msbuild.ProjectOfMudek.Microsoft.AspNetCore.StaticWebAssets.props
@@ -560,3 +559,4 @@ C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ref
 C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.pdb
 C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.genruntimeconfig.cache
 C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ref\ProjectOfMudek.dll
+C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\obj\Debug\net8.0\ProjectOfMudek.sourcelink.json

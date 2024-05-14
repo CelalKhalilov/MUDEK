@@ -16,6 +16,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Samsun Üniversitesi | MÜDEK</title>
     <link rel="icon" href="~/jpg/Samu_logo.png">
     <link rel="stylesheet" href="~/css/_LayoutTeacher.css" />
@@ -200,8 +201,11 @@
     @RenderBody()
 
     <!-- JavaScript -->
+    
+
     <script src="~/js/TeacherScript.js"></script>
     <script src="~/js/TeacherScripts.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

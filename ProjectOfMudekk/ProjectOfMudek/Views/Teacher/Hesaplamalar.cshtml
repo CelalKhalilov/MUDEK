@@ -1,4 +1,6 @@
-@model Student
+@* @model Student *@
+@model List<Question>
+
 
 @{
     Layout = "_LayoutTeacher";
@@ -16,8 +18,7 @@
     var a = 0;
     var b = 0;
     var x = 1;
-
-
+    var l = 0;
 }
 
 <link rel="stylesheet" href="~/css/HesaplaStyle.css">
@@ -36,192 +37,213 @@
             </div>
         </form>
 
-        @* <form method="post" action="/Teacher/HesaplamalarEkle">
-        <div class="fields">
-        <div class="input-field">
-        <label>İsim ve Soyisim:</label>
-        <input id="FullName" asp-for="FullName" type="text" placeholder="Anahtar Kelimeleri Giriniz... "
-        required>
-        </div>
-        <div class="input-field">
-        <label>Öğrenci No:</label>
-        <input id="StudentNumber" asp-for="StudentNumber" type="number" placeholder="Tanım Giriniz..."
-        required>
-        </div>
-        <div class="input-field">
-        <label>Ekle</label>
-        <button type="submit" class="btn btn-success">Ekle</button>
-        </div>
-        </div>
-        </form> *@
-
-
         <table class="table table-bordered border-black table-hover">
             <tr class="satir-1">
                 <th>Başlık</th>
-
                 @foreach (var item1 in List)
                 {
-                    b = 0;
-
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        b = 0;
+                        @foreach (var item2 in List2)
                         {
-                            b++;
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    b++;
+                                }
+                            }
+                        }
+                        <th colspan="@b">@item1.Title</th>
+
+                        a = 0;
+
+                        @foreach (var item2 in List2)
+                        {
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    a++;
+                                }
+                            }
                         }
                     }
-
-                    <th colspan="@b">@item1.Title</th>
-
-                    a = 0;
-
-                    @foreach (var item2 in List2)
-                    {
-                        if (item1.Title == item2.Title)
-                        {
-                            a++;
-                        }
-                    }
-
                 }
-
-                @* <th colspan="2">Ödev</th>
-                <th>Vize</th>
-                <th>Final</th> *@
             </tr>
             <tr class="satir-2">
                 <th>Etki Eden Yüzde(%)</th>
 
                 @foreach (var item1 in List)
                 {
-                    b = 0;
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        b = 0;
+                        @foreach (var item2 in List2)
                         {
-                            b++;
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    b++;
+                                }
+                            }
+                        }
+                        <th colspan="@b">@item1.Percentage %</th>
+
+                        a = 0;
+
+                        @foreach (var item2 in List2)
+                        {
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    a++;
+                                }
+                            }
                         }
                     }
-
-                    <th colspan="@b">@item1.Percentage %</th>
-
-                    a = 0;
-
-                    @foreach (var item2 in List2)
-                    {
-                        if (item1.Title == item2.Title)
-                        {
-                            a++;
-                        }
-                    }
-
                 }
-
-                @* <th colspan="2">20</th>
-                <th>30</th>
-                <th>50</th> *@
             </tr>
             <tr class="satir-3">
                 <th>Sorular</th>
-
                 @foreach (var item1 in List)
                 {
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        @foreach (var item2 in List2)
                         {
-                            <th>@item2.LowerRating</th>
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    <th>@item2.LowerRating</th>
+                                }
+                            }
                         }
                     }
                 }
                 @foreach (var item1 in List)
                 {
-                    int count = 0;
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        int count = 0;
+                        @foreach (var item2 in List2)
                         {
-                            count++;
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    count++;
+                                }
+                            }
+                        }
+                        if (count == 0)
+                        {
+                            <th></th>
                         }
                     }
-                    if (count == 0)
-                    {
-                        <th></th>
-                    }
                 }
-
             </tr>
             <tr class="satir-4">
                 <th>Soruların Puanı</th>
 
                 @foreach (var item1 in List)
                 {
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        @foreach (var item2 in List2)
                         {
-                            <th>@item2.Point</th>
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    <th>@item2.Point</th>
+                                }
+                            }
                         }
                     }
                 }
                 @foreach (var item1 in List)
                 {
-                    int count = 0;
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        int count = 0;
+                        @foreach (var item2 in List2)
                         {
-                            count++;
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    count++;
+                                }
+                            }
+                        }
+                        if (count == 0)
+                        {
+                            <th></th>
                         }
                     }
-                    if (count == 0)
-                    {
-                        <th></th>
-                    }
                 }
-
             </tr>
             @foreach (var item3 in List3)
             {
-                <tr class="satir-5">
-                    <th>Ö - @x</th>
-                    @foreach (var item2 in List2)
-                    {
-                        <td></td>
-                    }
-                </tr>
-                x++;
+                if (item3.TeacherId == ViewBag.UserId)
+                {
+                    <tr class="satir-5">
+                        <th>Ö - @x</th>
+                        @foreach (var item2 in List2)
+                        {
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                <td></td>
+                            }
+                        }
+                    </tr>
+                    x++;
+                }
             }
-
             <tr class="satir-6">
                 <th>Ağırlık</th>
 
                 @foreach (var item1 in List)
                 {
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        @foreach (var item2 in List2)
                         {
-                            double calcPoint = (double)item2.Point * (double)item1.Percentage / 100;
-
-                            <th>@calcPoint</th>
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    double calcPoint = (double)item2.Point * (double)item1.Percentage / 100;
+                                    <th>@calcPoint</th>
+                                }
+                            }
                         }
                     }
                 }
                 @foreach (var item1 in List)
                 {
-                    int count = 0;
-                    @foreach (var item2 in List2)
+                    if (item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        int count = 0;
+                        @foreach (var item2 in List2)
                         {
-                            count++;
+                            if (item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    count++;
+                                }
+                            }
                         }
-                    }
-                    if (count == 0)
-                    {
-                        <th></th>
+                        if (count == 0)
+                        {
+                            <th></th>
+                        }
                     }
                 }
         </table>
@@ -243,12 +265,150 @@
         </form> *@
 
 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
+                        <table class="table table-bordered border-danger table-hover">
+                            <tr class="satir-1">
+                                <th></th>
+                                <th></th>
+                                @* @foreach (var item1 in List)
+                                { *@
+                                @{
+                                    b = 0;
+                                }
+                                @foreach (var item2 in List2)
+                                {
+                                    if ("Vize" == item2.Title)
+                                    {
+                                        b++;
+                                    }
+                                }
+
+                                <th colspan="@b">Vize @b</th>
+
+                                @{
+                                    a = 0;
+                                }
+                                @foreach (var item2 in List2)
+                                {
+                                    if ("Vize" == item2.Title)
+                                    {
+                                        a++;
+                                    }
+                                }
+                                @* } *@
+                            </tr>
+                            <tr class="tab-satir-1">
+                                <th>İsim Soyisim</th>
+                                <th>Öğrenci No</th>
+                                
+                                    @* @foreach (var item1 in List)
+                                { *@
+                                    @foreach (var item2 in List2)
+                                    {
+                                        if ("Vize" == item2.Title)
+                                        {
+                                            <th>@item2.LowerRating</th>
+                                        }
+                                    }
+                                   
+                                    @* } *@
+                            </tr>
+                            
+                                @foreach (var item4 in List4)
+                                {
+                                    <tr class="tab-satir-2">
+                                        <td>@item4.FullName</td>
+                                        <td>@item4.StudentNumber</td>
+                                        @* @foreach (var item1 in List)
+                                    { *@
+                                        
+                                        @foreach (var t in List2)
+                                        {
+                                            if (t.TeacherId == ViewBag.UserId)
+                                            {
+                                                if ("Vize" == t.Title)
+                                                {
+                                                    <th>
+                                                        <input asp-for="@Model[l].StudentId" value="@item4.Id" id="ekle" type="hidden" class="form-control" />
+                                                        <div class="input-field" id="ekle2">
+                                                            <label>Soru @l+1:</label>
+                                                            <input asp-for="@Model[l].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
+                                                        </div>
+                                                        <div class="input-field">
+                                                            <input asp-for="@Model[l].Note" class="form-control" />
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    l++;
+                                                }
+                                            }
+                                        }
+                                        
+                                        @* } *@
+                                
+                                    </tr>
+                                }
+                            </table>
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <table class="table table-bordered border-danger table-hover">
+            <tr class="satir-1">
+                <th>Başlık</th>
+                <th>Başlık</th>
+
+                @foreach (var item1 in List)
+                {
+                    b = 0;
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            b++;
+                        }
+                    }
+                    <th colspan="@b">@item1.Title</th>
+
+                    a = 0;
+
+                    @foreach (var item2 in List2)
+                    {
+                        if (item1.Title == item2.Title)
+                        {
+                            a++;
+                        }
+                    }
+                }
+                <th></th>
+            </tr>
             <tr class="tab-satir-1">
                 <th>İsim Soyisim</th>
                 <th>Öğrenci No</th>
-                @if (List != null)
-                {
                     @foreach (var item1 in List)
                     {
                         @foreach (var item2 in List2)
@@ -259,11 +419,8 @@
                             }
                         }
                     }
-                }
-                else
-                {
-                    <p>List koleksiyonu null olduğu için işlem yapılamıyor.</p>
-                }
+                
+
 
                 @* <th>Ödev 1</th>
                 <th>Ödev 2</th>
@@ -276,27 +433,33 @@
                 <tr class="tab-satir-2">
                     <td>@item4.FullName</td>
                     <td>@item4.StudentNumber</td>
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    @foreach (var item2 in List2)
+                    {
+                        @foreach (var item5 in List5)
+                        {
+                            if (item4.Id == item5.StudentId)
+                            {
+                                if (item2.LowerRating == item5.LowerRating)
+                                {
+                                    <td>@item5.Note</td>
+                                }
+                            }
+                        }
+                    }
                     <td></td>
                 </tr>
             }
-            <tr class="tab-satir-3">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @* <tr class="tab-satir-3">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr> *@
         </table>
 
     </div>

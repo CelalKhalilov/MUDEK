@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities.Models;
 
 namespace Entities.Entities.Models
 {
@@ -14,6 +15,10 @@ namespace Entities.Entities.Models
         public string Gmail { get; set; }
         public string Password { get; set; }
         public string? ProfileImage { get; set; }
+        public List<LearningOutcomes>? LearningOutcomes { get; set; }
+        public List<Form>? Forms { get; set; }
+        public List<AssessmentTool>? AssessmentTools { get; set; }
+        public List<SubAssessmentTool>? SubAssessmentTools { get; set; }
 
     }
 }

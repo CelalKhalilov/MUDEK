@@ -1,0 +1,65 @@
+@{
+    var KullaniciTeacher = ViewBag.teachers as List<Teacher>;
+}
+
+<div class="container-xl" style="max-width: 800px; margin-bottom: 100px; margin-top: 40px;">
+    <h3>Öğretmen</h3>
+    <table style="text-align: center; margin-top: 30px;" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Soyisim</th>
+            <th>E-mail</th>
+        </tr>
+        @foreach (var item in KullaniciTeacher)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Gmail</td>
+            </tr>
+        }
+    </table>
+    <h3 class="baslik">Bölüm Başkanı</h3>
+    <table style="text-align: center; margin-top: 30px;" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Soyisim</th>
+            <th>E-mail</th>
+        </tr>
+        @* @foreach (var item in KullaniciTeacher)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Gmail</td>
+            </tr>
+        } *@
+    </table>
+    <h3 class="baslik">MÜDEK Denetçisi</h3>
+    <table style="text-align: center; margin-top: 30px;" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Soyisim</th>
+            <th>E-mail</th>
+        </tr>
+        @* @foreach (var item in KullaniciTeacher)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Gmail</td>
+            </tr>
+        } *@
+    </table>
+    <style>
+        .baslik{
+            margin-top: 60px;
+        }
+    </style>
+</div>

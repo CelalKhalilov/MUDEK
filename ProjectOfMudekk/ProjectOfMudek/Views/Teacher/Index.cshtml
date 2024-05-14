@@ -1,10 +1,19 @@
-@model List<AcademicUnit>
-
+@model Form
 @{
     Layout = "_LayoutTeacher";
+
+
+
+
+
+
+
+    var List = ViewBag.academicUnit as List<AcademicUnit>;
 }
 
 <link rel="stylesheet" href="~/css/sayfa1.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <section class="home">
     <div class="container">
         <header><img style="max-width: 150px;"
@@ -12,80 +21,44 @@
 
         </header>
 
-        <form action="#">
+        <form method="post">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Personal Details</span>
-
                     <div class="fields">
                         <div class="input-field">
-                            <label>Akademik Birimler</label>
-                            <select id="academicUnit" class="form-control">
-                                <option selected disabled>Seçiniz</option>
-                                @foreach (var item in Model)
+                            <input asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
+                            <label for="academicUnit">Akademik Birimler</label>
+                            <select asp-for="AcademicUnit" id="academicUnit" name="AcademicUnit">
+                                <option value="">Seçiniz</option>
+                                @foreach (var academicUnits in List)
+
+
+
+
+
+
+
                                 {
-                                    <option value="@item.UnitName">@item.UnitName</option>
+                                    <option value="@academicUnits.Id">@academicUnits.UnitName</option>
                                 }
                             </select>
-                            @* <select required>
-                            <option disabled selected>Seçiniz...</option>
-                            <option>Ön Lisans</option>
-                            <option>Lisans</option>
-                            <option>Yüksek Lisans</option>
-                            <option>Doktora</option>
-                            </select> *@
                         </div>
-
                         <div class="input-field">
-                            <label>Fakülteler</label>
-                            <select id="faculties" class="form-control">
-                                <option selected disabled>Seçiniz</option>
+                            <label for="faculties">Fakülteler</label>
+                            <select asp-for="Faculty" id="faculties" name="Faculty">
+                                <option value="">Seçiniz</option>
                             </select>
-                            @* <select required>
-                            <option disabled selected>Seçiniz...</option>
-                            <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
-                            <option>İnsan ve Toplum Bilimleri Fakültesi</option>
-                            <option>Mimarlık ve Tasarım Fakültesi</option>
-                            <option>Mühendislik Fakültesi</option>
-                            </select> *@
                         </div>
-
-                        <script>
-                            $(document).ready(function () {
-                                $('#academicUnit').change(function () {
-                                    var academicUnitId = $(this).val();
-                                    $('#faculties').empty();
-                                    $.ajax({
-                                        type: "GET",
-                                        url: '/Teacher/GetFacultiesByAcademicUnit',
-                                        data: { academicUnitId: academicUnitId },
-                                        success: function (data) {
-                                            $.each(data, function (i, item) {
-                                                $('#faculties').append('<option value="' + item.Value + '">' + item.Text + '</option>');
-                                            });
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
-
                         <div class="input-field">
-                            <label>Bölümler</label>
-                            <select asp-items="@ViewBag.Department" class="form-control">
-                                <option selected disabled>Seçiniz</option>
+                            <label for="departments">Bölümler</label>
+                            <select asp-for="Department" id="departments" name="Department">
+                                <option value="">Seçiniz</option>
                             </select>
-                            @* <select required>
-                            <option disabled selected>Seçiniz...</option>
-                            <option>ktisadi, İdari ve Sosyal Bilimler Fakültesi</option>
-                            <option>İnsan ve Toplum Bilimleri Fakültesi</option>
-                            <option>Mimarlık ve Tasarım Fakültesi</option>
-                            <option>Mühendislik Fakültesi</option>
-                            </select> *@
                         </div>
-
                         <div class="input-field">
                             <label>Eğitim Yılı</label>
-                            <select required>
+                            <select asp-for="EducationYear" name="EducationYear">
                                 <option disabled selected>Seçiniz...</option>
                                 <option>2023 - 2024</option>
                                 <option>2024 - 2025</option>
@@ -95,28 +68,105 @@
                         </div>
 
                         <div class="input-field">
-                            <label>Dönem</label>
-                            <select required>
-                                <option disabled selected>Seçiniz...</option>
-                                <option>Güz</option>
-                                <option>Bahar</option>
+                            <label for="periods">Dönem</label>
+                            <select asp-for="Period" id="periods" name="Period">
+                                <option value="">Seçiniz...</option>
                             </select>
                         </div>
-
                         <div class="input-field">
-                            <label>Dersler</label>
-                            <select required>
-                                <option disabled selected>Seçiniz...</option>
-                                <option>Matamatik</option>
-                                <option>Fizik</option>
+                            <label for="lessons">Dersler</label>
+                            <select asp-for="Lesson" id="lessons" name="Lesson">
+                                <option value="">Seçiniz...</option>
                             </select>
                         </div>
-
                         <div class="input-field">
+                            <label for="LessonCode">Ders Kodu</label>
+                            <input asp-for="LessonCode" type="text" id="LessonCode" name="LessonCode" required>
+                        </div>
+                        <div class="input-field">
+                            <label style="color: white;" for="LessonCode">x</label>
                             <button type="submit" class="btn btn-success">Kaydet
                                 <i class="bi bi-arrow-right"></i>
                             </button>
                         </div>
+
+                        @* <script>
+                            function uyari() {
+                                Swal.fire({
+                                    title: "Do you want to save the changes?",
+                                    showDenyButton: true,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Save",
+                                    denyButtonText: `Don't save`
+                                }).then((result) => {
+                                    /* Read more about isConfirmed, isDenied below */
+                                    if (result.isConfirmed) {
+                                        Swal.fire("Saved!", "", "success");
+                                    } else if (result.isDenied) {
+                                        Swal.fire("Changes are not saved", "", "info");
+                                    }
+                                });
+                            }
+                        </script> *@
+
+
+
+                        @section Scripts {
+                            <script>
+                                $(function () {
+                                    $('#academicUnit').change(function () {
+                                        var academicUnitId = $(this).val();
+
+                                        $.get('/Teacher/GetFaculties', { academicUnitId: academicUnitId }, function (data) {
+                                            var facultiesSelect = $('#faculties');
+                                            facultiesSelect.empty().append($('<option>', { value: '', text: 'Seçiniz' }));
+                                            $.each(data, function (index, faculty) {
+                                                facultiesSelect.append($('<option>', { value: faculty.id, text: faculty.facultyName }));
+                                            });
+                                        });
+                                    });
+
+
+
+                                    $('#faculties').change(function () {
+                                        var facultyId = $(this).val();
+
+
+                                        $.get('/Teacher/GetDepartments', { facultyId: facultyId }, function (data) {
+                                            var departmentsSelect = $('#departments');
+                                            departmentsSelect.empty().append($('<option>', { value: '', text: 'Seçiniz' }));
+                                            $.each(data, function (index, department) {
+                                                departmentsSelect.append($('<option>', { value: department.id, text: department.departmentName }));
+                                            });
+                                        });
+                                    });
+
+                                    $('#departments').change(function () {
+                                        var periodId = $(this).val();
+
+                                        $.get('/Teacher/GetPeriod', { periodId: periodId }, function (data) {
+                                            var periodsSelect = $('#periods');
+                                            periodsSelect.empty().append($('<option>', { value: '', text: 'Seçiniz' }));
+                                            $.each(data, function (index, period) {
+                                                periodsSelect.append($('<option>', { value: period.id, text: period.periodName }));
+                                            });
+                                        });
+                                    });
+
+                                    $('#periods').change(function () {
+                                        var lessonId = $(this).val();
+
+                                        $.get('/Teacher/GetLesson', { lessonId: lessonId }, function (data) {
+                                            var lessonsSelect = $('#lessons');
+                                            lessonsSelect.empty().append($('<option>', { value: '', text: 'Seçiniz' }));
+                                            $.each(data, function (index, lesson) {
+                                                lessonsSelect.append($('<option>', { value: lesson.id, text: lesson.lessonName }));
+                                            });
+                                        });
+                                    });
+                                });
+                            </script>
+                        }
                     </div>
                 </div>
             </div>

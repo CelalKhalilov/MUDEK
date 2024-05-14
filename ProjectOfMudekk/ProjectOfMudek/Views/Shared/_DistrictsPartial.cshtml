@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Districts Partial";
+}
+
+<label for="districtDropdown">Select District:</label>
+<select id="districtDropdown" name="Id">
+    <option value="">Select District</option>
+    @foreach (var district in ViewBag.Districts)
+    {
+        <option value="@district.Value">@district.Text</option>
+    }
+</select>

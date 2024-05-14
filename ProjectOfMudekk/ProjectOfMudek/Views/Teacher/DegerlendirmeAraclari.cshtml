@@ -191,60 +191,64 @@
             </tr>
             @foreach (var item in List)
             {
-                i = 1;
-                @* var toplam =+ item.Percentage;
-                @if (toplam > 100)
+                if (item.TeacherId == ViewBag.UserId)
                 {
-                    <div class="alert alert-danger" role="alert">
-                        Bu bir hata mesajıdır!
-                    </div>
-                } *@
-
-                <tr class="satir-3">
-                    <th class="border-2 border-info" id="th1">Değerlendirme Aracı</th>
-                    <th class="border-2 border-info" id="th2">@item.Title</th>
-                    <th class="border-2 border-info" id="th3">@item.Percentage %</th>
-                    <th class="border-2 border-info" id="th4">@c</th>
-                    <th class="border-2 border-info" id="th5">
-                        <form method="post" action="/Teacher/DegerlendirmeAraclariDelete">
-                            <input type="hidden" name="DegerlendirmeAraclariId" value="@item.Id">
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    onclick="fillFormFields('@item.Id', '@item.Title', '@item.Percentage')">Göncelle</button>
-                            </div>
-                        </form>
-                    </th>
-                </tr>
-
-                foreach (var item2 in List2)
-                {
-                    if (item.Title == item2.Title)
+                    i = 1;
+                    @* var toplam =+ item.Percentage;
+                    @if (toplam > 100)
                     {
-                        <tr>
-                            <th class="alt-deg">Alt - D #@i :</th>
-                            <td>@item2.LowerRating</td>
-                            <td>@item2.Point</td>
-                            <td></td>
-                            <td class="alt-form">
-                                <form method="post" action="/Teacher/AltDegerlendirmeAraclariDelete">
-                                    <input type="hidden" name="AltDegerlendirmeAraclariId" value="@item2.Id">
-                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal_2"
-                                            onclick="fillFormFields_2('@item2.Id', '@item2.Title','@item2.LowerRating', '@item2.Point')">Göncelle</button>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        i++;
+                        <div class="alert alert-danger" role="alert">
+                            Bu bir hata mesajıdır!
+                        </div>
+                    } *@
 
+                    <tr class="satir-3">
+                        <th class="border-2 border-info" id="th1">Değerlendirme Aracı</th>
+                        <th class="border-2 border-info" id="th2">@item.Title</th>
+                        <th class="border-2 border-info" id="th3">@item.Percentage %</th>
+                        <th class="border-2 border-info" id="th4">@c</th>
+                        <th class="border-2 border-info" id="th5">
+                            <form method="post" action="/Teacher/DegerlendirmeAraclariDelete">
+                                <input type="hidden" name="DegerlendirmeAraclariId" value="@item.Id">
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                        onclick="fillFormFields('@item.Id', '@item.Title', '@item.Percentage')">Göncelle</button>
+                                </div>
+                            </form>
+                        </th>
+                    </tr>
+
+                    foreach (var item2 in List2)
+                    {
+                        if (item2.TeacherId == ViewBag.UserId)
+                        {
+                            if (item.Title == item2.Title)
+                            {
+                                <tr>
+                                    <th class="alt-deg">Alt - D #@i :</th>
+                                    <td>@item2.LowerRating</td>
+                                    <td>@item2.Point</td>
+                                    <td></td>
+                                    <td class="alt-form">
+                                        <form method="post" action="/Teacher/AltDegerlendirmeAraclariDelete">
+                                            <input type="hidden" name="AltDegerlendirmeAraclariId" value="@item2.Id">
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal_2"
+                                                    onclick="fillFormFields_2('@item2.Id', '@item2.Title','@item2.LowerRating', '@item2.Point')">Göncelle</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                i++;
+
+                            }
+                        }
                     }
-
                 }
-
             }
 
 

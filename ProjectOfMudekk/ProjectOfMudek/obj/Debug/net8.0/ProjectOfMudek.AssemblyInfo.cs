@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjectOfMudek")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+163894129b7ef073a8d2433afd85fb493eeec6c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de47bc8030ef7708a2b17836c4f8141ebd90aec8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjectOfMudek")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjectOfMudek")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

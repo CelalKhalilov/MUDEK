@@ -1,0 +1,89 @@
+@model Period
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_2(id) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('DepartmentId');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/PeriodAdd">
+                    <div class="mb-3">
+                        <label for="DepartmentId" class="form-label">Bölüm ID</label>
+                        <input type="text" asp-for="DepartmentId" class="form-control" id="DepartmentId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PeriodName" class="form-label">Dönem</label>
+                        <input type="text" asp-for="PeriodName" class="form-control" id="PeriodName" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_gun_3(id, departmentId, periodName) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('PeriodId_gun');
+        var DepartmentIdInput = document.getElementById('DepartmentIdd_gun');
+        var PeriodNameInput = document.getElementById('PeriodName_gun');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+        DepartmentIdInput.value = departmentId;
+        PeriodNameInput.value = periodName;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_gun_3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/PeriodUpdate">
+                    <input type="hidden" asp-for="Id" id="PeriodId_gun" />
+                    <div class="mb-3">
+                        <label for="DepartmentId" class="form-label">Bölüm ID</label>
+                        <input type="text" asp-for="DepartmentId" class="form-control" id="DepartmentIdd_gun" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PeriodName" class="form-label">Dönem</label>
+                        <input type="text" asp-for="PeriodName" class="form-control" id="PeriodName_gun" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,90 +1,68 @@
-@* 
-
-@{
-    Layout = "_LayoutTeacher";
+@* @{
+Layout = "_LayoutTeacher";
 }
 
 <link rel="stylesheet" href="~/css/UploadStyle.css">
 
 <section class="home">
-    <div class="container">
-        <header><img style="max-width: 150px;"
-                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
-        </header>
+<div class="container">
+<header><img style="max-width: 150px;"
+src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+</header>
 
-        <form class="dropzone-box">
-            <h2>Dosyaları yükleyin ve ekleyin</h2>
-            <p>Yüklemek için tıklayın veya sürükleyip bırakın</p>
-            <div class="dropzone-area">
-                <div class="file-upload-icon"><!-- svg --></div>
-                <input type="file" required id="upload-file" name="uploaded-file">
-                <p class="file-info">Hiçbir Dosya Seçilmedi</p>
-            </div>
-            <div class="dropzone-actions"><button type="reset">İptal Etmek</button>
-                <button id="submit-button" type="submit">Kaydetmek</button>
-            </div>
-        </form>
-        <script src="~/js/TeacherUploadScriptc.js"></script>
+<form class="dropzone-box">
+@using (Html.BeginForm("Upload", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<h2>Dosyaları yükleyin ve ekleyin</h2>
+<p>Yüklemek için tıklayın veya sürükleyip bırakın</p>
+<div class="dropzone-area">
+<div class="file-upload-icon"><!-- svg --></div>
+<input type="file" required id="upload-file" name="uploaded-file">
+<p class="file-info">Hiçbir Dosya Seçilmedi</p>
+</div>
+<div class="dropzone-actions"><button type="reset">İptal Etmek</button>
+<button id="submit-button" type="submit">Kaydetmek</button>
+</div>
+}
+</form>
+<script src="~/js/TeacherUploadScriptc.js"></script>
 
-        
 
-        <div style="margin-top: 40px;" class="alert alert-info" role="alert">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1667px-PDF_file_icon.svg.png"
-                style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
-            Dosya.pdf
-            <button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
-                style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
-            <button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
-        </div>
-        <div style="margin-top: 40px;" class="alert alert-info" role="alert">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Microsoft_Excel_2013-2019_logo.svg/1200px-Microsoft_Excel_2013-2019_logo.svg.png"
-                style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
-            Dosya.xlsx
-            <button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
-                style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
-            <button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
-        </div>
-        <div style="margin-top: 40px;" class="alert alert-info" role="alert">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Microsoft_Word_2013-2019_logo.svg/1200px-Microsoft_Word_2013-2019_logo.svg.png"
-                style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
-            Dosya.docx
-            <button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
-                style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
-            <button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
-        </div>
 
-        
-        
+<div style="margin-top: 40px;" class="alert alert-info" role="alert">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1667px-PDF_file_icon.svg.png"
+style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
+Dosya.pdf
+<button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
+style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
+<button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
+</div>
+<div style="margin-top: 40px;" class="alert alert-info" role="alert">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Microsoft_Excel_2013-2019_logo.svg/1200px-Microsoft_Excel_2013-2019_logo.svg.png"
+style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
+Dosya.xlsx
+<button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
+style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
+<button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
+</div>
+<div style="margin-top: 40px;" class="alert alert-info" role="alert">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Microsoft_Word_2013-2019_logo.svg/1200px-Microsoft_Word_2013-2019_logo.svg.png"
+style="width: 30px; margin-right: 20px;" class="rounded" alt="...">
+Dosya.docx
+<button onclick="window.open('C:/Users/90506/Downloads/SAMU-Android.pdf', '_blank');"
+style="float: right; margin-left: 10px;" type="button" class="btn btn-success">Aç</button>
+<button style="float: right;" type="button" class="btn btn-success"><i class="bi bi-download"></i></button>
+</div>
 
-       
 
-    </div>
+
+
+
+
+</div>
 </section> *@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -98,7 +76,9 @@
 
 <section class="home">
     <div class="container">
-        <header><img style="max-width: 150px;" src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt=""></header>
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
 
         <form method="post" action="/Teacher/Upload" enctype="multipart/form-data">
             <h2>Dosyaları yükleyin ve ekleyin</h2>
@@ -115,37 +95,45 @@
         </form>
         <script src="~/js/TeacherUploadScriptc.js"></script>
 
-        <h2 style="color: brown;">Yüklenen Dosyalar</h2>
-        <table class="table">
-            <thead>
+        <hr class="border border-danger border-2 opacity-50">
+
+        
+
+
+        <h2 style="margin-top: 50px; color: #000;">Yüklenen Dosyalar</h2>
+        <table style="margin-top: 20px;" class="table table-sm">
+
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Dosya Adı</th>
+                <th scope="col">Dosyayı Aç</th>
+                <th scope="col">İndir</th>
+                <th scope="col">Sil</th>
+            </tr>
+
+
+            @foreach (var file in ViewBag.UploadedFiles)
+            {
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Dosya Adı</th>
-                    <th scope="col">İndir</th>
-                    <th scope="col">Sil</th>
+                    <td class="dosyaId">@file.Id</td>
+                    <td class="dosyaAdi">@file.FileName</td>
+                    <td class="ac">
+                        <button class="btn btn-success" onclick="window.open('C:/Users/90506/Downloads/@file.FileName', '_blank');">Dosyayı Aç</button>
+                    </td>
+                    <td class="indir">
+                        <form method="get" action="/Teacher/Download" style="width: 50px;">
+                            <input type="hidden" name="fileId" value="@file.Id" />
+                            <button type="submit" class="btn btn-primary">İndir</button>
+                        </form>
+                    </td>
+                    <td class="sil">
+                        <form method="post" action="/Teacher/Delete" style="width: 50px;">
+                            <input type="hidden" name="fileId" value="@file.Id" />
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var file in ViewBag.UploadedFiles)
-                {
-                    <tr>
-                        <td>@file.Id</td>
-                        <td>@file.FileName</td>
-                        <td>
-                            <form method="get" action="/Teacher/Download" style="width: 50px;">
-                                <input type="hidden" name="fileId" value="@file.Id" />
-                                <button type="submit" class="btn btn-primary">İndir</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form method="post" action="/Teacher/Delete" style="width: 50px;">
-                                <input type="hidden" name="fileId" value="@file.Id" />
-                                <button type="submit" class="btn btn-danger">Sil</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            }
         </table>
     </div>
 </section>

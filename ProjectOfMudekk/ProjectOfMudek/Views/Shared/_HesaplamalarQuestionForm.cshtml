@@ -1,32 +1,33 @@
-@model Question
+@model List<Question>
 
 @{
     var List2 = ViewBag.SubassessmentTools as List<SubAssessmentTool>;
+    var y = 1;
+    var x = 0;
 }
 
-<form method="post" action="/Teacher/HesaplamalarQuestionAdd">
+<form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
     <div class="fields">
-        <div class="input-field" id="input-field-alt">
-            <label>Sorular:</label>
-            <select id="LowerRating" asp-for="LowerRating" required>
-                <option disabled selected>Başlık Seçiniz...</option>
-                @foreach (var item2 in List2)
-                {
-                    <option>@item2.LowerRating</option>
-                }
-            </select>
-        </div>
-        <div class="input-field" id="input-field-alt">
-            <label>Not:</label>
-            <input id="Note" asp-for="Note" placeholder="Tanım Giriniz..." required>
-        </div>
-        <div class="input-field" id="input-field-alt">
-            <label>Not2:</label>
-            <input id="Note" asp-for="Note" placeholder="Tanım Giriniz..." required>
-        </div>
-        <div class="input-field">
-            <label>Ekle</label>
-            <button type="submit" class="btn btn-success">Ekle</button>
-        </div>
+        @foreach (var t in List2)
+        {
+            if("Final" == t.Title)
+            {
+                <div class="input-field" id="ekle2">
+                    <label>Soru @x+1:</label>
+                    <input asp-for="@Model[x].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
+                </div>
+                <div class="input-field">
+                    <label>Soru @y:</label>
+                    <input value="@t.LowerRating" id="ekle" class="form-control" disabled />
+                </div>
+                <div class="input-field">
+                    <label>Note:</label>
+                    <input asp-for="@Model[x].Note" class="form-control" />
+                </div>
+                x++;
+                y++;
+            }
+        }
+        <button type="submit" class="btn btn-primary">Kaydet</button>
     </div>
 </form>

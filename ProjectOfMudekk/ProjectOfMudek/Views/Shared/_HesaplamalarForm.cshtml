@@ -1,0 +1,37 @@
+@model List<Question>
+
+@{
+    var List2 = ViewBag.SubassessmentTools as List<SubAssessmentTool>;
+    var y = 1;
+    var l = 0;
+}
+
+@* <form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
+    <div class="fields"> *@
+        
+        @foreach (var t in List2)
+        {
+            @* if (t.TeacherId == ViewBag.UserId)
+            { *@
+                if ("Vize" == t.Title)
+                {
+                    <th>
+                        <div class="input-field" id="ekle2">
+                            <label>Soru @l+1:</label>
+                            <input asp-for="@Model[l].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
+                        </div>
+                        <div class="input-field">
+                            <input asp-for="@Model[l].Note" class="form-control" />
+                        </div>
+                    </th>
+                    
+                    l++;
+                    y++;
+                }
+            @* } *@
+        }
+        
+        
+        @* <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+</form> *@

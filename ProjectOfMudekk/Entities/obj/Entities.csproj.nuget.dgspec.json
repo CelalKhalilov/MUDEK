@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {}
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
+    "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\guclh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guclh\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\90506\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\guclh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\90506\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +35,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

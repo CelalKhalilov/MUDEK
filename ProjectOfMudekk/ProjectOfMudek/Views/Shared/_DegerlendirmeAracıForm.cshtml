@@ -6,6 +6,7 @@
                     <span class="title">Değerlendirme Aracı</span>
 
                     <div class="fields">
+                        <input asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
                         <div class="input-field">
                             <label>Başlık</label>
                             <input id="Title" asp-for="Title" placeholder="Başlık Giriniz..." required>

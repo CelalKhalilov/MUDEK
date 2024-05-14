@@ -1,0 +1,91 @@
+@model Faculty
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_0(id) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('AcademicUnitId');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/FacultyAdd">
+                    <div class="mb-3">
+                        <label for="AcademicUnitId" class="form-label">Akademik Birim ID</label>
+                        <input type="text" asp-for="AcademicUnitId" class="form-control" id="AcademicUnitId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FacultyName" class="form-label">Fakülte</label>
+                        <input type="text" asp-for="FacultyName" class="form-control" id="FacultyName" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_gun_1(id, academicUnitId, facultyName) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('deger_id_gun');
+        var academicUnitIdInput = document.getElementById('AcademicUnitId_gun');
+        var facultyNameInput = document.getElementById('FacultyName_gun');
+        
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+        academicUnitIdInput.value = academicUnitId;
+        facultyNameInput.value = facultyName;
+       
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_gun_1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Admin/FacultyUpdate">
+                    <input type="hidden" asp-for="Id" id="deger_id_gun" />
+                    <div class="mb-3">
+                        <label for="AcademicUnitId" class="form-label">Akademik Birim ID</label>
+                        <input type="text" asp-for="AcademicUnitId" class="form-control" id="AcademicUnitId_gun" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="FacultyName" class="form-label">Fakülte</label>
+                        <input type="text" asp-for="FacultyName" class="form-control" id="FacultyName_gun" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Geri</button>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

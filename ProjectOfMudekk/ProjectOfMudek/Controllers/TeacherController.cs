@@ -1,7 +1,9 @@
-﻿using Entities.Entities.Models;
+﻿using System.Data.Common;
+using Entities.Entities.Models;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ProjectOfMudek.Context;
 
 namespace ProjectOfMudek.Controllers
@@ -17,19 +19,78 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Index()
         {
-            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
-            if (isLoggedIn != "true")
-            {
-                return RedirectToAction("Ogretmen", "Home");
-            }
-            var a = _context.academicUnits.ToList();
-            var b = _context.faculties.ToList();
-            var c = _context.departments.ToList();
-            ViewBag.AcademicUnit = new SelectList(a, "AcademicUnitId", "UnitName");
-            ViewBag.Faculties = new SelectList(b, "FacultyId", "FacultyName");
-            ViewBag.Department = new SelectList(c, "DepartmentId", "DepartmentName");
-            return View(a);
+            // var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            // if (isLoggedIn != "true")
+            // {
+            //     return RedirectToAction("Ogretmen", "Home");
+            // }
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            var academicUnit = _context.academicUnits.ToList();
+            ViewBag.academicUnit = academicUnit;
+            // new SelectList(academicUnit, "Id", "UnitName");
+            return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFaculties(int academicUnitId)
+        {
+            var faculties = await _context.faculties
+                .Where(f => f.AcademicUnitId == academicUnitId)
+                .ToListAsync();
+
+            return Json(faculties);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetDepartments(int facultyId)
+        {
+            var departments = await _context.departments
+                .Where(d => d.FacultyId == facultyId)
+                .ToListAsync();
+
+            return Json(departments);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetPeriod(int periodId)
+        {
+            var periods = await _context.periods
+                .Where(d => d.DepartmentId == periodId)
+                .ToListAsync();
+
+            return Json(periods);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetLesson(int lessonId)
+        {
+            var lessons = await _context.lessons
+                .Where(d => d.PeriodId == lessonId)
+                .ToListAsync();
+
+            return Json(lessons);
+        }
+
+        [HttpPost]
+        public IActionResult Index(Form form)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.forms.Add(form);
+                _context.SaveChanges();
+                return RedirectToAction("Tablo", "Teacher");
+            }
+            return View();
+        }
+
+
+        // [HttpPost]
+        // public IActionResult GetDistricts(int cityId)
+        // {
+        //     var districts = _context.faculties.Where(d => d.AcademicUnitId == cityId).ToList();
+        //     return Json(districts);
+        // }
+
+        
+
         public IActionResult Tablo()
         {
             var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
@@ -38,8 +99,16 @@ namespace ProjectOfMudek.Controllers
                 return RedirectToAction("Ogretmen", "Home");
             }
             var a = _context.learningOutcomess.ToList();
+            var b = _context.lessons.ToList();
+            var c = _context.forms.ToList();
+            var d = _context.Teachers.ToList();
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
 
             ViewBag.OutcomesList = a;
+            ViewBag.lessons = b;
+            ViewBag.forms = c;
+            ViewBag.teachers = d;
 
             return View();
         }
@@ -91,15 +160,21 @@ namespace ProjectOfMudek.Controllers
             }
             else
             {
-                return NotFound(); 
+                return NotFound(); // veya uygun bir hata işleme yöntemi
             }
         }
 
 
         public IActionResult Upload()
         {
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var uploadedFiles = _context.uploadedFiles.ToList();
             ViewBag.UploadedFiles = uploadedFiles;
+
             return View();
         }
 
@@ -154,6 +229,8 @@ namespace ProjectOfMudek.Controllers
             return RedirectToAction("Upload");
         }
 
+        
+
 
         public IActionResult DegerlendirmeAraclari()
         {
@@ -162,6 +239,8 @@ namespace ProjectOfMudek.Controllers
             {
                 return RedirectToAction("Ogretmen", "Home");
             }
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
             ViewBag.assessmentTools = a;
@@ -276,6 +355,8 @@ namespace ProjectOfMudek.Controllers
             var c = _context.learningOutcomess.ToList();
             var d = _context.students.ToList();
             var e = _context.questions.ToList();
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
             ViewBag.learningOutcomess = c;
@@ -297,12 +378,29 @@ namespace ProjectOfMudek.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public IActionResult HesaplamalarQuestionAdd(Question question)
         {
             if (ModelState.IsValid)
             {
                 _context.questions.Add(question);
+                _context.SaveChanges();
+
+                return RedirectToAction("Hesaplamalar", "Teacher");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult HesaplamalarQuestionAdd2(List<Question> question)
+        {
+            // null olmayan inputları filtreleyin
+            var validEntries = question.Where(m => m.Note.HasValue).ToList();
+            if (validEntries.Any())
+            {
+
+                _context.questions.AddRange(validEntries);
                 _context.SaveChanges();
 
                 return RedirectToAction("Hesaplamalar", "Teacher");
@@ -318,6 +416,8 @@ namespace ProjectOfMudek.Controllers
             {
                 return RedirectToAction("Ogretmen", "Home");
             }
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
             var a = _context.Teachers.ToList();
             ViewBag.teachers = a;
             return View();
@@ -358,7 +458,7 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
-
+        
 
         [HttpPost]
         public IActionResult Islem2(SubAssessmentTool learningOutcomes)
@@ -372,11 +472,9 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
+
+
+
+
     }
 }
-
-
-
-
-
-
