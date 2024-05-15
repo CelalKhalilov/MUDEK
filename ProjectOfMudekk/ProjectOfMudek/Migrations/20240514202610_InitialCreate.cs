@@ -52,20 +52,6 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentNumber = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_students", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -114,27 +100,6 @@ namespace ProjectOfMudek.Migrations
                         name: "FK_faculties_academicUnits_AcademicUnitId",
                         column: x => x.AcademicUnitId,
                         principalTable: "academicUnits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "questions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LowerRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Note = table.Column<int>(type: "int", nullable: true),
-                    StudentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_questions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_questions_students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -208,6 +173,27 @@ namespace ProjectOfMudek.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentNumber = table.Column<int>(type: "int", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_students_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "subAssessmentTools",
                 columns: table => new
                 {
@@ -245,6 +231,27 @@ namespace ProjectOfMudek.Migrations
                         name: "FK_departments_faculties_FacultyId",
                         column: x => x.FacultyId,
                         principalTable: "faculties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "questions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LowerRating = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Note = table.Column<int>(type: "int", nullable: true),
+                    StudentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_questions_students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -330,6 +337,11 @@ namespace ProjectOfMudek.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_students_TeacherId",
+                table: "students",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_subAssessmentTools_TeacherId",
                 table: "subAssessmentTools",
                 column: "TeacherId");
@@ -372,10 +384,10 @@ namespace ProjectOfMudek.Migrations
                 name: "students");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
+                name: "departments");
 
             migrationBuilder.DropTable(
-                name: "departments");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "faculties");

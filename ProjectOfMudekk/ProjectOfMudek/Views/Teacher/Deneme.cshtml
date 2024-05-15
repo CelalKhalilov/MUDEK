@@ -8,7 +8,7 @@
     var List = ViewBag.assessmentTools as List<AssessmentTool>;
 
     var List2 = ViewBag.subAssessmentTools as List<SubAssessmentTool>;
-
+        
     var sayi = 0;
 
     var i = 1;
@@ -38,7 +38,51 @@
             </div>
         </form>
 
+        <form method="post">
+            <div class="form-group">
+                <label for="selectedCategoryId">Kategori Seçin:</label>
+                <select id="selectedCategoryId" name="selectedCategoryId" class="form-control">
+                    <option value="">Seçiniz</option>
+                    @foreach (var category in ViewBag.Categorie)
+                    {
+                        @* if(category.TeacherId == ViewBag.UserId)
+                        { *@
+                            <option value="@category.Value">@category.Text</option>
+                        @* } *@
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Gönder </button>
+        </form>
+
+
+        <h1>Seçilen Kategori: </h1>
+
+        @* <tablo>
+            <tr>
+                <th>isim</th>
+                <th>Soyisim</th>
+                <th>Gmail</th>
+            </tr>
+            <tr>
+                <td>Celal</td>
+                <td>khalilov</td>
+                <td>khalilov@gmail.com</td>
+            </tr>
+        </tablo> *@
+
+
         
+
+
+
+
+
+
+
+
+
+
 
         <script>
             function cagir() {
@@ -51,17 +95,17 @@
         </script>
 
 
-        @Html.Partial("_deneme")
+        
 
         
-        @if (!string.IsNullOrEmpty(ViewBag.SecilenDeger))
+        @* @if (!string.IsNullOrEmpty(ViewBag.SecilenDeger))
         {
             <h1>Seçilen Değer: @ViewBag.SecilenDeger</h1>
-        }
+        } *@
 
             
 
-            <form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
+            @* <form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
                 <div class="fields">
                     
                         @foreach (var t in List2)
@@ -85,42 +129,17 @@
                         }
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </div>
-            </form>
+            </form> *@
             
 
-            <hr class="border border-black border-2 opacity-50">
-            @* <form method="post" action="#">
-            <div class="fields">
-            @Html.Partial("_HesaplamalarQuestionForm")
-            <div class="input-field">
-            <label>Ekle</label>
-            <button type="submit" class="btn btn-success">Ekle</button>
-            </div>
-            </div>
-            </form> *@
+            @* <hr class="border border-black border-2 opacity-50"> *@
+            
 
 
-            <table class="table table-bordered border-danger table-hover">
+            @* <table class="table table-bordered border-danger table-hover">
                 <tr class="tab-satir-1">
                     <th>İsim Soyisim</th>
                     <th>Öğrenci No</th>
-
-                    @* @foreach (var item1 in List)
-                    {
-                    @foreach (var item2 in List2)
-                    {
-                    if (item1.Title == item2.Title)
-                    {
-                    <th>@item2.LowerRating</th>
-                    }
-                    }
-                    } *@
-
-
-                    @* <th>Ödev 1</th>
-                    <th>Ödev 2</th>
-                    <th>S1</th>
-                    <th>Q1</th> *@
                     <th>Harf Notu</th>
                 </tr>
                 <tr class="tab-satir-2">
@@ -145,7 +164,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-            </table>
+            </table> *@
 
         </div>
 </section>

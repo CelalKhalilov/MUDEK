@@ -9,135 +9,135 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProjectOfMudek
 build_property.RootNamespace = ProjectOfMudek
-build_property.ProjectDir = C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\
+build_property.ProjectDir = C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\guclh\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek
+build_property.MSBuildProjectDirectory = C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Admin/Index.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Admin/Kullanicilar.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Admin/Kullanicilar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS3VsbGFuaWNpbGFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Dogrulama.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Dogrulama.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEb2dydWxhbWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Index.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Ogretmen.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Home/Ogretmen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPZ3JldG1lbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/Error.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_AcademicUnitAdd.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_AcademicUnitAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2FkZW1pY1VuaXRBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_AltDegerlendirmeAracıForm.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_AltDegerlendirmeAracıForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BbHREZWdlcmxlbmRpcm1lQXJhY8SxRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DegerlendirmeAracıForm.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DegerlendirmeAracıForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZWdlcmxlbmRpcm1lQXJhY8SxRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DepartmentAdd.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DepartmentAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZXBhcnRtZW50QWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DistrictsPartial.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_DistrictsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EaXN0cmljdHNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_FacultyAdd.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_FacultyAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GYWN1bHR5QWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarForm.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZXNhcGxhbWFsYXJGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarQuestionForm.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarQuestionForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZXNhcGxhbWFsYXJRdWVzdGlvbkZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarStudentForm.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_HesaplamalarStudentForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZXNhcGxhbWFsYXJTdHVkZW50Rm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LayoutHome.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LayoutHome.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LayoutTeacher.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LayoutTeacher.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZWFjaGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LearningOutcomes.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LearningOutcomes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MZWFybmluZ091dGNvbWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LessonAdd.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_LessonAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MZXNzb25BZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_PeriodAdd.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_PeriodAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QZXJpb2RBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/DegerlendirmeAraclari.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/DegerlendirmeAraclari.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxEZWdlcmxlbmRpcm1lQXJhY2xhcmkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Deneme.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Deneme.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxEZW5lbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Hesaplamalar.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Hesaplamalar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxIZXNhcGxhbWFsYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Index.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/ProfilAyarlari.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/ProfilAyarlari.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxQcm9maWxBeWFybGFyaS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Tablo.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Tablo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUYWJsby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Upload.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Teacher/Upload.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxVcGxvYWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/_ViewImports.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/_ViewStart.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guclh/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_Layout.cshtml]
+[C:/Users/90506/Desktop/MUDEK/ProjectOfMudekk/ProjectOfMudek/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-z7hio6bcxt

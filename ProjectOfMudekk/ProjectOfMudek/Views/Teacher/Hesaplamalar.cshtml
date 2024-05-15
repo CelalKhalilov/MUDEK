@@ -37,6 +37,26 @@
             </div>
         </form>
 
+        <script>
+            // Tabloyu kaydetmek için JavaScript kodu
+            document.addEventListener("DOMContentLoaded", function () {
+                const editableCells = document.querySelectorAll("[contenteditable='true']");
+
+                // Sayfa yüklendiğinde, kaydedilmiş veriyi yerel depolamadan al ve hücrelere yerleştir
+                editableCells.forEach(function (cell, index) {
+                    const key = "cell_" + index;
+                    const savedData = localStorage.getItem(key);
+                    if (savedData) {
+                        cell.innerText = savedData;
+                    }
+                    // Hücreye girilen her veriyi kaydet
+                    cell.addEventListener("input", function () {
+                        localStorage.setItem(key, cell.innerText);
+                    });
+                });
+            });
+        </script>
+
         <table class="table table-bordered border-black table-hover">
             <tr class="satir-1">
                 <th>Başlık</th>
@@ -198,7 +218,7 @@
                         {
                             if (item2.TeacherId == ViewBag.UserId)
                             {
-                                <td></td>
+                                <td contenteditable="true"></td>
                             }
                         }
                     </tr>
@@ -248,9 +268,11 @@
                 }
         </table>
 
+        
+
         @Html.Partial("_HesaplamalarStudentForm")
         <hr class="border border-black border-2 opacity-50">
-        @Html.Partial("_HesaplamalarQuestionForm")
+        @* @Html.Partial("_HesaplamalarQuestionForm") *@
 
 
 
@@ -267,7 +289,7 @@
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Launch static backdrop modal
+            Not Gir
         </button>
 
         <!-- Modal -->
@@ -280,37 +302,65 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="selectedCategoryId">Kategori Seçin:</label>
+                            <select id="selectedCategoryId" name="selectedCategoryId" class="form-control">
+                                <option value="">Seçiniz</option>
+                                @foreach (var category in ViewBag.Categories)
+                                {
+                                    @* if(category.TeacherId == ViewBag.UserId)
+                                    { *@
+
+                                    <option value="@category.Value">@category.Text</option>
+                                    @* } *@
+                                }
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder </button>
+                        <h1>@ViewBag.SelectedCategory</h1>
+                    </form>
+
                     <form method="post" action="/Teacher/HesaplamalarQuestionAdd2">
                         <table class="table table-bordered border-danger table-hover">
                             <tr class="satir-1">
                                 <th></th>
                                 <th></th>
-                                @* @foreach (var item1 in List)
-                                { *@
-                                @{
-                                    b = 0;
-                                }
-                                @foreach (var item2 in List2)
+                                @foreach (var item1 in List)
                                 {
-                                    if ("Vize" == item2.Title)
+                                    if(item1.TeacherId == ViewBag.UserId)
                                     {
-                                        b++;
+                                        b = 0;
+                                
+                                        @foreach (var item2 in List2)
+                                        {
+                                            if(item2.TeacherId == ViewBag.UserId)
+                                            {
+                                                if ("Vize" == item2.Title)
+                                                {
+                                                    b++;
+                                                }
+                                            }
+                                        }
+
+                                        <th colspan="@b">Vize @b</th>
+
+                                        
+                                            a = 0;
+                                        
+                                        @foreach (var item2 in List2)
+                                        {
+                                            if(item2.TeacherId == ViewBag.UserId)
+                                            {
+                                                if ("Vize" == item2.Title)
+                                                {
+                                                    a++;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-
-                                <th colspan="@b">Vize @b</th>
-
-                                @{
-                                    a = 0;
-                                }
-                                @foreach (var item2 in List2)
-                                {
-                                    if ("Vize" == item2.Title)
-                                    {
-                                        a++;
-                                    }
-                                }
-                                @* } *@
                             </tr>
                             <tr class="tab-satir-1">
                                 <th>İsim Soyisim</th>
@@ -320,9 +370,12 @@
                                 { *@
                                     @foreach (var item2 in List2)
                                     {
-                                        if ("Vize" == item2.Title)
+                                        if(item2.TeacherId == ViewBag.UserId)
                                         {
-                                            <th>@item2.LowerRating</th>
+                                            if ("Vize" == item2.Title)
+                                            {
+                                                <th>@item2.LowerRating</th>
+                                            }
                                         }
                                     }
                                    
@@ -331,37 +384,43 @@
                             
                                 @foreach (var item4 in List4)
                                 {
-                                    <tr class="tab-satir-2">
-                                        <td>@item4.FullName</td>
-                                        <td>@item4.StudentNumber</td>
-                                        @* @foreach (var item1 in List)
-                                    { *@
-                                        
-                                        @foreach (var t in List2)
-                                        {
-                                            if (t.TeacherId == ViewBag.UserId)
+                                    if(item4.TeacherId == ViewBag.UserId)
+                                    {
+                                        <tr class="tab-satir-2">
+                                            <td>@item4.FullName</td>
+                                            <td>@item4.StudentNumber</td>
+                                            @* @foreach (var item1 in List)
+                                        { *@
+                                            
+                                            @foreach (var t in List2)
                                             {
-                                                if ("Vize" == t.Title)
+                                                if(t.TeacherId == ViewBag.UserId)
                                                 {
-                                                    <th>
-                                                        <input asp-for="@Model[l].StudentId" value="@item4.Id" id="ekle" type="hidden" class="form-control" />
-                                                        <div class="input-field" id="ekle2">
-                                                            <label>Soru @l+1:</label>
-                                                            <input asp-for="@Model[l].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
-                                                        </div>
-                                                        <div class="input-field">
-                                                            <input asp-for="@Model[l].Note" class="form-control" />
-                                                        </div>
-                                                    </th>
-                                                    
-                                                    l++;
+                                                    if (t.TeacherId == ViewBag.UserId)
+                                                    {
+                                                        if ("Vize" == t.Title)
+                                                        {
+                                                            <th>
+                                                                <input asp-for="@Model[l].StudentId" value="@item4.Id" id="ekle" type="hidden" class="form-control" />
+                                                                <div class="input-field" id="ekle2">
+                                                                    <label>Soru @l+1:</label>
+                                                                    <input asp-for="@Model[l].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
+                                                                </div>
+                                                                <div class="input-field">
+                                                                    <input style="width: 50px;" asp-for="@Model[l].Note" class="form-control" />
+                                                                </div>
+                                                            </th>
+                                                            
+                                                            l++;
+                                                        }
+                                                    }
                                                 }
                                             }
-                                        }
-                                        
-                                        @* } *@
-                                
-                                    </tr>
+                                            
+                                            @* } *@
+                                    
+                                        </tr>
+                                    }
                                 }
                             </table>
                         <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -384,23 +443,32 @@
 
                 @foreach (var item1 in List)
                 {
-                    b = 0;
-                    @foreach (var item2 in List2)
+                    if(item1.TeacherId == ViewBag.UserId)
                     {
-                        if (item1.Title == item2.Title)
+                        b = 0;
+                        @foreach (var item2 in List2)
                         {
-                            b++;
+                            if(item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    b++;
+                                }
+                            }
                         }
-                    }
-                    <th colspan="@b">@item1.Title</th>
+                        <th colspan="@b">@item1.Title</th>
 
-                    a = 0;
+                        a = 0;
 
-                    @foreach (var item2 in List2)
-                    {
-                        if (item1.Title == item2.Title)
+                        @foreach (var item2 in List2)
                         {
-                            a++;
+                            if(item2.TeacherId == ViewBag.UserId)
+                            {
+                                if (item1.Title == item2.Title)
+                                {
+                                    a++;
+                                }
+                            }
                         }
                     }
                 }
@@ -411,11 +479,17 @@
                 <th>Öğrenci No</th>
                     @foreach (var item1 in List)
                     {
-                        @foreach (var item2 in List2)
+                        if(item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item1.Title == item2.Title)
+                            @foreach (var item2 in List2)
                             {
-                                <th>@item2.LowerRating</th>
+                                if(item2.TeacherId == ViewBag.UserId)
+                                {
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        <th>@item2.LowerRating</th>
+                                    }
+                                }
                             }
                         }
                     }
@@ -430,24 +504,33 @@
             </tr>
             @foreach (var item4 in List4)
             {
-                <tr class="tab-satir-2">
-                    <td>@item4.FullName</td>
-                    <td>@item4.StudentNumber</td>
-                    @foreach (var item2 in List2)
-                    {
-                        @foreach (var item5 in List5)
+                if(item4.TeacherId == ViewBag.UserId)
+                {
+                    <tr class="tab-satir-2">
+                        <td>@item4.FullName</td>
+                        <td>@item4.StudentNumber</td>
+                        @foreach (var item2 in List2)
                         {
-                            if (item4.Id == item5.StudentId)
+                            if(item2.TeacherId == ViewBag.UserId)
                             {
-                                if (item2.LowerRating == item5.LowerRating)
+                                @foreach (var item5 in List5)
                                 {
-                                    <td>@item5.Note</td>
+                                    if (item4.Id == item5.StudentId)
+                                    {
+                                        if (item2.LowerRating == item5.LowerRating)
+                                        {
+                                            <td>@item5.Note</td>
+                                        }
+                                        
+                                    }
+                                    
                                 }
                             }
                         }
-                    }
-                    <td></td>
-                </tr>
+                    
+                        <td></td>
+                    </tr>
+                }
             }
             @* <tr class="tab-satir-3">
             <td></td>

@@ -6,5 +6,6 @@ namespace Entities.Models
         public string FullName { get; set; }
         public int StudentNumber { get; set; }
         public List<Question>? Questions { get; set; }
+        public int TeacherId { get; set; }
     }
 }

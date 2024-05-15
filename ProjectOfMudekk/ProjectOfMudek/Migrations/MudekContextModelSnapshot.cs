@@ -340,7 +340,12 @@ namespace ProjectOfMudek.Migrations
                     b.Property<int>("StudentNumber")
                         .HasColumnType("int");
 
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("students");
                 });
@@ -471,6 +476,15 @@ namespace ProjectOfMudek.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Models.Student", b =>
+                {
+                    b.HasOne("Entities.Entities.Models.Teacher", null)
+                        .WithMany("Students")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Entities.Models.SubAssessmentTool", b =>
                 {
                     b.HasOne("Entities.Entities.Models.Teacher", null)
@@ -487,6 +501,8 @@ namespace ProjectOfMudek.Migrations
                     b.Navigation("Forms");
 
                     b.Navigation("LearningOutcomes");
+
+                    b.Navigation("Students");
 
                     b.Navigation("SubAssessmentTools");
                 });

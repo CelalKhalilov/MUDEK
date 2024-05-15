@@ -19,13 +19,15 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Index()
         {
-            // var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
-            // if (isLoggedIn != "true")
-            // {
-            //     return RedirectToAction("Ogretmen", "Home");
-            // }
+            var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn != "true")
+            {
+                return RedirectToAction("Ogretmen", "Home");
+            }
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             var academicUnit = _context.academicUnits.ToList();
             ViewBag.academicUnit = academicUnit;
             // new SelectList(academicUnit, "Id", "UnitName");
@@ -89,7 +91,7 @@ namespace ProjectOfMudek.Controllers
         //     return Json(districts);
         // }
 
-
+        
 
         public IActionResult Tablo()
         {
@@ -104,7 +106,8 @@ namespace ProjectOfMudek.Controllers
             var d = _context.Teachers.ToList();
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
-
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             ViewBag.OutcomesList = a;
             ViewBag.lessons = b;
             ViewBag.forms = c;
@@ -172,6 +175,10 @@ namespace ProjectOfMudek.Controllers
             {
                 return RedirectToAction("Ogretmen", "Home");
             }
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             var uploadedFiles = _context.uploadedFiles.ToList();
             ViewBag.UploadedFiles = uploadedFiles;
 
@@ -229,7 +236,7 @@ namespace ProjectOfMudek.Controllers
             return RedirectToAction("Upload");
         }
 
-
+        
 
 
         public IActionResult DegerlendirmeAraclari()
@@ -241,6 +248,8 @@ namespace ProjectOfMudek.Controllers
             }
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
             ViewBag.assessmentTools = a;
@@ -249,17 +258,65 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
+        #region Islem1
+            
+        // [HttpPost]
+        // public IActionResult Iselm1(AssessmentTool assessmentTool)
+        // {
+        //     int sum =+ assessmentTool.Percentage;
+        //     HttpContext.Session.SetInt32("Percentage", sum);
+        //     var tut = HttpContext.Session.GetInt32("Percentage");
+        //     if (tut > 100)
+        //     {
+        //         throw new Exception();
+        //     }
+        //     else
+        //     {
+        //         if (ModelState.IsValid)
+        //         {
+        //             _context.assessmentTools.Add(assessmentTool);
+        //             _context.SaveChanges();
+        //             return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
+        //         }
+        //         return View();
+        //     }
+        // }
+
+        #endregion
+
         [HttpPost]
         public IActionResult Iselm1(AssessmentTool assessmentTool)
         {
-            if (ModelState.IsValid)
+            if (!_context.assessmentTools.Any())
             {
-                _context.assessmentTools.Add(assessmentTool);
-                _context.SaveChanges();
+                TempData["sumu"] = 0;
+            }
+
+            int sumu = TempData.ContainsKey("sumu") ? Convert.ToInt32(TempData["sumu"]) : 0;
+
+            sumu += assessmentTool.Percentage;
+
+            if (sumu > 100)
+            {
+                TempData["ErrorMessage"] = "Değerler aralığı aşıldı.";
                 return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
             }
-            return View();
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            TempData["sumu"] = sumu;
+
+            _context.assessmentTools.Add(assessmentTool);
+            _context.SaveChanges();
+
+            return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
         }
+
+
+
 
         [HttpPost]
         public IActionResult DegerlendirmeAraclariDelete(int DegerlendirmeAraclariId)
@@ -355,8 +412,12 @@ namespace ProjectOfMudek.Controllers
             var c = _context.learningOutcomess.ToList();
             var d = _context.students.ToList();
             var e = _context.questions.ToList();
+            var categories = _context.assessmentTools.ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
             ViewBag.learningOutcomess = c;
@@ -364,6 +425,8 @@ namespace ProjectOfMudek.Controllers
             ViewBag.questions = e;
             return View();
         }
+
+        
 
 
         [HttpPost]
@@ -408,6 +471,48 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
+        #region profil ayarlari
+            
+        
+        // public IActionResult ProfilAyarlari()
+        // {
+        //     var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+        //     if (isLoggedIn != "true")
+        //     {
+        //         return RedirectToAction("Ogretmen", "Home");
+        //     }
+        //     var userId = HttpContext.Session.GetInt32("Id");
+        //     ViewBag.UserId = userId;
+            
+        //     var a = _context.Teachers.ToList();
+        //     ViewBag.teachers = a;
+        //     return View();
+        // }
+
+        // [HttpPost]
+        // public IActionResult ProfilAyarlariGuncelle(Teacher teacher)
+        // {
+
+        //     var teachers = _context.Teachers.SingleOrDefault(g => g.Id == teacher.Id);
+
+        //     if (teachers != null)
+        //     {
+        //         teachers.FirstName = teacher.FirstName;
+        //         teachers.LastName = teacher.LastName;
+        //         teachers.Gmail = teacher.Gmail;
+        //         teachers.ProfileImage = teacher.ProfileImage;
+
+        //         _context.SaveChanges();
+
+        //         return RedirectToAction("ProfilAyarlari", "Teacher", new { id = teacher.Id }); // veya başka bir yönlendirme
+        //     }
+        //     else
+        //     {
+        //         return NotFound(); // veya uygun bir hata işleme yöntemi
+        //     }
+        // }
+
+        #endregion
 
         public IActionResult ProfilAyarlari()
         {
@@ -416,8 +521,11 @@ namespace ProjectOfMudek.Controllers
             {
                 return RedirectToAction("Ogretmen", "Home");
             }
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
             var teach = _context.Teachers.ToList();
             ViewBag.teach = teach;
+            
             return View();
         }
 
@@ -452,18 +560,36 @@ namespace ProjectOfMudek.Controllers
         }
 
 
-
         public IActionResult Deneme()
         {
             var a = _context.assessmentTools.ToList();
             var b = _context.subAssessmentTools.ToList();
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            // var tut = HttpContext.Session.GetString("Title");
+            // ViewBag.tutuyor = tut;
+            var categories = _context.assessmentTools.ToList();
+            ViewBag.Categorie = new SelectList(categories, "Id", "Title");
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
 
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Deneme(int selectedCategoryId)
+        {
+            var categories = _context.assessmentTools.ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
+            // Seçilen kategoriyi ViewBag'e kaydedin
+            ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
+            
+            return View();
+
+        }
+
+        
 
         [HttpPost]
         public IActionResult Islem2(SubAssessmentTool learningOutcomes)
@@ -476,10 +602,5 @@ namespace ProjectOfMudek.Controllers
             }
             return View();
         }
-
-
-
-
-
     }
 }

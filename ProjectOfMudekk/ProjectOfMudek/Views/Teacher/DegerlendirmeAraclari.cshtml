@@ -194,13 +194,21 @@
                 if (item.TeacherId == ViewBag.UserId)
                 {
                     i = 1;
-                    @* var toplam =+ item.Percentage;
-                    @if (toplam > 100)
+                    string errorMessage = TempData["ErrorMessage"] as string;
+                    @if (!string.IsNullOrEmpty(errorMessage))
                     {
-                        <div class="alert alert-danger" role="alert">
-                            Bu bir hata mesajıdır!
-                        </div>
-                    } *@
+                        @* <tr>
+                            <td colspan="5" class="text-danger">@errorMessage eeeeee</td>
+                        </tr> *@
+                        <script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Değer Aralığı aşıldı",
+                                footer: '<a href="#">Why do I have this issue?</a>'
+                            });
+                        </script>
+                    }
 
                     <tr class="satir-3">
                         <th class="border-2 border-info" id="th1">Değerlendirme Aracı</th>
@@ -250,61 +258,6 @@
                     }
                 }
             }
-
-
-            @* <tr>
-            <th class="alt-deg">Alt - D #1:</th>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
-            </tr>
-            <tr>
-            <th>Ö - 2</th>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
-            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-            <td></td> -->
-            </tr>
-            <tr>
-            <th>Ö - 3</th>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
-            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-            <td></td> -->
-            </tr>
-            <tr>
-            <th>Ö - 4</th>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
-            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-            <td></td> -->
-            </tr>
-            <tr>
-            <th>Ö - 5</th>
-            <td></td>
-            <td></td>
-            <td colspan="2"></td>
-            <!-- <td><button type="button" class="btn btn-danger">Danger</button></td>
-            <td></td> -->
-            </tr> *@
         </table>
-        @* <script>
-        function showWarning() {
-        alert("Bu bir uyarı mesajıdır!");
-        }
-        </script>
-
-        <button onclick="showWarning()">Uyarı Mesajını Göster</button> *@
-
-
-
-
-
-
-
-
     </div>
 </section>

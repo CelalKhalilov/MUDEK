@@ -19,8 +19,10 @@ namespace Entities.Entities.Models
         public List<Form>? Forms { get; set; }
         public List<AssessmentTool>? AssessmentTools { get; set; }
         public List<SubAssessmentTool>? SubAssessmentTools { get; set; }
+        public List<Student>? Students { get; set; }
 
         public byte[]? Image { get; set; }
         public string? ProfileImageBase64 => Image != null ? Convert.ToBase64String(Image) : null;
+
     }
 }

@@ -2,6 +2,7 @@
 
 <form method="post" action="/Teacher/HesaplamalarStudentAdd">
     <div class="fields">
+        <input id="TeacherId" asp-for="TeacherId" value="@ViewBag.UserId" type="hidden" required>
         <div class="input-field">
             <label>İsim ve Soyisim:</label>
             <input id="FullName" asp-for="FullName" type="text" placeholder="Anahtar Kelimeleri Giriniz... " required>

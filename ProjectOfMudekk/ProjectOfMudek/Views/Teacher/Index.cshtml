@@ -24,7 +24,7 @@
         <form method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Personal Details</span>
+                    <span class="title">Form</span>
                     <div class="fields">
                         <div class="input-field">
                             <input asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
@@ -32,13 +32,6 @@
                             <select asp-for="AcademicUnit" id="academicUnit" name="AcademicUnit">
                                 <option value="">Seçiniz</option>
                                 @foreach (var academicUnits in List)
-
-
-
-
-
-
-
                                 {
                                     <option value="@academicUnits.Id">@academicUnits.UnitName</option>
                                 }

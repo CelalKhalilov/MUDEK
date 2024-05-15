@@ -31,8 +31,8 @@ namespace ProjectOfMudek.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");
-            optionsBuilder.UseSqlServer("Server=MAYBEONEDAY\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=HarunGcl2312.");
+            optionsBuilder.UseSqlServer("Server=CELAL_KHALILOV\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=1;");
+            // optionsBuilder.UseSqlServer("Server=MAYBEONEDAY\\SQLEXPRESS;Database=MudekDb;TrustServerCertificate=true;User Id=sa;Password=HarunGcl2312.");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

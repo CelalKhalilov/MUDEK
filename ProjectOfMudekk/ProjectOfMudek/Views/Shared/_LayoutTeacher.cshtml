@@ -40,8 +40,32 @@
             <!-- <i class="bi bi-grid"></i> -->
             <i class='bx bx-sun' id="darkLight"></i>
             <i class='bx bx-bell'></i>
-            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" class="profile" />
+            @* <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" class="profile" /> *@
             <!-- <label for="">Jala Khalilov</label> -->
+
+            @{
+                var teachers = ViewBag.teach as List<Teacher>;
+            }
+
+            @if (teachers != null && teachers.Any())
+            {
+                @foreach (var item in teachers)
+                {
+                    if (item.Id == ViewBag.UserId)
+                    {
+                        if (string.IsNullOrEmpty(item.ProfileImageBase64))
+                        {
+                            <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                class="img-thumbnail rounded-start" alt="Varsayılan Profil Resmi">
+                        }
+                        else
+                        {
+                            <img src="data:image/jpeg;base64,@item.ProfileImageBase64" 
+                                alt="Profil Resmi" >
+                        }
+                    }
+                }
+            }
         </div>
     </nav>
 
