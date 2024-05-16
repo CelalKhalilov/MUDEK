@@ -287,33 +287,34 @@ namespace ProjectOfMudek.Controllers
         [HttpPost]
         public IActionResult Iselm1(AssessmentTool assessmentTool)
         {
-            if (!_context.assessmentTools.Any())
+            var userId = HttpContext.Session.GetInt32("Id");
+            
+            // Daha önce böyle bir kullanıcı var mı?
+            if (_context.assessmentTools.Any(at => at.TeacherId == userId))
             {
-                TempData["sumu"] = 0;
+                int totalPercentage = _context.assessmentTools
+                                        .Where(at => at.TeacherId == userId )
+                                        .Sum(at => at.Percentage);
+                totalPercentage += assessmentTool.Percentage;
+                if (totalPercentage <= 100)
+                {
+                    _context.assessmentTools.Add(assessmentTool);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Değerler aralığı aşıldı.";
+                    return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
+                }
             }
-
-            int sumu = TempData.ContainsKey("sumu") ? Convert.ToInt32(TempData["sumu"]) : 0;
-
-            sumu += assessmentTool.Percentage;
-
-            if (sumu > 100)
+            else
             {
-                TempData["ErrorMessage"] = "Değerler aralığı aşıldı.";
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
+                _context.assessmentTools.Add(assessmentTool);
+                _context.SaveChanges();
             }
-
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
-            TempData["sumu"] = sumu;
-
-            _context.assessmentTools.Add(assessmentTool);
-            _context.SaveChanges();
-
-            return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
+            return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = assessmentTool.Id });
         }
+
 
 
 
@@ -424,6 +425,20 @@ namespace ProjectOfMudek.Controllers
             ViewBag.students = d;
             ViewBag.questions = e;
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Hesaplamalar(int selectedCategoryId)
+        {
+            var categories = _context.assessmentTools.ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+            // Seçilen kategoriyi ViewBag'e kaydedin
+            ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
+            
+            return View();
+
         }
 
         
@@ -559,48 +574,166 @@ namespace ProjectOfMudek.Controllers
             }
         }
 
+        #region Deneme
+            
+        // public IActionResult Deneme()
+        // {
+        //     // var a = _context.assessmentTools.ToList();
+        //     var b = _context.subAssessmentTools.ToList();
+        //     var userId = HttpContext.Session.GetInt32("Id");
+        //     ViewBag.UserId = userId;
+        //     var categories = _context.assessmentTools.ToList();
+        //     ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+        //     if (userId != null)
+        //     {
+        //         var assessmentTools = _context.assessmentTools.Where(k => k.TeacherId == userId).ToList();
+        //         ViewBag.AssessmentTools = assessmentTools;
+        //     }
+        //     else
+        //     {
+        //         ViewBag.AssessmentTools = new List<AssessmentTool>();
+        //     }
+        //     ViewBag.subAssessmentTools = b;
+
+        //     return View();
+        // }
+
+        // [HttpPost]
+        // public IActionResult Deneme(int selectedCategoryId)
+        // {
+        //     var categories = _context.assessmentTools.ToList();
+        //     ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+        //     // Seçilen kategoriyi ViewBag'e kaydedin
+        //     ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
+            
+        //     return View();
+
+        // }
+
+        #endregion
+        
 
         public IActionResult Deneme()
         {
-            var a = _context.assessmentTools.ToList();
-            var b = _context.subAssessmentTools.ToList();
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
-            // var tut = HttpContext.Session.GetString("Title");
-            // ViewBag.tutuyor = tut;
-            var categories = _context.assessmentTools.ToList();
-            ViewBag.Categorie = new SelectList(categories, "Id", "Title");
-            ViewBag.assessmentTools = a;
-            ViewBag.subAssessmentTools = b;
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Deneme(int selectedCategoryId)
-        {
+            
+            // Assessment Tools
             var categories = _context.assessmentTools.ToList();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
-            // Seçilen kategoriyi ViewBag'e kaydedin
-            ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
-            
-            return View();
+            if (userId != null)
+            {
+                var assessmentTools = _context.assessmentTools.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.AssessmentTools = assessmentTools;
+            }
+            else
+            {
+                ViewBag.AssessmentTools = new List<AssessmentTool>();
+            }
 
+            // Sub Assessment Tools
+            var subAssessmentTools = _context.subAssessmentTools.ToList();
+            ViewBag.SubAssessmentTools = subAssessmentTools;
+
+            return View();
         }
 
+    [HttpPost]
+    public IActionResult Deneme(int selectedCategoryId)
+    {
+        var userId = HttpContext.Session.GetInt32("Id");
+        ViewBag.UserId = userId;
         
+        // Assessment Tools
+        var categories = _context.assessmentTools.ToList();
+        ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+        if (userId != null)
+        {
+            var assessmentTools = _context.assessmentTools.Where(k => k.TeacherId == userId).ToList();
+            ViewBag.AssessmentTools = assessmentTools;
+        }
+        else
+        {
+            ViewBag.AssessmentTools = new List<AssessmentTool>();
+        }
+
+        // Sub Assessment Tools
+        var subAssessmentTools = _context.subAssessmentTools.ToList();
+        ViewBag.SubAssessmentTools = subAssessmentTools;
+
+        // Seçilen kategoriyi ViewBag'e kaydedin
+        ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
+        
+        return View();
+    }
+
 
         [HttpPost]
-        public IActionResult Islem2(SubAssessmentTool learningOutcomes)
+        public IActionResult Islem2(SubAssessmentTool subAssessmentTool)
         {
-            if (ModelState.IsValid)
+            var userId = HttpContext.Session.GetInt32("Id");
+
+            // Daha önce böyle bir kullanıcı var mı?
+            if (_context.subAssessmentTools.Any(at => at.TeacherId == userId))
             {
-                _context.subAssessmentTools.Add(learningOutcomes);
-                _context.SaveChanges();
-                return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+                int totalPercentage = _context.subAssessmentTools
+                                        .Where(at => at.TeacherId == userId && at.Title == subAssessmentTool.Title)
+                                        .Sum(at => at.Point);
+                totalPercentage += subAssessmentTool.Point;
+                if (totalPercentage <= 100)
+                {
+                    _context.subAssessmentTools.Add(subAssessmentTool);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Değerler aralığı aşıldı.";
+                    return RedirectToAction("DegerlendirmeAraclari", "Teacher");
+                }
+                
             }
-            return View();
+            else
+            {
+                _context.subAssessmentTools.Add(subAssessmentTool);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = subAssessmentTool.Id });
         }
+
+
+        // [HttpPost]
+        // public IActionResult Islem2(SubAssessmentTool subAssessmentTool)
+        // {
+        //     if (!_context.assessmentTools.Any())
+        //     {
+        //         TempData["sumu2"] = 0;
+        //     }
+
+        //     int sumu2 = TempData.ContainsKey("sumu2") ? Convert.ToInt32(TempData["sumu2"]) : 0;
+
+        //     sumu2 += subAssessmentTool.Point;
+
+        //     if (sumu2 > 100)
+        //     {
+        //         TempData["ErrorMessage"] = "Değerler aralığı aşıldı.";
+        //         return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = subAssessmentTool.Id });
+        //     }
+
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return View();
+        //     }
+
+        //     TempData["sumu2"] = sumu2;
+
+        //     _context.subAssessmentTools.Add(subAssessmentTool);
+        //     _context.SaveChanges();
+
+        //     return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = subAssessmentTool.Id });
+        // }
     }
 }

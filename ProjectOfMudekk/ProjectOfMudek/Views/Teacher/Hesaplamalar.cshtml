@@ -60,32 +60,36 @@
         <table class="table table-bordered border-black table-hover">
             <tr class="satir-1">
                 <th>Başlık</th>
-                @foreach (var item1 in List)
+                @if (List != null && List.Any())
                 {
-                    if (item1.TeacherId == ViewBag.UserId)
+
+                    @foreach (var item1 in List)
                     {
-                        b = 0;
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            b = 0;
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    b++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        b++;
+                                    }
                                 }
                             }
-                        }
-                        <th colspan="@b">@item1.Title</th>
+                            <th colspan="@b">@item1.Title</th>
 
-                        a = 0;
+                            a = 0;
 
-                        @foreach (var item2 in List2)
-                        {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    a++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        a++;
+                                    }
                                 }
                             }
                         }
@@ -94,33 +98,35 @@
             </tr>
             <tr class="satir-2">
                 <th>Etki Eden Yüzde(%)</th>
-
-                @foreach (var item1 in List)
+                @if (List != null && List.Any())
                 {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        b = 0;
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            b = 0;
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    b++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        b++;
+                                    }
                                 }
                             }
-                        }
-                        <th colspan="@b">@item1.Percentage %</th>
+                            <th colspan="@b">@item1.Percentage %</th>
 
-                        a = 0;
+                            a = 0;
 
-                        @foreach (var item2 in List2)
-                        {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    a++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        a++;
+                                    }
                                 }
                             }
                         }
@@ -129,140 +135,150 @@
             </tr>
             <tr class="satir-3">
                 <th>Sorular</th>
-                @foreach (var item1 in List)
+                @if (List != null && List.Any())
                 {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    <th>@item2.LowerRating</th>
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        <th>@item2.LowerRating</th>
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                @foreach (var item1 in List)
-                {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        int count = 0;
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            int count = 0;
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    count++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        count++;
+                                    }
                                 }
                             }
-                        }
-                        if (count == 0)
-                        {
-                            <th></th>
+                            if (count == 0)
+                            {
+                                <th></th>
+                            }
                         }
                     }
                 }
             </tr>
             <tr class="satir-4">
                 <th>Soruların Puanı</th>
-
-                @foreach (var item1 in List)
+                @if (List != null && List.Any())
                 {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    <th>@item2.Point</th>
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        <th>@item2.Point</th>
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                @foreach (var item1 in List)
-                {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        int count = 0;
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            int count = 0;
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    count++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        count++;
+                                    }
                                 }
                             }
-                        }
-                        if (count == 0)
-                        {
-                            <th></th>
+                            if (count == 0)
+                            {
+                                <th></th>
+                            }
                         }
                     }
                 }
-            </tr>
-            @foreach (var item3 in List3)
+            </tr>            
+            @if (List3 != null && List3.Any())
             {
-                if (item3.TeacherId == ViewBag.UserId)
+                @foreach (var item3 in List3)
                 {
-                    <tr class="satir-5">
-                        <th>Ö - @x</th>
-                        @foreach (var item2 in List2)
-                        {
-                            if (item2.TeacherId == ViewBag.UserId)
+                    if (item3.TeacherId == ViewBag.UserId)
+                    {
+                        <tr class="satir-5">
+                            <th>Ö - @x</th>
+                            @foreach (var item2 in List2)
                             {
-                                <td contenteditable="true"></td>
+                                if (item2.TeacherId == ViewBag.UserId)
+                                {
+                                    <td contenteditable="true"></td>
+                                }
                             }
-                        }
-                    </tr>
-                    x++;
+                        </tr>
+                        x++;
+                    }
                 }
             }
             <tr class="satir-6">
                 <th>Ağırlık</th>
-
-                @foreach (var item1 in List)
+                @if (List != null && List.Any())
                 {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    double calcPoint = (double)item2.Point * (double)item1.Percentage / 100;
-                                    <th>@calcPoint</th>
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        double calcPoint = (double)item2.Point * (double)item1.Percentage / 100;
+                                        <th>@calcPoint</th>
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                @foreach (var item1 in List)
-                {
-                    if (item1.TeacherId == ViewBag.UserId)
+                    @foreach (var item1 in List)
                     {
-                        int count = 0;
-                        @foreach (var item2 in List2)
+                        if (item1.TeacherId == ViewBag.UserId)
                         {
-                            if (item2.TeacherId == ViewBag.UserId)
+                            int count = 0;
+                            @foreach (var item2 in List2)
                             {
-                                if (item1.Title == item2.Title)
+                                if (item2.TeacherId == ViewBag.UserId)
                                 {
-                                    count++;
+                                    if (item1.Title == item2.Title)
+                                    {
+                                        count++;
+                                    }
                                 }
                             }
-                        }
-                        if (count == 0)
-                        {
-                            <th></th>
+                            if (count == 0)
+                            {
+                                <th></th>
+                            }
                         }
                     }
                 }
@@ -327,35 +343,38 @@
                             <tr class="satir-1">
                                 <th></th>
                                 <th></th>
-                                @foreach (var item1 in List)
+                                @if (List != null && List.Any())
                                 {
-                                    if(item1.TeacherId == ViewBag.UserId)
+                                    @foreach (var item1 in List)
                                     {
-                                        b = 0;
-                                
-                                        @foreach (var item2 in List2)
+                                        if(item1.TeacherId == ViewBag.UserId)
                                         {
-                                            if(item2.TeacherId == ViewBag.UserId)
+                                            b = 0;
+                                    
+                                            @foreach (var item2 in List2)
                                             {
-                                                if ("Vize" == item2.Title)
+                                                if(item2.TeacherId == ViewBag.UserId)
                                                 {
-                                                    b++;
+                                                    if ("Vize" == item2.Title)
+                                                    {
+                                                        b++;
+                                                    }
                                                 }
                                             }
-                                        }
 
-                                        <th colspan="@b">Vize @b</th>
+                                            <th colspan="@b">Vize @b</th>
 
-                                        
-                                            a = 0;
-                                        
-                                        @foreach (var item2 in List2)
-                                        {
-                                            if(item2.TeacherId == ViewBag.UserId)
+                                            
+                                                a = 0;
+                                            
+                                            @foreach (var item2 in List2)
                                             {
-                                                if ("Vize" == item2.Title)
+                                                if(item2.TeacherId == ViewBag.UserId)
                                                 {
-                                                    a++;
+                                                    if ("Vize" == item2.Title)
+                                                    {
+                                                        a++;
+                                                    }
                                                 }
                                             }
                                         }
@@ -366,15 +385,18 @@
                                 <th>İsim Soyisim</th>
                                 <th>Öğrenci No</th>
                                 
-                                    @* @foreach (var item1 in List)
+                                @* @foreach (var item1 in List)
                                 { *@
-                                    @foreach (var item2 in List2)
+                                    @if (List2 != null && List2.Any())
                                     {
-                                        if(item2.TeacherId == ViewBag.UserId)
+                                        @foreach (var item2 in List2)
                                         {
-                                            if ("Vize" == item2.Title)
+                                            if(item2.TeacherId == ViewBag.UserId)
                                             {
-                                                <th>@item2.LowerRating</th>
+                                                if ("Vize" == item2.Title)
+                                                {
+                                                    <th>@item2.LowerRating</th>
+                                                }
                                             }
                                         }
                                     }
