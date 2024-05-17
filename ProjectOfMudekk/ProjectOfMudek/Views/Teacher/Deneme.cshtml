@@ -46,12 +46,16 @@
                 <tbody>
                     @foreach (var item in assessmentTools)
                     {
+                        if (selectedCategory == item.Title)
+                        {
                         <tr>
                             <td>@item.Id</td>
                             <td>@item.TeacherId</td>
                             <td>@item.Percentage</td>
                             <td>@item.Title</td>
                         </tr>
+
+                        }
                     }
                 </tbody>
             </table>

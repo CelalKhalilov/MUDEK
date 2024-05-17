@@ -413,17 +413,39 @@ namespace ProjectOfMudek.Controllers
             var c = _context.learningOutcomess.ToList();
             var d = _context.students.ToList();
             var e = _context.questions.ToList();
-            var categories = _context.assessmentTools.ToList();
-            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
+            var categories = _context.assessmentTools.Where( a => a.TeacherId == userId).ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             var teach = _context.Teachers.ToList();
             ViewBag.teach = teach;
-            ViewBag.assessmentTools = a;
-            ViewBag.subAssessmentTools = b;
-            ViewBag.learningOutcomess = c;
-            ViewBag.students = d;
-            ViewBag.questions = e;
+
+            if (userId != null)
+            {
+                var assessmentTools = _context.assessmentTools.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.AssessmentTools = assessmentTools;
+                var subAssessmentTool = _context.subAssessmentTools.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.subAssessmentTools = subAssessmentTool;
+                var learningOutcome = _context.learningOutcomess.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.learningOutcomess = learningOutcome;
+                var student = _context.students.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.students = student;
+                var question = _context.questions.ToList();
+                ViewBag.questions = question;
+
+
+
+            }
+            else
+            {
+                ViewBag.AssessmentTools = new List<AssessmentTool>();
+            }
+
+            // ViewBag.assessmentTools = a;
+            // ViewBag.subAssessmentTools = b;
+            // ViewBag.learningOutcomess = c;
+            // ViewBag.students = d;
+            // ViewBag.questions = e;
             return View();
         }
 
@@ -431,11 +453,35 @@ namespace ProjectOfMudek.Controllers
         [HttpPost]
         public IActionResult Hesaplamalar(int selectedCategoryId)
         {
-            var categories = _context.assessmentTools.ToList();
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+
+            var categories = _context.assessmentTools.Where( a => a.TeacherId == userId).ToList();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+
+            if (userId != null)
+            {
+                var assessmentTools = _context.assessmentTools.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.AssessmentTools = assessmentTools;
+                var subAssessmentTool = _context.subAssessmentTools.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.subAssessmentTools = subAssessmentTool;
+                var learningOutcome = _context.learningOutcomess.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.learningOutcomess = learningOutcome;
+                var student = _context.students.Where(k => k.TeacherId == userId).ToList();
+                ViewBag.students = student;
+                var question = _context.questions.ToList();
+                ViewBag.questions = question;
+            }
+            else
+            {
+                ViewBag.AssessmentTools = new List<AssessmentTool>();
+            }
 
             // Seçilen kategoriyi ViewBag'e kaydedin
             ViewBag.SelectedCategory = categories.FirstOrDefault(c => c.Id == selectedCategoryId)?.Title;
+
+            TempData["ShowModal"] = true;
             
             return View();
 
