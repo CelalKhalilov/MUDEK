@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aOyV8KItOph+cx8q7v09z83m5ZrFN9KWWiCmlbY6ktE=",
+  "Hash": "YCimX9M5JrbuAuqDNeVd4q3W+Jh9RfhEB/cAvc8AQNM=",
   "Source": "ProjectOfMudek",
   "BasePath": "_content/ProjectOfMudek",
   "Mode": "Default",
@@ -283,6 +283,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\fonts\\FreeSans.ttf",
+      "SourceId": "ProjectOfMudek",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\",
+      "BasePath": "_content/ProjectOfMudek",
+      "RelativePath": "fonts/FreeSans.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\fonts\\FreeSans.ttf"
+    },
+    {
       "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\mudek.jpg",
       "SourceId": "ProjectOfMudek",
       "SourceType": "Discovered",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\jpg\\mudek.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\Samsun.png",
+      "SourceId": "ProjectOfMudek",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\",
+      "BasePath": "_content/ProjectOfMudek",
+      "RelativePath": "jpg/Samsun.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\jpg\\Samsun.png"
     },
     {
       "Identity": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\Samu_logo.png",

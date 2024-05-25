@@ -10,7 +10,11 @@
             <th>İsim</th>
             <th>Soyisim</th>
             <th>E-mail</th>
+            <th>Profil Resmi</th>
         </tr>
+        @{
+                var teachers = ViewBag.teach as List<Teacher>;
+        }
         @foreach (var item in KullaniciTeacher)
         {
             <tr>
@@ -18,6 +22,27 @@
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
                 <td>@item.Gmail</td>
+                <th>
+                    @if (teachers != null && teachers.Any())
+                    {
+                        @foreach (var itemm in teachers)
+                        {
+                            if (itemm.Id == ViewBag.UserId)
+                            {
+                                if (string.IsNullOrEmpty(itemm.ProfileImageBase64))
+                                {
+                                    <img style="width: 30px; height: 35px; object-fit: cover; border-radius: 50%;" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                        alt="Varsayılan Profil Resmi">
+                                }
+                                else
+                                {
+                                    <img style="width: 30px; height: 35px; object-fit: cover; border-radius: 50%;" src="data:image/jpeg;base64,@itemm.ProfileImageBase64" 
+                                        alt="Profil Resmi" >
+                                }
+                            }
+                        }
+                    }
+                </th>
             </tr>
         }
     </table>
@@ -28,6 +53,7 @@
             <th>İsim</th>
             <th>Soyisim</th>
             <th>E-mail</th>
+            <th>Profil Resmi</th>
         </tr>
         @* @foreach (var item in KullaniciTeacher)
         {
@@ -46,6 +72,7 @@
             <th>İsim</th>
             <th>Soyisim</th>
             <th>E-mail</th>
+            <th>Profil Resmi</th>
         </tr>
         @* @foreach (var item in KullaniciTeacher)
         {

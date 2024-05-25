@@ -364,6 +364,10 @@ namespace ProjectOfMudek.Controllers
         {
             var a = _context.Teachers.ToList();
             ViewBag.teachers = a;
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
             return View();
         }
 

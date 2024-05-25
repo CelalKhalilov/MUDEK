@@ -53,6 +53,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\fonts\\FreeSans.ttf",
+      "PackagePath": "staticwebassets\\fonts\\FreeSans.ttf"
+    },
+    {
+      "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\Samsun.png",
+      "PackagePath": "staticwebassets\\jpg\\Samsun.png"
+    },
+    {
       "Id": "C:\\Users\\90506\\Desktop\\MUDEK\\ProjectOfMudekk\\ProjectOfMudek\\wwwroot\\jpg\\Samu_logo.png",
       "PackagePath": "staticwebassets\\jpg\\Samu_logo.png"
     },

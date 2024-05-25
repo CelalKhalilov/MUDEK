@@ -1,5 +1,19 @@
-@model List<Question>
+@* @model Question
 
+<script>
+    // Güncelle butonuna tıklandığında çalışacak fonksiyon
+    function fillFormFields_2_gun(id, note) {
+        // Modal içindeki form alanlarını bul
+        var IdInput = document.getElementById('alt-deger-id-gun');
+        var noteInput = document.getElementById('note');
+        
+
+        // Form alanlarına ilgili değerleri yerleştir
+        IdInput.value = id;
+        noteInput.value = note;
+        
+    }
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -11,15 +25,82 @@
             </div>
             <div class="modal-body" id="modal-body">
                 <form method="POST" action="/Teacher/DegerlendirmeAraclariGuncelle">
-                    @for (int i = 1; i < 5; i++)
-                    {
-                        <div class="mb-3">
-                            <label asp-for="@Model[i].Note" class="col-form-label">Not:</label>
-                            <input type="hidden" asp-for="@Model[i].Id" />
-                            <input type="hidden" asp-for="@Model[i].StudentId" />
-                            <input asp-for="@Model[i].Note" class="form-control" />
-                        </div>
-                    }
+                    <input type="hidden" asp-for="Id" id="alt-deger-id-gun" />
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Başlık:</label>
+                        <input type="text" asp-for="Note" class="form-control" id="note" disabled>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+@model Question
+@{
+    var List5 = ViewBag.questions as List<Question> ?? new List<Question>();
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var updateModal = document.getElementById('updateModal');
+        updateModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var studentId = button.getAttribute('data-student-id');
+            
+            // Student ID'yi formda gizli input'a atama
+            var studentIdInput = document.getElementById('studentId');
+            studentIdInput.value = studentId;
+
+            // Soruları al ve modal içeriğini doldur
+            var questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = '';
+
+            fetch(`/Teacher/GetQuestionsByStudentId?studentId=${studentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach((item, index) => {
+                        questionsContainer.innerHTML += `
+                            <div class="mb-3">
+                                <label for="note-${item.id}" class="col-form-label">Başlık:</label>
+                                <input type="hidden" name="questionss[${index}].Id" value="${item.id}" />
+                                <input type="text" name="questionss[${index}].Note" value="${item.note}" class="form-control" id="note-${item.id}" />
+                            </div>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
+
+
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateModalLabel">Update Notes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/Teacher/HesaplaGuncelle" id="updateForm">
+                    <input type="hidden" name="StudentId" asp-for="StudentId" id="studentId" />
+                    <div id="questionsContainer">
+                        @foreach (var item in List5)
+                        {
+                            <div class="mb-3">
+                                <label asp-for="@item.Note" class="col-form-label">Başlık:</label>
+                                <input type="hidden" asp-for="@item.Id" />
+                                <input type="text" asp-for="@item.Note" class="form-control" />
+                            </div>
+                        }
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Kaydet</button>
                     </div>

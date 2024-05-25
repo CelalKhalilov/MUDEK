@@ -259,16 +259,9 @@ namespace ProjectOfMudek.Controllers
             ViewBag.subAssessmentTools = b;
             ViewBag.question = _context.questions.ToList();
 
-            // Öğrenci ve soruları birlikte alıyoruz
-            var questions = _context.questions
-                .Select(q => new Question
-                {
-                    Id = q.Id,
-                    StudentId = q.StudentId,
-                    Note = q.Note
-                }).ToList();
 
-            return View(questions);
+
+            return View();
         }
 
         #region Islem1
@@ -432,6 +425,11 @@ namespace ProjectOfMudek.Controllers
             ViewBag.UserId = userId;
             var categories = _context.assessmentTools.Where( a => a.TeacherId == userId).ToList();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+
+            
+
+    
             
 
             if (userId != null)
@@ -448,6 +446,7 @@ namespace ProjectOfMudek.Controllers
                 ViewBag.questions = question;
                 var teachers = _context.Teachers.ToList();
                 ViewBag.teach = teachers;
+                
 
 
 
@@ -462,6 +461,7 @@ namespace ProjectOfMudek.Controllers
             // ViewBag.learningOutcomess = c;
             // ViewBag.students = d;
             // ViewBag.questions = e;
+            
             return View();
         }
 
@@ -839,5 +839,74 @@ namespace ProjectOfMudek.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Hesaplamalar","Teacher"); // Güncelleme sonrası yönlendirme
         }
+
+        [HttpGet]
+        public IActionResult GetQuestionsByStudentId(int studentId)
+        {
+            var questions = _context.questions
+                                    .Where(q => q.StudentId == studentId)
+                                    .Select(q => new { q.Id, q.Note })
+                                    .ToList();
+            
+            return Json(questions);
+        }
+
+
+        [HttpPost]
+        public IActionResult HesaplaGuncelle(List<Question> questionss)
+        {
+            if (questionss == null)
+            {
+                // Log veya hata mesajı yazdırın
+                Console.WriteLine("questionss is null");
+                // veya bir hata sayfasına yönlendirin
+                return BadRequest("questionss is null");
+            }
+            
+            if (!questionss.Any())
+            {
+                // Log veya hata mesajı yazdırın
+                Console.WriteLine("questionss is empty");
+                // veya bir hata sayfasına yönlendirin
+                return BadRequest("questionss is empty");
+            }
+
+            foreach (var question in questionss)
+            {
+                var existingQuestion = _context.questions.FirstOrDefault(q => q.Id == question.Id);
+                if (existingQuestion != null)
+                {
+                    existingQuestion.Note = question.Note;
+                    _context.Update(existingQuestion);
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Hesaplamalar");
+        }
+
+        [HttpPost]
+        public IActionResult Sil(int studentId)
+        {
+            // Öğrencinin notlarını al ve sil
+            var studentNotes = _context.questions.Where(n => n.StudentId == studentId).ToList();
+            if (studentNotes.Any())
+            {
+                _context.questions.RemoveRange(studentNotes);
+                _context.SaveChanges();
+            }
+
+            // Öğrenci bilgisini sil (opsiyonel)
+            var student = _context.students.FirstOrDefault(s => s.Id == studentId);
+            if (student != null)
+            {
+                _context.students.Remove(student);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Hesaplamalar");
+        }
+
+
+
     }
 }

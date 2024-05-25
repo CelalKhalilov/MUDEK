@@ -322,3 +322,12 @@ table .satir-6 th{
 #ekle2{
     display: none;
 }
+
+.sil_form form{
+    margin:0;
+    background-color:#ff000000;
+}
+.sil_form form button{
+    margin:0;
+    height:30px;
+}

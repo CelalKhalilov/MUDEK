@@ -287,6 +287,7 @@
 
 
         @Html.Partial("_HesaplamalarStudentForm")
+
         <hr class="border border-black border-2 opacity-50">
         @* @Html.Partial("_HesaplamalarQuestionForm") *@
 
@@ -470,7 +471,65 @@
 
         @Html.Partial("_HesaplamalarQuestionUpdateForm")
 
+        @* <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var updateModal = document.getElementById('updateModal');
+                updateModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;
+                    var studentId = button.getAttribute('data-student-id');
+                    
+                    // Student ID'yi formda gizli input'a atama
+                    var studentIdInput = document.getElementById('studentId');
+                    studentIdInput.value = studentId;
 
+                    // Soruları al ve modal içeriğini doldur
+                    var questionsContainer = document.getElementById('questionsContainer');
+                    questionsContainer.innerHTML = '';
+
+                    
+                    @foreach (var item in List5)
+                    {
+                        <text>
+                            if (@item.StudentId == studentId) {
+                                questionsContainer.innerHTML += `
+                                    <div class="mb-3">
+                                        <label for="note-@item.Id" class="col-form-label">Başlık:</label>
+                                        <input type="text" name="Note[@item.Id]" value="@item.Note" class="form-control" id="note-@item.Id" />
+                                    </div>`;
+                            }
+                        </text>
+                    }
+                });
+            });
+        </script> *@
+        
+
+
+
+        @* <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateModalLabel">Update Notes</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/Teacher/HesaplaGuncelle" id="updateForm">
+                            <input type="hidden" name="StudentId" id="studentId" />
+                            <div id="questionsContainer"></div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Kaydet</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+
+        
 
         <table class="table table-bordered border-danger table-hover">
             <tr class="satir-1">
@@ -578,15 +637,6 @@
                                                             break;
                                                         }
                                                     }
-                                                    @* else if (item2.Title.ToLower().Contains("vize"))
-                                                    {
-                                                        weight = 0.4;
-                                                    }
-                                                    // Diğer not türleri için örneğin "final"
-                                                    else if (item2.Title.ToLower().Contains("final"))
-                                                    {
-                                                        weight = 0.5; // Örneğin, final notu da yüzde 60 etkilesin
-                                                    } *@
 
                                                     weightedTotal += item5.Note.HasValue ? item5.Note.Value * weight : 0;
                                                     weightSum += weight;
@@ -608,59 +658,58 @@
                                 var totalScore = weightSum > 0 ? weightedTotal : 0;
                             }
 
-                            @if (90 < totalScore && 100 > totalScore)
+                            @if (totalScore >= 90)
                             {
                                 <td style="background-color: green; color: white;">AA</td>
                             }
-                            else if (85 < totalScore && 89 > totalScore)
+                            else if (totalScore >= 85)
                             {
                                 <td style="background-color: green; color: white;">BA</td>
                             }
-                            else if (80 < totalScore && 84 > totalScore)
+                            else if (totalScore >= 80)
                             {
                                 <td style="background-color: green; color: white;">BB</td>
                             }
-                            else if (75 < totalScore && 79 > totalScore)
+                            else if (totalScore >= 75)
                             {
                                 <td style="background-color: green; color: white;">CB</td>
                             }
-                            else if (70 < totalScore && 74 > totalScore)
+                            else if (totalScore >= 70)
                             {
                                 <td style="background-color: green; color: white;">CC</td>
                             }
-                            else if (60 < totalScore && 69 > totalScore)
+                            else if (totalScore >= 60)
                             {
                                 <td style="background-color: green; color: white;">DC</td>
                             }
-                            else if (50 < totalScore && 59 > totalScore)
+                            else if (totalScore >= 50)
                             {
                                 <td style="background-color: green; color: white;">DD</td>
                             }
-                            else if (30 < totalScore && 49 > totalScore)
+                            else if (totalScore >= 30)
                             {
                                 <td style="background-color: red; color: white;">FD</td>
                             }
-                            else if (00 < totalScore && 29 > totalScore)
+                            else if (totalScore >= 0)
                             {
                                 <td style="background-color: red; color: white;">FF</td>
                             }
-                            else if (00 == totalScore)
-                            {
-                                <td style="background-color: yellow;">GR</td>
-                            }
+                            
 
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" class="btn btn-danger">Sil</button>
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillFormFields('@item4.Id')">Güncelle</button>
-                                </div>
+                            <td class="sil_form">
+                                <form asp-action="Sil" method="post">
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        @* <button type="button" class="btn btn-danger">Sil</button> *@
+                                            <input type="hidden" name="studentId" value="@item4.Id" />
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-student-id="@item4.Id">Güncelle</button>
+                                    </div>
+                                </form>
                             </td>
                         </tr>
                     }
                 }
             }
-
-
         </table>
 
     </div>
