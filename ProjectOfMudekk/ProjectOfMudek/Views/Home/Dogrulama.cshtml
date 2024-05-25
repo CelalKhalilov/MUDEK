@@ -2,10 +2,6 @@
     Layout = null;
 }
 
-@* @{
-ViewBag.Title = "Login";
-} *@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,11 +16,8 @@ ViewBag.Title = "Login";
 </head>
 
 <body>
-
-
-@* 
     @using (Html.BeginForm("Dogrulama", "Home", FormMethod.Post))
-    { *@
+    {
         <div class="container">
             <header>
                 <i class="bx bxs-check-shield"></i>
@@ -37,7 +30,13 @@ ViewBag.Title = "Login";
             </div>
             <button type="submit">Oturum Aç</button>
         </div>
-    @* } *@
+    }
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
 </body>
 
 </html>

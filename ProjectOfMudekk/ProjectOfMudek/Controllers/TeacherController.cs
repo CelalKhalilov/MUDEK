@@ -181,13 +181,15 @@ namespace ProjectOfMudek.Controllers
             ViewBag.teach = teach;
             var uploadedFiles = _context.uploadedFiles.ToList();
             ViewBag.UploadedFiles = uploadedFiles;
+            ViewBag.assessmentTools = _context.assessmentTools.ToList();
+           
 
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file,string category)
         {
             if (file == null || file.Length == 0)
             {
@@ -202,6 +204,7 @@ namespace ProjectOfMudek.Controllers
                 {
                     FileName = file.FileName,
                     ContentType = file.ContentType,
+                    Category = category,
                     Data = memoryStream.ToArray()
                 };
 
@@ -254,8 +257,18 @@ namespace ProjectOfMudek.Controllers
             var b = _context.subAssessmentTools.ToList();
             ViewBag.assessmentTools = a;
             ViewBag.subAssessmentTools = b;
+            ViewBag.question = _context.questions.ToList();
 
-            return View();
+            // Öğrenci ve soruları birlikte alıyoruz
+            var questions = _context.questions
+                .Select(q => new Question
+                {
+                    Id = q.Id,
+                    StudentId = q.StudentId,
+                    Note = q.Note
+                }).ToList();
+
+            return View(questions);
         }
 
         #region Islem1
@@ -382,6 +395,8 @@ namespace ProjectOfMudek.Controllers
                 return NotFound(); // veya uygun bir hata işleme yöntemi
             }
         }
+
+
         [HttpPost]
         public IActionResult AltDegerlendirmeAraclariGuncelle(SubAssessmentTool subAssessmentTool)
         {
@@ -417,8 +432,7 @@ namespace ProjectOfMudek.Controllers
             ViewBag.UserId = userId;
             var categories = _context.assessmentTools.Where( a => a.TeacherId == userId).ToList();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
-            var teach = _context.Teachers.ToList();
-            ViewBag.teach = teach;
+            
 
             if (userId != null)
             {
@@ -432,6 +446,8 @@ namespace ProjectOfMudek.Controllers
                 ViewBag.students = student;
                 var question = _context.questions.ToList();
                 ViewBag.questions = question;
+                var teachers = _context.Teachers.ToList();
+                ViewBag.teach = teachers;
 
 
 
@@ -472,6 +488,8 @@ namespace ProjectOfMudek.Controllers
                 ViewBag.students = student;
                 var question = _context.questions.ToList();
                 ViewBag.questions = question;
+                var teachers = _context.Teachers.ToList();
+                ViewBag.teach = teachers;
             }
             else
             {
@@ -781,5 +799,45 @@ namespace ProjectOfMudek.Controllers
 
         //     return RedirectToAction("DegerlendirmeAraclari", "Teacher", new { id = subAssessmentTool.Id });
         // }
+
+
+
+        // Öğrencinin notlarını JSON formatında dönen metod
+        [HttpGet]
+        public async Task<IActionResult> GetStudentNotes(int studentId)
+        {
+            var notes = _context.questions
+                        .Where(q => q.StudentId == studentId)
+                        .Select(q => new
+                        {
+                            q.Id,
+                            q.LowerRating,
+                            q.Note
+                        })
+                        .ToList();
+            return Json(notes);
+        }
+
+
+        // Güncelleme işlemini gerçekleştiren POST metodu
+        [HttpPost]
+        public async Task<IActionResult> Edit(int studentId, List<Question> updatedQuestions)
+        {
+            var question = await _context.questions
+                                          .Where(q => q.StudentId == studentId)
+                                          .ToListAsync();
+
+            foreach (var questio in question)
+            {
+                var updatedQuestion = updatedQuestions.FirstOrDefault(uq => uq.Id == questio.Id);
+                if (updatedQuestion != null)
+                {
+                    questio.Note = updatedQuestion.Note;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Hesaplamalar","Teacher"); // Güncelleme sonrası yönlendirme
+        }
     }
 }

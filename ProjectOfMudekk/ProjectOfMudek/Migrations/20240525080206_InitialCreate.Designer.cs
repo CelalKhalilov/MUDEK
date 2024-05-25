@@ -12,7 +12,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240514202610_InitialCreate")]
+    [Migration("20240525080206_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -389,6 +389,10 @@ namespace ProjectOfMudek.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContentType")
                         .IsRequired()

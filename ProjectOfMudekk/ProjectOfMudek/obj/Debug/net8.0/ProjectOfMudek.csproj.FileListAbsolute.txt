@@ -714,3 +714,4 @@ C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\bin\Debug\net8.0\ite
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\bin\Debug\net8.0\itext.svg.dll
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\bin\Debug\net8.0\BouncyCastle.Crypto.dll
 C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\90506\Desktop\MUDEK\ProjectOfMudekk\ProjectOfMudek\bin\Debug\net8.0\Newtonsoft.Json.dll

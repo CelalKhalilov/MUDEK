@@ -1,72 +1,63 @@
 ﻿@model Teacher
 @{
-  Layout = "_layoutHome";
+    Layout = "_layoutHome";
 }
-
 
 <link rel="stylesheet" href="~/css/OgretmenStyle.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <section class="wrapper">
-  <div class="form signup">
-    <header>Signup</header>
-    @* @using (Html.BeginForm("Ogretmen", "Home", FormMethod.Post))
-    { *@
-    <form method="POST">
-      <input asp-for="FirstName" type="text" id="FirstName" placeholder="Name" required />
-      <input asp-for="LastName" type="text" id="LastName" placeholder="Surname" required />
-      <input asp-for="Gmail" type="text" id="Gmail" placeholder="Email address" required />
-      <input asp-for="Password" type="password" id="Password" placeholder="Password" required />
-      <div class="checkbox">
-        <input type="checkbox" id="signupCheck" />
-        <label for="signupCheck">I accept all terms & conditions</label>
-      </div>
-      <input type="submit" value="Signup" />
-      @* <button class="btn btn-primary" type="submit" value="Signup">Signup</button> *@
-    </form>
-    @* } *@
-  </div>
+    <div class="form signup">
+        <header>Oturum Aç</header>
+        @using (Html.BeginForm("OgretmenRegister", "Home", FormMethod.Post))
+        {
+            <input asp-for="FirstName" type="text" placeholder="İsim" required />
+            <input asp-for="LastName" type="text" placeholder="Soyisim" required />
+            <input asp-for="Gmail" type="email" placeholder="E-mail" required />
+            <input asp-for="Password" type="password" placeholder="Şifre" required />
+            <div class="checkbox">
+                <input type="checkbox" id="signupCheck" required />
+                <label for="signupCheck">I accept all terms & conditions</label>
+            </div>
+            <input type="submit" value="Oturum Aç" />
+        }
+    </div>
 
+    <div class="form login">
+        <header>Giriş Yap</header>
+        <form method="post" action="/Home/OgretmenLogin">
+            <input type="text" name="Gmail" placeholder="Email address" required />
+            <input type="password" name="Password" placeholder="Password" required />
+            <a href="#">Forgot password?</a>
+            <input type="submit" value="Giriş Yap" />
+        </form>
+    </div>
 
-  <div class="form login">
-    <header>Login</header>
-    <form method="post" action="/Home/OgretmenLogin">
-      <input type="text" name="Gmail" placeholder="Email address" required />
-      <input type="password" name="Password" placeholder="Password" required />
-      <a href="#">Forgot password?</a>
-      <input type="submit" value="Login" />
-    </form>
-  </div>
+    <script>
+        const wrapper = document.querySelector(".wrapper"),
+            signupHeader = document.querySelector(".signup header"),
+            loginHeader = document.querySelector(".login header");
 
-  <script>
-    const wrapper = document.querySelector(".wrapper"),
-      signupHeader = document.querySelector(".signup header"),
-      loginHeader = document.querySelector(".login header");
+        loginHeader.addEventListener("click", () => {
+            wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+            wrapper.classList.remove("active");
+        });
+    </script>
 
-    loginHeader.addEventListener("click", () => {
-      wrapper.classList.add("active");
-    });
-    signupHeader.addEventListener("click", () => {
-      wrapper.classList.remove("active");
-    });
-  </script>
+    @{
+        string errorMessage = TempData["ErrorMessage"] as string;
+    }
 
-  @{
-    string errorMessage = TempData["ErrorMessage"] as string;
-  }
-
-  @if (!string.IsNullOrEmpty(errorMessage))
-  {
-       @* <h1>@errorMessage eeeeee</h1>  *@
-      
-      <script>
-          Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Girdiğiniz Şifre Hatalı Lütfen Tekrar Deneyin",
-              footer: '<a href="#">Why do I have this issue?</a>'
-          });
-      </script>
-}
-
-
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Girdiğiniz Şifre Hatalı Lütfen Tekrar Deneyin",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+        </script>
+    }
 </section>

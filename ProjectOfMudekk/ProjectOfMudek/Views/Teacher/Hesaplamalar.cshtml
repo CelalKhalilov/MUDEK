@@ -218,7 +218,7 @@
                         }
                     }
                 }
-            </tr>            
+            </tr>
             @if (List3 != null && List3.Any())
             {
                 @foreach (var item3 in List3)
@@ -284,7 +284,7 @@
                 }
         </table>
 
-        
+
 
         @Html.Partial("_HesaplamalarStudentForm")
         <hr class="border border-black border-2 opacity-50">
@@ -345,7 +345,7 @@
                                         if(item1.TeacherId == ViewBag.UserId)
                                         {
                                             b = 0;
-                                    
+
                                             @foreach (var item2 in List2)
                                             {
                                                 if(item2.TeacherId == ViewBag.UserId)
@@ -355,14 +355,11 @@
                                                         b++;
                                                     }
                                                 }
-                                                
+
                                             }
-                                            
 
-
-                                            
                                                 a = 0;
-                                            
+
                                             @foreach (var item2 in List2)
                                             {
                                                 if(item2.TeacherId == ViewBag.UserId)
@@ -375,14 +372,17 @@
                                             }
                                         }
 
+                                    }if(@ViewBag.SelectedCategory == null)
+                                    {
+
                                     }
-                                        <th colspan="@b">@ViewBag.SelectedCategory</th>
+                                    else {<th colspan="@b">@ViewBag.SelectedCategory</th>}
                                 }
                             </tr>
                             <tr class="tab-satir-1">
                                 <th>İsim Soyisim</th>
                                 <th>Öğrenci No</th>
-                                
+
                                 @* @foreach (var item1 in List)
                                 { *@
                                     @if (List2 != null && List2.Any())
@@ -398,7 +398,7 @@
                                             }
                                         }
                                     }
-                                   
+
                                     @* } *@
                             </tr>
                             @if (List4 != null && List4.Any())
@@ -408,11 +408,11 @@
                                     if(item4.TeacherId == ViewBag.UserId)
                                     {
                                         <tr class="tab-satir-2">
-                                            <td>@item4.FullName</td>
+                                            <td style="background-color: yellowgreen;">@item4.FullName</td>
                                             <td>@item4.StudentNumber</td>
                                             @* @foreach (var item1 in List)
                                         { *@
-                                            
+
                                             @foreach (var t in List2)
                                             {
                                                 if(t.TeacherId == ViewBag.UserId)
@@ -421,25 +421,25 @@
                                                     {
                                                         if (ViewBag.SelectedCategory == t.Title)
                                                         {
-                                                            <th>
+                                                            <td  style="max-width: 40px;">
                                                                 <input asp-for="@Model[l].StudentId" value="@item4.Id" id="ekle" type="hidden" class="form-control" />
                                                                 <div class="input-field" id="ekle2">
                                                                     <label>Soru @l+1:</label>
                                                                     <input asp-for="@Model[l].LowerRating" value="@t.LowerRating" id="ekle" class="form-control" />
                                                                 </div>
                                                                 <div class="input-field">
-                                                                    <input  asp-for="@Model[l].Note" min="1" max="@t.Point" class="form-control" />
+                                                                    <input asp-for="@Model[l].Note" min="1" max="@t.Point" class="form-control" />
                                                                 </div>
-                                                            </th>
-                                                            
+                                                            </td>
+
                                                             l++;
                                                         }
                                                     }
                                                 }
                                             }
-                                            
+
                                             @* } *@
-                                    
+
                                         </tr>
                                     }
                                 }
@@ -449,13 +449,12 @@
                     </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        @* <button type="button" class="btn btn-primary">Understood</button> *@
                     </div>
                 </div>
             </div>
         </div>
-        @* @{TempData["ShowModal"] = true;} *@
 
         @if (TempData["ShowModal"] != null && (bool)TempData["ShowModal"])
         {
@@ -468,6 +467,8 @@
                 });
             </script>
         }
+
+        @Html.Partial("_HesaplamalarQuestionUpdateForm")
 
 
 
@@ -516,7 +517,6 @@
             <tr class="tab-satir-1">
                 <th>İsim Soyisim</th>
                 <th>Öğrenci No</th>
-                    @{var title = "";}
                     @if (List != null && List.Any())
                     {
                         @foreach (var item1 in List)
@@ -530,24 +530,147 @@
                                         if (item1.Title == item2.Title)
                                         {
                                             <th>@item2.LowerRating</th>
-                                            
+
                                         }
                                     }
                                 }
                             }
-                            title = item1.Title;
                         }
                     }
                 <th>Harf Notu</th>
                 <th>Sil / Güncelle</th>
             </tr>
-            @{var s = 0;
-            var h = 0;}
             @if (List4 != null && List4.Any())
             {
                 @foreach (var item4 in List4)
                 {
-                    if(item4.TeacherId == ViewBag.UserId)
+                    if (item4.TeacherId == ViewBag.UserId)
+                    {
+                        // Ağırlıklandırma ve toplam not değişkenleri
+                        var weightedTotal = 0.0;
+                        var weightSum = 0.0;
+
+                        <tr class="tab-satir-2">
+                            <td style="background-color: yellowgreen;">@item4.FullName</td>
+                            <td style="background-color: rgb(60, 125, 200);">@item4.StudentNumber</td>
+                            @foreach (var item in List)
+                            {
+                                @foreach (var item2 in List2)
+                                {
+                                    if (item.Title == item2.Title)
+                                    {
+                                        var noteFound = false;
+                                        foreach (var item5 in List5)
+                                        {
+                                            if (item4.Id == item5.StudentId)
+                                            {
+                                                if (item5.LowerRating == item2.LowerRating)
+                                                {
+                                                    <td>@item5.Note</td>
+
+                                                    // Not türüne göre ağırlıklandırma
+                                                    double weight = 0.0;
+                                                    @foreach (var itemm in List)
+                                                    {
+                                                        if (item2.Title.ToLower().Contains(@itemm.Title.ToLower()))
+                                                        {
+                                                            weight = itemm.Percentage / 100.0;
+                                                            break;
+                                                        }
+                                                    }
+                                                    @* else if (item2.Title.ToLower().Contains("vize"))
+                                                    {
+                                                        weight = 0.4;
+                                                    }
+                                                    // Diğer not türleri için örneğin "final"
+                                                    else if (item2.Title.ToLower().Contains("final"))
+                                                    {
+                                                        weight = 0.5; // Örneğin, final notu da yüzde 60 etkilesin
+                                                    } *@
+
+                                                    weightedTotal += item5.Note.HasValue ? item5.Note.Value * weight : 0;
+                                                    weightSum += weight;
+
+                                                    noteFound = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (!noteFound)
+                                        {
+                                            <td></td>
+                                        }
+                                    }
+                                }
+                            }
+
+                            @{ // Toplam notu hesaplama "@totalScore.ToString("0.00")"
+                                var totalScore = weightSum > 0 ? weightedTotal : 0;
+                            }
+
+                            @if (90 < totalScore && 100 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">AA</td>
+                            }
+                            else if (85 < totalScore && 89 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">BA</td>
+                            }
+                            else if (80 < totalScore && 84 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">BB</td>
+                            }
+                            else if (75 < totalScore && 79 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">CB</td>
+                            }
+                            else if (70 < totalScore && 74 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">CC</td>
+                            }
+                            else if (60 < totalScore && 69 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">DC</td>
+                            }
+                            else if (50 < totalScore && 59 > totalScore)
+                            {
+                                <td style="background-color: green; color: white;">DD</td>
+                            }
+                            else if (30 < totalScore && 49 > totalScore)
+                            {
+                                <td style="background-color: red; color: white;">FD</td>
+                            }
+                            else if (00 < totalScore && 29 > totalScore)
+                            {
+                                <td style="background-color: red; color: white;">FF</td>
+                            }
+                            else if (00 == totalScore)
+                            {
+                                <td style="background-color: yellow;">GR</td>
+                            }
+
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-danger">Sil</button>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillFormFields('@item4.Id')">Güncelle</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+
+        </table>
+
+    </div>
+</section>
+
+@* @if (List4 != null && List4.Any())
+            {
+                @foreach (var item4 in List4)
+                {
+                    if (item4.TeacherId == ViewBag.UserId)
                     {
                         <tr class="tab-satir-2">
                             <td>@item4.FullName</td>
@@ -558,20 +681,39 @@
                                 {
                                     if (item.Title == item2.Title)
                                     {
+                                        var noteFound = false;
                                         foreach (var item5 in List5)
                                         {
-                                            if(item4.Id == item5.StudentId)
+                                            if (item4.Id == item5.StudentId)
                                             {
-                                            if (item5.LowerRating == item2.LowerRating)
-                                            {
-                                                <td>@item5.Note</td>
+                                                if (item5.LowerRating == item2.LowerRating)
+                                                {
+                                                    <td>@item5.Note</td>
+                                                    noteFound = true;
+                                                    break;
+                                                }
                                             }
-                                            }
+                                        }
+                                        if (!noteFound)
+                                        {
+                                            <td></td>
                                         }
                                     }
                                 }
                             }
-                            @* @foreach (var item2 in List2)
+                            <td></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-danger">Sil</button>
+                                    <button type="button" class="btn btn-warning">Güncelle</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            } *@
+
+@* @foreach (var item2 in List2)
                             {
                                 if(item2.TeacherId == ViewBag.UserId)
                                 {
@@ -583,7 +725,7 @@
                                             {
                                                 @foreach (var item1 in List)
                                                 {
-                                                    
+
                                                     if(item1.Title == item2.Title)
                                                     {
                                                         <td>@item5.Note</td>
@@ -591,29 +733,10 @@
                                                     }
                                                 }
                                             }
-                                            
+
                                         }
-                                        
+
                                     }
                                 }
                                 h++;
                             } *@
-                            @for(var v = 0; v < h-s; v++)
-                            {<td></td>}
-                            <td>
-
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" class="btn btn-danger">Sil</button>
-                                    <button type="button" class="btn btn-warning">Güncelle</button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
-            }
-        </table>
-
-    </div>
-</section>

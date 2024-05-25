@@ -1,0 +1,33 @@
+@model List<Question>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Notes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <form method="POST" action="/Teacher/DegerlendirmeAraclariGuncelle">
+                    @for (int i = 1; i < 5; i++)
+                    {
+                        <div class="mb-3">
+                            <label asp-for="@Model[i].Note" class="col-form-label">Not:</label>
+                            <input type="hidden" asp-for="@Model[i].Id" />
+                            <input type="hidden" asp-for="@Model[i].StudentId" />
+                            <input asp-for="@Model[i].Note" class="form-control" />
+                        </div>
+                    }
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

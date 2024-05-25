@@ -1,10 +1,10 @@
 using Entities.Entities.Models;
-using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using ProjectOfMudek.Context;
-using ProjectOfMudek.Models;
-using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 
@@ -13,6 +13,7 @@ namespace ProjectOfMudek.Controllers
     public class HomeController : Controller
     {
         private readonly MudekContext _context;
+        private static Dictionary<string, string> verificationCodes = new Dictionary<string, string>();
 
         public HomeController(MudekContext context)
         {
@@ -21,9 +22,8 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Index()
         {
-            
-            var a = _context.academicUnits.ToList();
-            return View(a);
+            var academicUnits = _context.academicUnits.ToList();
+            return View(academicUnits);
         }
 
         public IActionResult Ogretmen()
@@ -31,10 +31,36 @@ namespace ProjectOfMudek.Controllers
             return View();
         }
 
-        public IActionResult Dogrulama()
+        public IActionResult Dogrulama(string email)
         {
+            ViewBag.Email = email;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult OgretmenRegister(Teacher teacher)
+        {
+            if (ModelState.IsValid)
+            {
+                // Rastgele 6 basamaklı kod oluştur
+                string randomCode = new Random().Next(100000, 999999).ToString();
+
+                // Kodu kullanıcıya e-posta ile gönder
+                SendVerificationCode(teacher.Gmail, randomCode);
+
+                // Doğrulama kodunu dictionary'ye ekle
+                verificationCodes[teacher.Gmail] = randomCode;
+
+                // Öğretmen bilgilerini geçici olarak sakla
+                TempData["Teacher"] = JsonConvert.SerializeObject(teacher);
+                TempData["VerificationEmail"] = teacher.Gmail;
+
+                // Doğrulama sayfasına yönlendir
+                return RedirectToAction("Dogrulama", new { email = teacher.Gmail });
+            }
+            return View("Ogretmen");
+        }
+
         [HttpPost]
         public IActionResult OgretmenLogin(Teacher teacher)
         {
@@ -43,129 +69,70 @@ namespace ProjectOfMudek.Controllers
             {
                 int userId = user.Id;
                 HttpContext.Session.SetInt32("Id", userId);
-                // Başarılı giriş, "/Admin/Index" sayfasına yönlendir
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 return RedirectToAction("Index", "Teacher");
-
-                
             }
             else
             {
-                // Hatalı giriş, sayfada bir hata mesajı gösterilebilir veya farklı bir işlem yapılabilir
-                // ViewBag.Error = "Invalid username or password.";
-                TempData["ErrorMessage"] = "Invalid username or password..";
+                TempData["ErrorMessage"] = "Invalid username or password.";
                 return RedirectToAction("Ogretmen");
             }
         }
 
         public IActionResult Logout()
         {
-            // Oturumu temizle
             HttpContext.Session.Clear();
-
-            // Login sayfasına yönlendir
             return RedirectToAction("Ogretmen", "Home");
         }
 
-
         [HttpPost]
-        public IActionResult Ogretmen(Teacher teacher)
+        public IActionResult Dogrulama(string email, string code)
         {
-            if (ModelState.IsValid)
+            if (VerifyCode(email, code))
             {
-                _context.Teachers.Add(teacher);
-                _context.SaveChanges();
-                return RedirectToAction("Dogrulama", "Home");
+                if (TempData["Teacher"] != null)
+                {
+                    var teacher = JsonConvert.DeserializeObject<Teacher>(TempData["Teacher"].ToString());
+                    _context.Teachers.Add(teacher);
+                    _context.SaveChanges();
+
+                    HttpContext.Session.SetInt32("Id", teacher.Id);
+                    HttpContext.Session.SetString("IsLoggedIn", "true");
+
+                    return RedirectToAction("Ogretmen", "Home");
+                }
+                return RedirectToAction("Success");
             }
-            return View();
+            else
+            {
+                ViewBag.Email = email;
+                ViewBag.Error = "Kod yanlış, tekrar deneyin.";
+                return View();
+            }
         }
 
-        // =================================================================
+        private void SendVerificationCode(string email, string code)
+        {
+            string senderEmail = "9221118072@samsun.edu.tr";
+            string senderPassword = "Şifre gir";
 
-        // private static Dictionary<string, string> verificationCodes = new Dictionary<string, string>();
+            using (MailMessage message = new MailMessage(senderEmail, email))
+            {
+                message.Subject = "Doğrulama Kodu";
+                message.Body = $"Oturum açma için doğrulama kodunuz: {code}";
 
-        // Ana sayfa - Gmail giriş formu
-        // [HttpGet]
-        // public ActionResult Index()
-        // {
-        //     return View();
-        // }
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
+                    smtpClient.Send(message);
+                }
+            }
+        }
 
-        // [HttpPost]
-        // public ActionResult Index(string email)
-        // {
-        //     // Rastgele 6 basamaklı kod oluştur
-        //     string randomCode = new Random().Next(100000, 999999).ToString();
-
-        //     // Kodu kullanıcıya e-posta ile gönder
-        //     SendVerificationCode(email, randomCode);
-
-        //     // Store the verification code in the dictionary
-        //     verificationCodes[email] = randomCode;
-
-        //     // Oturum açma sayfasına yönlendir
-        //     return RedirectToAction("Login", new { email = email });
-        // }
-
-        // // Oturum açma sayfası - Kodu girme formu
-        // [HttpGet]
-        // public ActionResult Login(string email)
-        // {
-        //     ViewBag.Email = email;
-        //     return View();
-        // }
-
-        // public IActionResult Success()
-        // {
-        //     return View();
-        // }
-        // [HttpPost]
-        // public ActionResult Login(string email, string code)
-        // {
-        //     // Girilen kodu doğrula
-        //     if (VerifyCode(email, code))
-        //     {
-        //         // return Content("Başarıyla oturum açıldı!");
-        //         return RedirectToAction("Success");
-        //     }
-        //     else
-        //     {
-        //         return Content("Kod yanlış, tekrar deneyin.");
-        //     }
-        // }
-
-        // private void SendVerificationCode(string email, string code)
-        // {
-        //     string senderEmail = "9221118072@samsun.edu.tr"; // Gönderen Gmail adresi
-        //     string senderPassword = "Cll353180?"; // Gönderen Gmail şifresi
-
-        //     using (MailMessage message = new MailMessage(senderEmail, email))
-        //     {
-        //         message.Subject = "Doğrulama Kodu";
-        //         message.Body = $"Oturum açma için doğrulama kodunuz: {code}";
-
-        //         using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
-        //         {
-        //             smtpClient.EnableSsl = true;
-        //             smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
-        //             smtpClient.Send(message);
-        //         }
-        //     }
-        // }
-
-        // private bool VerifyCode(string email, string userCode)
-        // {
-        //     // Dictionary'den eşleşen kodu al
-        //     string code;
-        //     if (verificationCodes.TryGetValue(email, out code))
-        //     {
-        //         return userCode == code;
-        //     }
-        //     else
-        //     {
-        //         return false;
-        //     }
-        // }
-        
+        private bool VerifyCode(string email, string userCode)
+        {
+            return verificationCodes.TryGetValue(email, out string code) && userCode == code;
+        }
     }
 }
