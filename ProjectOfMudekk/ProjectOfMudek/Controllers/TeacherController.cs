@@ -908,5 +908,64 @@ namespace ProjectOfMudek.Controllers
 
 
 
+        public IActionResult Sohbet([FromQuery] int senderId)
+        {
+            System.Console.WriteLine("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL", senderId);
+            HttpContext.Session.SetInt32("SenderId", senderId); // Session'a kaydediyoruz
+            ViewBag.SenderId = senderId;
+
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
+            ViewBag.message = _context.messages.ToList();
+            return View();
+        }
+
+        
+
+        [HttpPost]
+        public IActionResult Sohbet(string chat,int teacherId)
+        {
+            var senderId = HttpContext.Session.GetInt32("SenderId"); // Session'dan çekiyoruz
+            
+            if (string.IsNullOrEmpty(chat))
+            {
+                return BadRequest("Message content cannot be empty.");
+            }
+
+            var message = new Message
+            {
+                Chat = chat,
+                TeacherId = teacherId,
+                SenderId = senderId ?? 0,
+                SentDate = DateTime.Now
+            };
+
+            _context.messages.Add(message);
+            _context.SaveChanges();
+
+            return RedirectToAction("Sohbet","Teacher",new { senderId = senderId });
+        }
+
+
+        public IActionResult Kisiler()
+        {
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            var teach = _context.Teachers.ToList();
+            ViewBag.teach = teach;
+            ViewBag.message = _context.messages.ToList();
+            return View();
+        }
+
+        
+
+
+        
+
+
+
     }
 }

@@ -106,6 +106,7 @@ namespace ProjectOfMudek.Controllers
             else
             {
                 ViewBag.Email = email;
+                // TempData["ErrorMessage"] = "Kod yanlış, tekrar deneyin.";
                 ViewBag.Error = "Kod yanlış, tekrar deneyin.";
                 return View();
             }
@@ -114,7 +115,7 @@ namespace ProjectOfMudek.Controllers
         private void SendVerificationCode(string email, string code)
         {
             string senderEmail = "9221118072@samsun.edu.tr";
-            string senderPassword = "Şifre gir";
+            string senderPassword = "şifre gir";
 
             using (MailMessage message = new MailMessage(senderEmail, email))
             {

@@ -22,6 +22,14 @@
             <header>
                 <i class="bx bxs-check-shield"></i>
             </header>
+            @if (ViewBag.Error != null)
+            {
+                <div style="background-color: red;" class="alert alert-danger " role="alert">
+                    <div>
+                        @ViewBag.Error
+                    </div>
+                </div>
+            }
             <h4>Doğrulama Kodunu Girin</h4>
 
             <input type="hidden" name="email" value="@ViewBag.Email" />
@@ -31,12 +39,22 @@
             <button type="submit">Oturum Aç</button>
         </div>
     }
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger">
-            @ViewBag.Error
-        </div>
+    
+    @* @{
+        string errorMessage = TempData["ErrorMessage"] as string;
     }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Girdiğiniz Şifre Hatalı Lütfen Tekrar Deneyin",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+        </script>
+    } *@
 </body>
 
 </html>

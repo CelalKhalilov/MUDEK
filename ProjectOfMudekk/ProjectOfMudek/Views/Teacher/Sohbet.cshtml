@@ -1,0 +1,189 @@
+@model Message
+
+@{
+    Layout = "_LayoutTeacher";
+}
+
+@{
+    var TeacherList = ViewBag.teach as List<Teacher>;
+    var MessageList = ViewBag.message as List<Message>;
+}
+
+<link rel="stylesheet" href="~/css/Sohbet.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Sohbet</span>
+                </div>
+            </div>
+        </form>
+        <style>
+            .vertical-line {
+                border-left: 2px solid black; /* Çizginin kalınlığı ve rengi */
+                height: 40px; /* Çizginin yüksekliği */
+                margin: 0 20px; /* Çizginin etrafındaki boşluk */
+            }
+        </style>
+
+        @foreach (var item in TeacherList)
+        {
+            if(item.Id == ViewBag.SenderId)
+            {
+                <div style="margin-top: 20px;" class="card rounded-5 rounded-botton-0">
+                    <div class="card-body d-flex align-items-center">
+                        <a href="/Teacher/Kisiler"><i style="font-size: 25px;" class='bx bx-arrow-back'></i></a>
+                        <div class="vertical-line"></div>
+                        @if (string.IsNullOrEmpty(item.ProfileImageBase64))
+                        {
+                            <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                alt="Varsayılan Profil Resmi">
+
+                        }
+                        else
+                        {
+                            <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                src="data:image/jpeg;base64,@item.ProfileImageBase64" alt="Profil Resmi">
+                        }
+                        <div style="margin-left: 10px;" class="flex-grow-1 ml-3 fw-bold">
+                            @item.FirstName @item.LastName
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <style>
+            .kaydirilabilir {
+                height: 350px;
+                overflow-y: scroll;
+                /* Dikey kaydırma */
+                overflow-x: hidden;
+                /* Yatay kaydırmayı gizle */
+                background-image: url('https://upload.wikimedia.org/wikipedia/tr/archive/c/c6/20230410201834%21Samsun_%C3%9Cniversitesi_logo.png');
+                /* Arka plan resmi */
+                background-size: 300px;
+                /* Resmin kapsama alanı */
+                background-position: center;
+                /* Resmi ortalayın */
+                background-repeat: no-repeat;
+                /* Resmin tekrarlanmaması */
+            }
+
+            .kaydirilabilir::-webkit-scrollbar {
+                width: 0px;
+                background: transparent;
+                /* Arka plan renginin gizli kaydırma çubuğunu etkilememesini sağlar */
+            }
+
+            .kaydirilabilir {
+                -ms-overflow-style: none;
+                /* IE ve Edge için */
+                scrollbar-width: none;
+                /* Firefox için */
+            }
+        </style>
+
+        <div id="kaydirilabilirDiv" style="height: 350px; background-color: rgba(67, 64, 64, 0.46); margin-top: 20px;"
+            class="alert alert-light kaydirilabilir" role="alert">
+
+            @foreach (var item in MessageList)
+            {
+                @foreach (var item2 in TeacherList)
+                {
+                    if (ViewBag.UserId == item2.Id)
+                    {
+                        if (ViewBag.UserId == item.TeacherId)
+                        {
+                        if (ViewBag.senderId == item.SenderId)
+                        {
+                            <div style="width: 400px; margin-left: auto; margin-right: 0; background-color: rgb(172, 236, 172);" class="alert alert-info" role="alert">
+                                <div class="toast-header">
+
+                                    @if (string.IsNullOrEmpty(item2.ProfileImageBase64))
+                                    {
+                                        <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                            src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                            alt="Varsayılan Profil Resmi">
+
+                                    }
+                                    else
+                                    {
+                                        <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                            src="data:image/jpeg;base64,@item2.ProfileImageBase64" alt="Profil Resmi">
+                                    }
+
+                                    <strong style="margin-left: 10px;" class="me-auto">@item2.FirstName @item2.LastName</strong>
+                                    <small>@item.SentDate</small>
+                                </div>
+                                <hr>
+                                @item.Chat
+                            </div>
+                        }
+                        }
+                    }
+                    else if (ViewBag.SenderId == item2.Id)
+                    {
+                        if (ViewBag.SenderId == item.TeacherId)
+                        {
+                        if (ViewBag.UserId == item.SenderId)
+                        {
+                            <div style="width: 400px; background-color: white;" class="alert alert-info" role="alert">
+                                <div class="toast-header">
+
+                                    @if (string.IsNullOrEmpty(item2.ProfileImageBase64))
+                                    {
+                                        <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                            src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                            alt="Varsayılan Profil Resmi">
+
+                                    }
+                                    else
+                                    {
+                                        <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                            src="data:image/jpeg;base64,@item2.ProfileImageBase64" alt="Profil Resmi">
+                                    }
+
+                                    <strong style="margin-left: 10px;" class="me-auto">@item2.FirstName @item2.LastName</strong>
+                                    <small>@item.SentDate</small>
+                                </div>
+                                <hr>
+                                @item.Chat
+                            </div>
+                        }
+                        }
+                    }
+                }
+            }
+        </div>
+
+        <script>
+            // Sayfa yüklendiğinde kaydırma çubuğunu en sona taşı
+            window.onload = function () {
+                var kaydirilabilirDiv = document.getElementById("kaydirilabilirDiv");
+                kaydirilabilirDiv.scrollTop = kaydirilabilirDiv.scrollHeight;
+            };
+        </script>
+
+        <form method="post">
+            <div style="margin-left: 1px; " class="input-group mb-3">
+                <input asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
+                <input asp-for="SenderId" id="SenderId" value="@ViewBag.SenderId" type="hidden">
+                <input type="text" asp-for="Chat" id="Chat" class="form-control" placeholder="Mesaj yaz">
+                <button style="margin-right: 1px;" class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                    <i class='bx bx-send'></i>
+                </button>
+            </div>
+        </form>
+        
+
+
+    </div>
+</section>

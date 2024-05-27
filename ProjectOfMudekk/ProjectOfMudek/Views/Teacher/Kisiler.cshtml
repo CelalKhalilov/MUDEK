@@ -1,0 +1,58 @@
+@{
+    Layout = "_LayoutTeacher";
+}
+
+@{
+    var TeacherList = ViewBag.teach as List<Teacher>;
+    var MessageList = ViewBag.message as List<Message>;
+}
+
+<link rel="stylesheet" href="~/css/Sohbet.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Kişiler</span>
+                </div>
+            </div>
+        </form>
+
+        
+
+        @foreach (var item in TeacherList)
+        {
+            if(item.Id != ViewBag.UserId)
+            {
+                <div style="margin-top: 20px;" class="card">
+                    <div class="card-body d-flex align-items-center">
+                        @if (string.IsNullOrEmpty(item.ProfileImageBase64))
+                        {
+                            <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                                alt="Varsayılan Profil Resmi">
+
+                        }
+                        else
+                        {
+                            <img style="width: 35px; height: 35px; object-fit: cover; border-radius: 50%;"
+                                src="data:image/jpeg;base64,@item.ProfileImageBase64" alt="Profil Resmi">
+                        }
+                        <div style="margin-left: 10px;" class="flex-grow-1 ml-3 fw-bold">
+                            @item.FirstName @item.LastName
+                        </div>
+                        <button type="button" class="btn btn-outline-success ml-auto" onclick="window.location.href = '/Teacher/Sohbet?senderId=@item.Id';">Mesaj Gönder</button>
+                    </div>
+                </div>
+            }
+        }
+
+
+
+    </div>
+</section>

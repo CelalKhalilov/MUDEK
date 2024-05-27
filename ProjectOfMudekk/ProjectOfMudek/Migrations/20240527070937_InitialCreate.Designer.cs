@@ -12,7 +12,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240525080206_InitialCreate")]
+    [Migration("20240527070937_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -282,6 +282,34 @@ namespace ProjectOfMudek.Migrations
                     b.ToTable("lessons");
                 });
 
+            modelBuilder.Entity("Entities.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Chat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("messages");
+                });
+
             modelBuilder.Entity("Entities.Models.Period", b =>
                 {
                     b.Property<int>("Id")
@@ -465,6 +493,15 @@ namespace ProjectOfMudek.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Models.Message", b =>
+                {
+                    b.HasOne("Entities.Entities.Models.Teacher", null)
+                        .WithMany("Messages")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Entities.Models.Period", b =>
                 {
                     b.HasOne("Entities.Models.Department", null)
@@ -508,6 +545,8 @@ namespace ProjectOfMudek.Migrations
                     b.Navigation("Forms");
 
                     b.Navigation("LearningOutcomes");
+
+                    b.Navigation("Messages");
 
                     b.Navigation("Students");
 

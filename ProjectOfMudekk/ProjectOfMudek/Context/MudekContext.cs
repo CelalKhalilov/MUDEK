@@ -27,6 +27,7 @@ namespace ProjectOfMudek.Context
         public DbSet<Question> questions { get; set; }
         public DbSet<Form> forms { get; set; }
         public DbSet<UploadedFile> uploadedFiles { get; set; }
+        public DbSet<Message> messages { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
