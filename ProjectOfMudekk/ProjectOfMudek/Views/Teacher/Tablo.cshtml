@@ -5,9 +5,6 @@
     Layout = "_LayoutTeacher";
 }
 
-
-
-
 @{
     var outcomesList = ViewBag.OutcomesList as List<LearningOutcomes>;
     var LessonList = ViewBag.lessons as List<Lesson>;
@@ -55,11 +52,10 @@
             }
         </div>
 
-
-
         <div class="form first">
             <div class="details personal">
                 <span class="title">Dersin Öğrenim Çıktıları</span>
+
                 <form method="post">
                     <div class="fields">
                         <input  asp-for="TeacherId" id="TeacherId" value="@ViewBag.UserId" type="hidden">
@@ -75,32 +71,6 @@
                             <button type="submit" class="btn btn-success">Ekle</button>
                         </div>
                     </div>
-
-                    <div id="liveAlertPlaceholder"></div>
-                    <i id="liveAlertBtn" class="bi bi-exclamation-octagon"></i>
-                    <!-- <button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button> -->
-
-                    <script>
-                        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-                        const appendAlert = (message, type) => {
-                            const wrapper = document.createElement('div')
-                            wrapper.innerHTML = [
-                                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-                                `   <div>${message}</div>`,
-                                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-                                '</div>'
-                            ].join('')
-
-                            alertPlaceholder.append(wrapper)
-                        }
-
-                        const alertTrigger = document.getElementById('liveAlertBtn')
-                        if (alertTrigger) {
-                            alertTrigger.addEventListener('click', () => {
-                                appendAlert('Nice, you triggered this alert message!', 'success')
-                            })
-                        }
-                    </script>
                 </form>
 
                 <script>
@@ -188,31 +158,9 @@
                         }
                     }
 
-                    @* <tr>
-                    <th>Ö - 1</th>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    <button type="button" class="btn btn-danger">
-                    <lord-icon src="https://cdn.lordicon.com/drxwpfop.json" trigger="hover"
-                    stroke="bold" colors="primary:#121331,secondary:#ffffff"
-                    style="width:20px;height:20px">
-                    </lord-icon>
-                    </button>
-                    </td>
-                    <td><button type="button" class="btn btn-info">
-                    <lord-icon src="https://cdn.lordicon.com/ghhwiltn.json" trigger="hover"
-                    stroke="bold" style="width:20px;height:20px">
-                    </lord-icon>
-                    </button>
-                    </td>
-                    </tr> *@
-
-
                 </table>
             </div>
         </div>
-        @* </form> *@
 
         <script>
             function isNumberKey(evt) {
@@ -255,7 +203,7 @@
 
                     <table class="table table-bordered border-primary ">
                         <tr class="p-tr">
-                            <th class=""><span class="btn badge text-bg-success">Kaydet</span></th>
+                            <th class=""></th>
                             <th class="p-th2">P - 1</th>
                             <th class="p-th3">P - 2</th>
                             <th class="p-th4">P - 3</th>
@@ -315,35 +263,35 @@
                             </tr>
                             <tr>
                                 <th class="p-th">P - 1</th>
-                                <td></td>
+                                <td>Matematik, fen bilimleri, mühendislik alanlarında bilgi kullanımı</td>
                                 <td> Matematik, fen bilimleri ve ilgili mühendislik disiplinine özgü konularda
                                     yeterli bilgi birikimi; bu alanlardaki kurumsal ve uygulamalı bilgileri,
                                     karmaşık mühendislik problemlerinde kullanabilme becerisi.</td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 2</th>
-                                <td></td>
+                                <td>Formüle etme, modelleme, çözme</td>
                                 <td> Karmaşık mühendislik problemlerini saptama, tanımlama, formüle etme ve çözme
                                     becerisi; bu amaçla uygun analiz ve modelleme yöntemlerini seçme ve uygulama
                                     becerisi.</td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 3</th>
-                                <td></td>
-                                <td> Karmaşık bir sistemi, süreci, cihazı veya ürünü gerçekçi kısıtlar ve koşullar
+                                <td>Süreç ve sistemleri analiz etme, tasarlama</td>
+                                <td>Karmaşık bir sistemi, süreci, cihazı veya ürünü gerçekçi kısıtlar ve koşullar
                                     altında, belirli gereksinimleri karşılayacak şekilde tasarlama becerisi; bu
                                     amaçla modern tasarım yöntemlerini uygulama becerisi.</td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 4</th>
-                                <td></td>
+                                <td>Bilgi teknolojileri kullanımı</td>
                                 <td>Mühendislik uygulamalarında karşılaşılan karmaşık problemlerin analizi ve çözümü
                                     için gerekli olan modern teknik ve araçları geliştirme, seçme ve kullanma
                                     becerisi; bilişim teknolojilerini etkin bir şekilde kullanma becerisi.</td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 5</th>
-                                <td></td>
+                                <td>Deney tasarımı, analizi, sonuçlandırılması veve yorumlama</td>
                                 <td>Karmaşık mühendislik problemlerinin veya disipline özgü araştırma konularının
                                     incelenmesi için deney tasarlama, deney yapma, veri toplama, sonuçları analiz
                                     etme ve yorumlama becerisi.
@@ -351,14 +299,14 @@
                             </tr>
                             <tr>
                                 <th class="p-th">P - 6</th>
-                                <td></td>
+                                <td>Bireysel ve takım içi çalışma</td>
                                 <td>Disiplin içi ve çok disiplinli takımlarda etkin biçimde çalışma becerisi;
                                     bireysel çalışma becerisi.
                                 </td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 7</th>
-                                <td></td>
+                                <td>Sözlü ve yazılı iletişim</td>
                                 <td>Türkçe sözlü ve yazılı etkin iletişim kurma becerisi; en az bir yabancı dil
                                     bilgisi; etkili rapor yazma ve yazılı raporları anlama, tasarım ve üretim
                                     raporları hazırlayabilme, etkin sunum yapabilme, açık ve anlaşılır talimat
@@ -367,21 +315,21 @@
                             </tr>
                             <tr>
                                 <th class="p-th">P - 8</th>
-                                <td></td>
+                                <td>Yaşam boyu öğrenme farkındalığı</td>
                                 <td>Yaşam boyu öğrenmenin gerekliliği bilinci; bilgiye erişebilme, bilim ve
                                     teknolojideki gelişmeleri izleme ve kendini sürekli yenileme becerisi.
                                 </td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 9</th>
-                                <td></td>
+                                <td>Etik farkındalığı</td>
                                 <td>Etik ilkelerine uygun davranma, mesleki ve etik sorumluluk bilinci; mühendislik
                                     uygulamalarında kullanılan standartlar hakkında bilgi
                                 </td>
                             </tr>
                             <tr>
                                 <th class="p-th">P - 10</th>
-                                <td></td>
+                                <td>İş hayatı, yenilikçilik ve sürdürülebilirlik hakkında farkındalık</td>
                                 <td>Proje yönetimi, risk yönetimi ve değişiklik yönetimi gibi, iş hayatındaki
                                     uygulamalar hakkında bilgi; girişimcilik, yenilikçilik hakkında farkındalık;
                                     sürdürülebilir kalkınma hakkında bilgi.
@@ -389,7 +337,7 @@
                             </tr>
                             <tr>
                                 <th class="p-th">P - 11</th>
-                                <td></td>
+                                <td>Sağlık, çevre, güvenlik, ve hukuksal sonuçları hakkında farkındalık</td>
                                 <td>Mühendislik uygulamalarının evrensel ve toplumsal boyutlarda sağlık, çevre ve
                                     güvenlik üzerindeki etkileri ve çağın mühendislik alanına yansıyan sorunları
                                     hakkında bilgi; mühendislik çözümlerinin hukuksal sonuçları konusunda
@@ -398,7 +346,7 @@
                             </tr>
                             <tr>
                                 <th class="p-th">P - 12</th>
-                                <td></td>
+                                <td>Kodlama, Doğrulama, Sınama</td>
                                 <td>Kodlama, doğrulama, sınama ve hata ayıklama konularını da içerecek şekilde
                                     karmaşık yazılım sistemleri geliştirebilmek.</td>
                             </tr>

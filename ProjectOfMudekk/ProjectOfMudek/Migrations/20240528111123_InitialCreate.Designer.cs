@@ -12,7 +12,7 @@ using ProjectOfMudek.Context;
 namespace ProjectOfMudek.Migrations
 {
     [DbContext(typeof(MudekContext))]
-    [Migration("20240527070937_InitialCreate")]
+    [Migration("20240528111123_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -293,6 +293,9 @@ namespace ProjectOfMudek.Migrations
                     b.Property<string>("Chat")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
 
                     b.Property<int>("SenderId")
                         .HasColumnType("int");

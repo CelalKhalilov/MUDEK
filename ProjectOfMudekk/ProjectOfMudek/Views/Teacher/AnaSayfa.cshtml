@@ -1,0 +1,55 @@
+@{
+    Layout = "_LayoutTeacher";
+}
+
+@{
+    var TeacherList = ViewBag.teach as List<Teacher>;
+    var MessageList = ViewBag.message as List<Message>;
+    var FormList = ViewBag.forms as List<Form>;
+    var LessonList = ViewBag.lessons as List<Lesson>;
+}
+
+<link rel="stylesheet" href="~/css/Sohbet.css">
+
+<section class="home">
+    <div class="container">
+        <header><img style="max-width: 150px;"
+                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        </header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Ana Sayfa</span>
+                </div>
+            </div>
+        </form>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in FormList)
+            {
+                @foreach (var item2 in LessonList)
+                {
+                    if (item.Lesson == item2.Id.ToString())
+                    {
+                        <div class="col">
+                            <div class="card border-success mb-3" style="max-width: 18rem; background-color: rgb(239, 237, 237);">
+                                <div class="card-header bg-transparent border-success"><strong>@item2.LessonName</strong></div>
+                                <div class="card-body text-success">
+                                    <h5 class="card-title">Öğretmen: </h5>
+                                    <h5 class="card-title">Bölüm: </h5>
+                                    <h5 class="card-title">Ders Kodu: <strong>@item.LessonCode</strong></h5>
+                                </div>
+                                <div style="text-align: center;" class="card-footer bg-transparent border-success">
+                                    <button type="button" class="btn btn-outline-primary">Düzenle</button>
+                                    <button type="button" class="btn btn-outline-success">Onayla</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+    </div>
+</section>

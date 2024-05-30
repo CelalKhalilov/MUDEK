@@ -115,7 +115,7 @@ namespace ProjectOfMudek.Controllers
         private void SendVerificationCode(string email, string code)
         {
             string senderEmail = "9221118072@samsun.edu.tr";
-            string senderPassword = "şifre gir";
+            string senderPassword = "Şifre Gir";
 
             using (MailMessage message = new MailMessage(senderEmail, email))
             {

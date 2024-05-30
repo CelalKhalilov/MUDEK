@@ -1,9 +1,5 @@
 @model AssessmentTool
 
-
-<!-- model1 ve model2 dinamik nesnelerdir ve herhangi bir modele sahip olabilir -->
-
-
 @{
     Layout = "_LayoutTeacher";
 }
@@ -12,17 +8,15 @@
     var List = ViewBag.assessmentTools as List<AssessmentTool>;
     var List2 = ViewBag.subAssessmentTools as List<SubAssessmentTool>;
     var sayi = 0;
-    var i = 1;
-    var c = 1;
+    var i = 0;
 }
-
 
 <link rel="stylesheet" href="~/css/DegerlendirmeAraclariStyle.css">
 
 <section class="home">
     <div class="container">
-        <header><img style="max-width: 150px;"
-                src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
+        <header>
+            <img style="max-width: 150px;" src="https://samsun.edu.tr/wp-content/uploads/2019/09/samsun-universitesi-mavi-logo.png" alt="">
         </header>
 
         <form>
@@ -37,77 +31,16 @@
 
         @Html.Partial("_DegerlendirmeAracıForm")
 
-        @* <form method="post">
-        <div class="form first">
-        <div class="details personal">
-        <span class="title">Değerlendirme Aracı</span>
-
-        <div class="fields">
-        <div class="input-field">
-        <label>Başlık</label>
-        <input id="Title" asp-for="Title" placeholder="Başlık Giriniz..." required>
-        </div>
-        <div class="input-field">
-        <label>%</label>
-        <input id="Percentage" asp-for="Percentage" type="number" max="100" min="1"
-        placeholder="Yüzede Giriniz..." required>
-        </div>
-        <div class="input-field">
-        <label>Ekle</label>
-        <button type="submit" class="btn btn-success">Ekle</button>
-        </div>
-        </div>
-        </div>
-        </div>
-        </form> *@
-
         <hr class="border border-black border-2 opacity-50">
 
-
-
-
         @Html.Partial("_AltDegerlendirmeAracıForm")
-        @* <form action="#">
-        <div class="form first">
-        <div class="details personal">
-        <span class="title">Alt Değerlendirme Aracı</span>
-
-        <div class="fields">
-        <form action="#">
-        <div class="input-field">
-        <label>Başlık</label>
-        <select id="abc" required>
-        <option disabled selected>Başlık Seçiniz...</option>
-        @foreach (var item in List)
-        {
-        <option>@item.Title</option>
-        }
-        </select>
-        </div>
-        <div class="input-field">
-        <label>Not</label>
-        <input id="cba" type="number" max="100" min="1" placeholder="Notu Giriniz..." required>
-        </div>
-        <div class="input-field">
-        <label>Ekle</label>
-        <button type="submit" class="btn btn-success">Ekle</button>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-        </form> *@
-
 
         <script>
-            // Güncelle butonuna tıklandığında çalışacak fonksiyon
             function fillFormFields(id, title, percentage) {
-                // Modal içindeki form alanlarını bul
                 var IdInput = document.getElementById('deger-id');
                 var titleInput = document.getElementById('recipient-name');
                 var percentageInput = document.getElementById('percentage');
 
-                // Form alanlarına ilgili değerleri yerleştir
                 IdInput.value = id;
                 titleInput.value = title;
                 percentageInput.value = percentage;
@@ -137,40 +70,9 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
-        @* <div class="modal fade" id="exampleModal_2" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Güncelle</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <form method="POST" action="/Teacher/DegerlendirmeAraclariGuncelle">
-        <input type="hidden" asp-for="Id" id="deger-id" />
-        <div class="mb-3">
-        <label for="recipient-name" class="col-form-label">Başlık:</label>
-        <input type="text" asp-for="Title" class="form-control" id="recipient-name">
-        </div>
-        <div class="mb-3">
-        <label for="recipient-name" class="col-form-label">Yüzde(%):</label>
-        <input type="number" asp-for="Percentage" class="form-control" id="percentage">
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Kaydet</button>
-        </div>
-        </form>
-        </div>
-
-        </div>
-        </div>
-        </div> *@
-
-        
 
         <table class="table table-bordered border-primary">
             @foreach (var item in List)
@@ -194,12 +96,11 @@
                 if (item.TeacherId == ViewBag.UserId)
                 {
                     i = 1;
+                    var c = List2.Count(sub => sub.TeacherId == ViewBag.UserId && sub.Title == item.Title); // Alt değerlendirme aracı sayısını hesapla
+
                     string errorMessage = TempData["ErrorMessage"] as string;
                     @if (!string.IsNullOrEmpty(errorMessage))
                     {
-                        @* <tr>
-                            <td colspan="5" class="text-danger">@errorMessage eeeeee</td>
-                        </tr> *@
                         <script>
                             Swal.fire({
                                 icon: "error",
@@ -222,7 +123,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm">Sil</button>
                                     <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal"
-                                        onclick="fillFormFields('@item.Id', '@item.Title', '@item.Percentage')">Göncelle</button>
+                                        onclick="fillFormFields('@item.Id', '@item.Title', '@item.Percentage')">Güncelle</button>
                                 </div>
                             </form>
                         </th>
@@ -230,30 +131,26 @@
 
                     foreach (var item2 in List2)
                     {
-                        if (item2.TeacherId == ViewBag.UserId)
+                        if (item2.TeacherId == ViewBag.UserId && item.Title == item2.Title)
                         {
-                            if (item.Title == item2.Title)
-                            {
-                                <tr>
-                                    <th class="alt-deg">Alt - D #@i :</th>
-                                    <td>@item2.LowerRating</td>
-                                    <td>@item2.Point</td>
-                                    <td></td>
-                                    <td class="alt-form">
-                                        <form method="post" action="/Teacher/AltDegerlendirmeAraclariDelete">
-                                            <input type="hidden" name="AltDegerlendirmeAraclariId" value="@item2.Id">
-                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal_2"
-                                                    onclick="fillFormFields_2('@item2.Id', '@item2.Title','@item2.LowerRating', '@item2.Point')">Göncelle</button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
-                                i++;
-
-                            }
+                            <tr>
+                                <th class="alt-deg">Alt - D #@i :</th>
+                                <td>@item2.LowerRating</td>
+                                <td>@item2.Point</td>
+                                <td></td>
+                                <td class="alt-form">
+                                    <form method="post" action="/Teacher/AltDegerlendirmeAraclariDelete">
+                                        <input type="hidden" name="AltDegerlendirmeAraclariId" value="@item2.Id">
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal_2"
+                                                onclick="fillFormFields_2('@item2.Id', '@item2.Title', '@item2.LowerRating', '@item2.Point')">Güncelle</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            i++;
                         }
                     }
                 }

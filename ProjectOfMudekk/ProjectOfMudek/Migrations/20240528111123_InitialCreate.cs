@@ -183,7 +183,8 @@ namespace ProjectOfMudek.Migrations
                     Chat = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TeacherId = table.Column<int>(type: "int", nullable: false),
-                    SenderId = table.Column<int>(type: "int", nullable: false)
+                    SenderId = table.Column<int>(type: "int", nullable: false),
+                    IsNew = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

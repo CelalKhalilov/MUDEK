@@ -85,7 +85,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="updateModalLabel">Update Notes</h1>
+                <h1 class="modal-title fs-5" id="updateModalLabel">Not Güncelle</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -95,7 +95,7 @@
                         @foreach (var item in List5)
                         {
                             <div class="mb-3">
-                                <label asp-for="@item.Note" class="col-form-label">Başlık:</label>
+                                <label asp-for="@item.Note" class="col-form-label">@item.LowerRating:</label>
                                 <input type="hidden" asp-for="@item.Id" />
                                 <input type="text" asp-for="@item.Note" class="form-control" />
                             </div>

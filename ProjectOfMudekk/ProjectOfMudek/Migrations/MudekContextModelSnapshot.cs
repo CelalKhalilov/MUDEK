@@ -291,6 +291,9 @@ namespace ProjectOfMudek.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SenderId")
                         .HasColumnType("int");
 

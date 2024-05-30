@@ -32,14 +32,14 @@
                 Üniversitesi</i>
         </div>
 
-        <div class="search_bar">
+        @* <div class="search_bar">
             <input type="text" placeholder="Search" />
-        </div>
+        </div> *@
 
         <div class="navbar_content">
             <!-- <i class="bi bi-grid"></i> -->
             <i class='bx bx-sun' id="darkLight"></i>
-            <i class='bx bx-bell'></i>
+            @* <i class='bx bx-bell'></i> *@
             @* <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" class="profile" /> *@
             <!-- <label for="">Jala Khalilov</label> -->
 
@@ -57,11 +57,14 @@
                         {
                             <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
                                  alt="Varsayılan Profil Resmi">
+                            <h6 class="profilismi" style="margin-top: 5px;">@item.FirstName @item.LastName</h6>
                         }
                         else
                         {
                             <img src="data:image/jpeg;base64,@item.ProfileImageBase64" 
                                 alt="Profil Resmi" >
+                            <h6 class="profilismi" style="margin-top: 5px;">@item.FirstName @item.LastName</h6>
+
                         }
                     }
                 }
@@ -76,7 +79,7 @@
                 <div class="menu_title menu_dahsboard"></div>
                 <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
                 <!-- start -->
-                <li class="item">
+                @* <li class="item">
                     <div href="#" class="nav_link submenu_item">
                         <span class="navlink_icon">
                             <i class="bx bx-home-alt"></i>
@@ -91,12 +94,12 @@
                         <a href="#" class="nav_link sublink">Nav Sub Link</a>
                         <a href="#" class="nav_link sublink">Nav Sub Link</a>
                     </ul>
-                </li>
+                </li> *@
                 <!-- end -->
 
                 <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
                 <!-- start -->
-                <li class="item">
+                @* <li class="item">
                     <div href="#" class="nav_link submenu_item">
                         <span class="navlink_icon">
                             <i class="bx bx-grid-alt"></i>
@@ -111,7 +114,7 @@
                         <a href="#" class="nav_link sublink">Nav Sub Link</a>
                         <a href="#" class="nav_link sublink">Nav Sub Link</a>
                     </ul>
-                </li>
+                </li> *@
                 <!-- end -->
             </ul>
 
@@ -119,6 +122,14 @@
                 <div class="menu_title menu_editor"></div>
                 <!-- duplicate these li tag if you want to add or remove navlink only -->
                 <!-- Start -->
+                @* <li class="item">
+                    <a href="/Teacher/AnaSayfa" class="nav_link">
+                        <span class="navlink_icon">
+                            <i class='bx bx-home-alt'></i>
+                        </span>
+                        <span class="navlink">Ana Sayfa</span>
+                    </a>
+                </li> *@
                 <li class="item">
                     <a href="/Teacher/Index" class="nav_link">
                         <span class="navlink_icon">
@@ -206,24 +217,16 @@
                         <span class="navlink">Çıkış Yap</span>
                     </a>
                 </li>
-                @* <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-layer"></i>
-                        </span>
-                        <span class="navlink">Features</span>
-                    </a>
-                </li> *@
             </ul>
 
             <!-- Sidebar Open / Close -->
             <div class="bottom_content">
                 <div class="bottom expand_sidebar">
-                    <span> Expand</span>
+                    <span> Sabitle</span>
                     <i class='bx bx-log-in'></i>
                 </div>
                 <div class="bottom collapse_sidebar">
-                    <span> Collapse</span>
+                    <span> Bırak</span>
                     <i class='bx bx-log-out'></i>
                 </div>
             </div>

@@ -38,22 +38,6 @@ namespace ProjectOfMudek.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // modelBuilder.Entity<Faculty>()
-            //     .HasOne(ba => ba.AcademicUnit)
-            //     .WithMany(a => a.FacultyList)
-            //     .HasForeignKey(a => a.AcademicUnitId);
-
-            // modelBuilder.Entity<Department>()
-            //     .HasOne(ba => ba.Faculty)
-            //     .WithMany(a => a.DepartmentList)
-            //     .HasForeignKey(a => a.FacultyId);
-
-            // modelBuilder.Entity<Question>()
-            //     .HasOne(q => q.Student)
-            //     .WithMany(s => s.Questions)
-            //     .HasForeignKey(q => q.StudentId);
-
         }
     }
 

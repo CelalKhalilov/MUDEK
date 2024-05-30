@@ -7,5 +7,6 @@ namespace Entities.Models
         public DateTime SentDate { get; set; }
         public int TeacherId { get; set; }
         public int SenderId { get; set; }
+        public bool IsNew { get; set; }  // Yeni alan
     }
 }

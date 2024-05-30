@@ -244,6 +244,7 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult DegerlendirmeAraclari()
         {
+           
             var isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
             if (isLoggedIn != "true")
             {
@@ -910,7 +911,6 @@ namespace ProjectOfMudek.Controllers
 
         public IActionResult Sohbet([FromQuery] int senderId)
         {
-            System.Console.WriteLine("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL", senderId);
             HttpContext.Session.SetInt32("SenderId", senderId); // Session'a kaydediyoruz
             ViewBag.SenderId = senderId;
 
@@ -919,7 +919,23 @@ namespace ProjectOfMudek.Controllers
 
             var teach = _context.Teachers.ToList();
             ViewBag.teach = teach;
-            ViewBag.message = _context.messages.ToList();
+
+            // Alıcı ve gönderici arasındaki mesajları al
+            var messages = _context.messages
+                .Where(m => (m.TeacherId == userId && m.SenderId == senderId) || (m.TeacherId == senderId && m.SenderId == userId))
+                .ToList();
+
+            // Kullanıcı alıcıysa (TeacherId == userId), gelen yeni mesajları güncelleyin
+            if (userId == senderId)
+            {
+                foreach (var message in messages.Where(m => m.TeacherId == userId && m.IsNew))
+                {
+                    message.IsNew = false;
+                }
+                _context.SaveChanges();
+            }
+
+            ViewBag.message = messages;
             return View();
         }
 
@@ -940,13 +956,15 @@ namespace ProjectOfMudek.Controllers
                 Chat = chat,
                 TeacherId = teacherId,
                 SenderId = senderId ?? 0,
-                SentDate = DateTime.Now
+                SentDate = DateTime.Now,
+                IsNew = true  // Yeni mesajlar
             };
 
             _context.messages.Add(message);
             _context.SaveChanges();
 
             return RedirectToAction("Sohbet","Teacher",new { senderId = senderId });
+
         }
 
 
@@ -955,17 +973,20 @@ namespace ProjectOfMudek.Controllers
             var userId = HttpContext.Session.GetInt32("Id");
             ViewBag.UserId = userId;
             var teach = _context.Teachers.ToList();
+            var messages = _context.messages.ToList();
             ViewBag.teach = teach;
-            ViewBag.message = _context.messages.ToList();
+            ViewBag.message = messages;
             return View();
         }
 
-        
-
-
-        
-
-
-
+        public IActionResult AnaSayfa()
+        {
+            var userId = HttpContext.Session.GetInt32("Id");
+            ViewBag.UserId = userId;
+            ViewBag.teach = _context.Teachers.ToList();
+            ViewBag.forms = _context.forms.ToList();
+            ViewBag.lessons = _context.lessons.ToList();
+            return View();
+        }
     }
 }

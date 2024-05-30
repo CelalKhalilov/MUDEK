@@ -12,9 +12,9 @@
             <th>E-mail</th>
             <th>Profil Resmi</th>
         </tr>
-        @{
+        @* @{
                 var teachers = ViewBag.teach as List<Teacher>;
-        }
+        } *@
         @foreach (var item in KullaniciTeacher)
         {
             <tr>
@@ -23,9 +23,9 @@
                 <td>@item.LastName</td>
                 <td>@item.Gmail</td>
                 <th>
-                    @if (teachers != null && teachers.Any())
+                    @if (KullaniciTeacher != null && KullaniciTeacher.Any())
                     {
-                        @foreach (var itemm in teachers)
+                        @foreach (var itemm in KullaniciTeacher)
                         {
                             if (itemm.Id == ViewBag.UserId)
                             {

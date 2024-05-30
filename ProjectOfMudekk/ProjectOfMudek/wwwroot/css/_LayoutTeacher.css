@@ -73,12 +73,15 @@ body.dark {
 .navbar_content {
   display: flex;
   align-items: center;
-  column-gap: 25px;
+  column-gap: 10px;
 }
 .navbar_content i {
   cursor: pointer;
   font-size: 20px;
   color: var(--grey-color);
+}
+.profilismi{
+  color:var(--grey-color);
 }
 
 /* sidebar */
@@ -117,9 +120,9 @@ body.dark {
   color: var(--grey-color);
   white-space: nowrap;
 }
-.menu_dahsboard::before {
+/* .menu_dahsboard::before {
   content: "Gösterge Paneli";
-}
+} */
 .menu_editor::before {
   content: "Sayfalar";
 }

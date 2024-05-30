@@ -32,7 +32,7 @@
         <form action="#">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Dersin Öğrenim Çıktıları</span>
+                    <span class="title">Hesaplamalar</span>
                 </div>
             </div>
         </form>
@@ -289,20 +289,7 @@
         @Html.Partial("_HesaplamalarStudentForm")
 
         <hr class="border border-black border-2 opacity-50">
-        @* @Html.Partial("_HesaplamalarQuestionForm") *@
-
-
-
-        @* <form method="post" action="#">
-        <div class="fields">
-        @Html.Partial("_HesaplamalarQuestionForm")
-        <div class="input-field">
-        <label>Ekle</label>
-        <button type="submit" class="btn btn-success">Ekle</button>
-        </div>
-        </div>
-        </form> *@
-
+       
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -315,7 +302,7 @@
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Notlar</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -383,9 +370,6 @@
                             <tr class="tab-satir-1">
                                 <th>İsim Soyisim</th>
                                 <th>Öğrenci No</th>
-
-                                @* @foreach (var item1 in List)
-                                { *@
                                     @if (List2 != null && List2.Any())
                                     {
                                         @foreach (var item2 in List2)
@@ -399,8 +383,6 @@
                                             }
                                         }
                                     }
-
-                                    @* } *@
                             </tr>
                             @if (List4 != null && List4.Any())
                             {
@@ -411,8 +393,6 @@
                                         <tr class="tab-satir-2">
                                             <td style="background-color: yellowgreen;">@item4.FullName</td>
                                             <td>@item4.StudentNumber</td>
-                                            @* @foreach (var item1 in List)
-                                        { *@
 
                                             @foreach (var t in List2)
                                             {
@@ -439,8 +419,6 @@
                                                 }
                                             }
 
-                                            @* } *@
-
                                         </tr>
                                     }
                                 }
@@ -451,7 +429,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                        @* <button type="button" class="btn btn-primary">Understood</button> *@
                     </div>
                 </div>
             </div>
@@ -657,6 +634,7 @@
                             @{ // Toplam notu hesaplama "@totalScore.ToString("0.00")"
                                 var totalScore = weightSum > 0 ? weightedTotal : 0;
                             }
+                            
 
                             @if (totalScore >= 90)
                             {
@@ -690,9 +668,13 @@
                             {
                                 <td style="background-color: red; color: white;">FD</td>
                             }
-                            else if (totalScore >= 0)
+                            else if (totalScore > 0)
                             {
                                 <td style="background-color: red; color: white;">FF</td>
+                            }
+                            else if (totalScore == 0)
+                            {
+                                <td style="background-color: yellow; color: black;">GR</td>
                             }
                             
 
@@ -711,81 +693,6 @@
                 }
             }
         </table>
-
     </div>
 </section>
 
-@* @if (List4 != null && List4.Any())
-            {
-                @foreach (var item4 in List4)
-                {
-                    if (item4.TeacherId == ViewBag.UserId)
-                    {
-                        <tr class="tab-satir-2">
-                            <td>@item4.FullName</td>
-                            <td>@item4.StudentNumber</td>
-                            @foreach (var item in List)
-                            {
-                                @foreach (var item2 in List2)
-                                {
-                                    if (item.Title == item2.Title)
-                                    {
-                                        var noteFound = false;
-                                        foreach (var item5 in List5)
-                                        {
-                                            if (item4.Id == item5.StudentId)
-                                            {
-                                                if (item5.LowerRating == item2.LowerRating)
-                                                {
-                                                    <td>@item5.Note</td>
-                                                    noteFound = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        if (!noteFound)
-                                        {
-                                            <td></td>
-                                        }
-                                    }
-                                }
-                            }
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" class="btn btn-danger">Sil</button>
-                                    <button type="button" class="btn btn-warning">Güncelle</button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                }
-            } *@
-
-@* @foreach (var item2 in List2)
-                            {
-                                if(item2.TeacherId == ViewBag.UserId)
-                                {
-                                    @foreach (var item5 in List5)
-                                    {
-                                        if (item4.Id == item5.StudentId)
-                                        {
-                                            if (item2.LowerRating == item5.LowerRating)
-                                            {
-                                                @foreach (var item1 in List)
-                                                {
-
-                                                    if(item1.Title == item2.Title)
-                                                    {
-                                                        <td>@item5.Note</td>
-                                                        s++;
-                                                    }
-                                                }
-                                            }
-
-                                        }
-
-                                    }
-                                }
-                                h++;
-                            } *@
